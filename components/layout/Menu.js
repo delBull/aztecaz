@@ -1,5 +1,6 @@
 
-import { Link, } from 'react-scroll';
+import { Link } from 'react-scroll';
+import NextLink from 'next/link';
 import { useRouter } from "next/router"
 
 export default function Menu() {
@@ -10,7 +11,7 @@ export default function Menu() {
 
             <ul id="menu-primary-menu" className="menu">
                 <li>
-                    <Link href="/" rel="home" style={{ color: 'black'}} > Inicio </Link>
+                    <NextLink href="/" rel="home" style={{ color: 'black'}} > Inicio </NextLink>
                 </li>
                 <li>
                     <Link to="problema" smooth={true} duration={500} offset={-0} style={{ color: 'black'}}> El Problema </Link>
@@ -31,8 +32,7 @@ export default function Menu() {
                     <Link to="contacto" smooth={true} duration={500} offset={-0} style={{ color: 'black'}}> Contacto </Link>
                 </li>
                 <li>
-                    <Link href="/coming-soon" style={{ color: 'black'}}> Blog </Link>
-                    
+                    <NextLink href="/coming-soon" style={{ color: 'black'}}> Blog</NextLink>    
                 </li>
             </ul>
         </>

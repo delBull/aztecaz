@@ -25,13 +25,6 @@ const parallaxStyles = {
     fontSize: '24px', // Tamaño del texto
   };
 
-    // const para enviar email
-    const email = 'ayuda@aztecaz.xyz';
-    const subject = 'Tengo interés en Aztecaz';
-  
-    const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}`;
-
-
 const swiperOptions = {
     modules: [Autoplay, Pagination, Navigation],
     loop: false,
@@ -67,8 +60,21 @@ export default function Home() {
         key: "",
     })
 
-    const [mensaje, setMensaje] = useState('Hola, me interesa invertir con Azetcaz');
-    const [numeroTelefono, setNumeroTelefono] = useState('523221023028');
+    const numeroTelefono = '523221023028';
+
+    const handleClick = () => {
+      // Genera la URL de WhatsApp con el número de teléfono
+      const urlWhatsapp = `https://wa.me/${numeroTelefono}`;
+  
+      // Abre la URL en una nueva ventana o pestaña
+      window.open(urlWhatsapp, '_blank');
+    };
+
+    const abrirCorreo = () => {
+        const mailtoLink = `mailto:ayuda@aztecaz.xyz?subject=${encodeURIComponent('Tengo interés en Aztecaz')}`;
+        window.location.href = mailtoLink;
+    };
+      
 
     const handleToggle = (key) => {
         if (isActive.key === key) {
@@ -92,11 +98,6 @@ export default function Home() {
         );
     };
 
-    const abrirWhatsapp = () => {
-        const urlWhatsapp = `whatsapp://send?text=${encodeURIComponent(mensaje)}&phone=${numeroTelefono}`;
-        window.location.href = urlWhatsapp;
-    };
-
     return (
         <>
 
@@ -117,7 +118,7 @@ export default function Home() {
                     <div className="row">
                         <div className="col-md-9">
                             <div className="content">
-                                <h1 data-wow-delay="0s" className="wow fadeInUp">Invierte en el futuro de la Tokenización Inmobiliaria</h1>
+                                <h1 data-wow-delay="0s" className="wow fadeInUp" style={{ lineHeight: '1.1' }}>Invierte en el futuro de la Tokenización Inmobiliaria</h1>
                                         <p data-wow-delay="0.1s" className="wow fadeInUp" style={{ fontSize: '26px', lineHeight: '1.1' }}>Aplicacamos herramientas blockchain para impulsar el crecimiento en el sector inmobiliario.</p>
                                 <div data-wow-delay="0.2s" className="wow fadeInUp flat-button flex">
                                     <Link href="/coming-soon" className="tf-button style-1 h50 w190 mr-30">¡Empieza Ahora!<i className="icon-arrow-up-right2" /></Link>
@@ -389,7 +390,7 @@ export default function Home() {
         materializar tus sueños! 🏗️✨
         </p>
         <div style={{ padding: '10px' }}></div>
-        <button className="tabview-title" style={{ fontSize: '14px', fontWeight: 'bold', cursor: 'pointer'}}  onClick={abrirWhatsapp}>Personaliza tu experiencia</button>
+        <Link href={`https://wa.me/${numeroTelefono}`} target="_blank" rel="noopener noreferrer"><button className="tabview-title">Personaliza tu experiencia</button></Link>
     </TabPanel>
     <TabPanel header="Revolución" headerTemplate={tab1HeaderTemplate}>
         <p style={{ fontSize: '22px', color: 'white'}} data-wow-delay="0s" className="m-2 wow fadeInUp mobile-txt-18">
@@ -592,10 +593,10 @@ export default function Home() {
                                         <div className="name"><Link href="#">Sue Del Toro</Link></div>
                                         <div className="info">CEO, Director</div>
                                         <div className="widget-social">
-                                            <ul className="flex justify-center">
+                                         {/*   <ul className="flex justify-center">
                                                 <li><Link href="#" className="icon-facebook" /></li>
                                                 <li><Link href="#" className="icon-twitter" /></li>
-                                            </ul>
+                                               </ul> */}
                                         </div>
                                     </div>
                                 </div>
@@ -605,10 +606,10 @@ export default function Home() {
                                         <div className="name"><Link href="#">Celina Del Toro</Link></div>
                                         <div className="info">Rental Manager</div>
                                         <div className="widget-social">
-                                            <ul className="flex justify-center">
+                                        {/*   <ul className="flex justify-center">
                                                 <li><Link href="#" className="icon-facebook" /></li>
                                                 <li><Link href="#" className="icon-twitter" /></li>
-                                            </ul>
+                                               </ul> */}
                                         </div>
                                     </div>
                                 </div>
@@ -618,23 +619,23 @@ export default function Home() {
                                         <div className="name"><Link href="#">Erwin Mayoral</Link></div>
                                         <div className="info">Real Estate Expert</div>
                                         <div className="widget-social">
-                                            <ul className="flex justify-center">
+                                        {/*   <ul className="flex justify-center">
                                                 <li><Link href="#" className="icon-facebook" /></li>
                                                 <li><Link href="#" className="icon-twitter" /></li>
-                                            </ul>
+                                               </ul> */}
                                         </div>
                                     </div>
                                 </div>
                                 <div data-wow-delay="0.3s" className="wow fadeInUp col-md-3 col-6">
                                     <div className="our-team-item pb-38 text-center">
-                                        <img src="/assets/images/avatar/team-04.png" alt="" />
-                                        <div className="name"><Link href="#">Bruce Wayne</Link></div>
-                                        <div className="info">Cave Owner</div>
+                                        <img src="/assets/images/avatar/team-05.png" alt="" />
+                                        <div className="name"><Link href="#">Karla Alvarez</Link></div>
+                                        <div className="info">Real Estate Expert</div>
                                         <div className="widget-social">
-                                            <ul className="flex justify-center">
+                                         {/*   <ul className="flex justify-center">
                                                 <li><Link href="#" className="icon-facebook" /></li>
                                                 <li><Link href="#" className="icon-twitter" /></li>
-                                            </ul>
+                                               </ul> */}
                                         </div>
                                     </div>
                                 </div>
@@ -725,7 +726,8 @@ export default function Home() {
                                 <div className="col-12">
                                     <div className="content">
                                         <div className="text">¿Aún te quedan dudas?</div>
-                                        <p>Si no encuentras lo que buscas, entonces</p> <p className="tf-color" style={{ cursor: 'pointer'}} onClick={abrirWhatsapp}>chatea con alguien del equipo</p>
+                                        <p>Si no encuentras lo que buscas, entonces
+                                        <Link href={`https://wa.me/${numeroTelefono}`} target="_blank" rel="noopener noreferrer" style={{ color: 'yellow'}}> chatea con alguien del equipo</Link></p>
                                     </div>
                                 </div>
                             </div>
@@ -757,19 +759,28 @@ export default function Home() {
                                         <p>Bahía de Banderas, Nayarit.</p>
                                     </div>
                                 </div>
-                                <div data-wow-delay="0.1s" className="wow fadeInUp col-md-4" style={{ cursor: 'pointer'}} href={mailtoLink}>
+                                <div
+                                data-wow-delay="0.1s"
+                                className="wow fadeInUp col-md-4"
+                                style={{ cursor: 'pointer'}}
+                                onClick={() => {
+                                const email = 'ayuda@aztecaz.xyz';
+                                const subject = 'Tengo interés en Aztecaz';
+                                const urlCorreo = `mailto:${email}?subject=${encodeURIComponent(subject)}`;
+                                window.location.href = urlCorreo;
+                                }}>
                                     <div className="box-icon-item">
                                         <img src="/assets/images/box-icon/email.png" alt="" />
                                         <h4>Send Email</h4>
                                         <p>ayuda@aztecaz.xyz</p>
                                     </div>
                                 </div>
-                                <div data-wow-delay="0.2s" className="wow fadeInUp col-md-4" style={{ cursor: 'pointer'}} onClick={abrirWhatsapp}>
+                                <div data-wow-delay="0.2s" className="wow fadeInUp col-md-4" style={{ cursor: 'pointer'}}><Link href={`https://wa.me/${numeroTelefono}`} target="_blank" rel="noopener noreferrer">
                                     <div className="box-icon-item">
                                         <img src="/assets/images/box-icon/phone.png" alt="" />
                                         <h4>WhatsApp</h4>
                                         <p>Conéctate con nosotros</p>
-                                    </div>
+                                    </div></Link>
                                 </div>
                             </div>
                         </div>
