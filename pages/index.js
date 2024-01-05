@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic'
 import Link from "next/link"
 import Action8 from "@/components/sections/Action8"
 import { Autoplay, Navigation, Pagination } from "swiper/modules"
+import { useState } from "react"
 import { Element } from 'react-scroll';
 import { Swiper, SwiperSlide } from "swiper/react"
 import video from '../public/assets/planeta.mp4';
@@ -23,6 +24,13 @@ const parallaxStyles = {
     color: 'white', // Color del texto sobre la imagen
     fontSize: '24px', // Tamaño del texto
   };
+
+    // const para enviar email
+    const email = 'ayuda@aztecaz.xyz';
+    const subject = 'Tengo interés en Aztecaz';
+  
+    const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}`;
+
 
 const swiperOptions = {
     modules: [Autoplay, Pagination, Navigation],
@@ -48,7 +56,7 @@ const CounterUp = dynamic(() => import('@/components/elements/CounterUp'), {
     ssr: false,
 })
 
-import { useState } from "react"
+
 export default function Home() {
 
     const [isBidModal, setBidModal] = useState(false)
@@ -59,18 +67,21 @@ export default function Home() {
         key: "",
     })
 
+    const [mensaje, setMensaje] = useState('Hola, me interesa invertir con Azetcaz');
+    const [numeroTelefono, setNumeroTelefono] = useState('523221023028');
+
     const handleToggle = (key) => {
         if (isActive.key === key) {
             setIsActive({
                 status: false,
-            })
+            });
         } else {
             setIsActive({
                 status: true,
                 key,
-            })
+            });
         }
-    }
+    };
 
     const tab1HeaderTemplate = (options) => {
         return (
@@ -79,6 +90,11 @@ export default function Home() {
                 {options.titleElement}
             </button>
         );
+    };
+
+    const abrirWhatsapp = () => {
+        const urlWhatsapp = `whatsapp://send?text=${encodeURIComponent(mensaje)}&phone=${numeroTelefono}`;
+        window.location.href = urlWhatsapp;
     };
 
     return (
@@ -373,7 +389,7 @@ export default function Home() {
         materializar tus sueños! 🏗️✨
         </p>
         <div style={{ padding: '10px' }}></div>
-        <Link href="/" className="tabview-title" style={{ fontSize: '14px', fontWeight: 'bold'}}>Personaliza tu experiencia</Link>
+        <button className="tabview-title" style={{ fontSize: '14px', fontWeight: 'bold', cursor: 'pointer'}}  onClick={abrirWhatsapp}>Personaliza tu experiencia</button>
     </TabPanel>
     <TabPanel header="Revolución" headerTemplate={tab1HeaderTemplate}>
         <p style={{ fontSize: '22px', color: 'white'}} data-wow-delay="0s" className="m-2 wow fadeInUp mobile-txt-18">
@@ -709,7 +725,7 @@ export default function Home() {
                                 <div className="col-12">
                                     <div className="content">
                                         <div className="text">¿Aún te quedan dudas?</div>
-                                        <p>Si no encuentras lo que buscas, entonces <Link href="#" className="tf-color">chatea alguien del equipo</Link></p>
+                                        <p>Si no encuentras lo que buscas, entonces</p> <p className="tf-color" style={{ cursor: 'pointer'}} onClick={abrirWhatsapp}>chatea con alguien del equipo</p>
                                     </div>
                                 </div>
                             </div>
@@ -724,7 +740,6 @@ export default function Home() {
 
 {/* contact */}
             <Element name="contacto">
-                <div>
                     <div className="tf-section-2 widget-box-icon">
                         <div className="themesflat-container">
                             <div className="row">
@@ -738,21 +753,21 @@ export default function Home() {
                                 <div data-wow-delay="0s" className="wow fadeInUp col-md-4">
                                     <div className="box-icon-item">
                                         <img src="/assets/images/box-icon/address.png" alt="" />
-                                        <div className="title"><Link href="#">Headquarters</Link></div>
+                                        <h4>Headquarters</h4>
                                         <p>Bahía de Banderas, Nayarit.</p>
                                     </div>
                                 </div>
-                                <div data-wow-delay="0.1s" className="wow fadeInUp col-md-4">
+                                <div data-wow-delay="0.1s" className="wow fadeInUp col-md-4" style={{ cursor: 'pointer'}} href={mailtoLink}>
                                     <div className="box-icon-item">
                                         <img src="/assets/images/box-icon/email.png" alt="" />
-                                        <div className="title"><Link href="#">Email</Link></div>
+                                        <h4>Send Email</h4>
                                         <p>ayuda@aztecaz.xyz</p>
                                     </div>
                                 </div>
-                                <div data-wow-delay="0.2s" className="wow fadeInUp col-md-4">
+                                <div data-wow-delay="0.2s" className="wow fadeInUp col-md-4" style={{ cursor: 'pointer'}} onClick={abrirWhatsapp}>
                                     <div className="box-icon-item">
                                         <img src="/assets/images/box-icon/phone.png" alt="" />
-                                        <div className="title"><Link href="#">WhatsApp</Link></div>
+                                        <h4>WhatsApp</h4>
                                         <p>Conéctate con nosotros</p>
                                     </div>
                                 </div>
@@ -792,7 +807,6 @@ export default function Home() {
                             </div>
                         </div>
                     </div>
-                </div>
                 </Element>
 {/* end contact*/}
 

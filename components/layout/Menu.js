@@ -31,7 +31,7 @@ export default function Menu() {
                     <Link to="contacto" smooth={true} duration={500} offset={-0} style={{ color: 'black'}}> Contacto </Link>
                 </li>
                 <li>
-                    <Link href="/" style={{ color: 'black'}}> Blog </Link>
+                    <Link href="/coming-soon" style={{ color: 'black'}}> Blog </Link>
                     
                 </li>
             </ul>
