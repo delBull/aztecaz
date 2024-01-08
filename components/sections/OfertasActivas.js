@@ -15,16 +15,16 @@ export default function ActiveBid() {
     }
     return (
         <>
-            <div className="wrapper-content">
+            <div className="walletwrap-top">
                 <div className="inner-content">
                     <div className="action__body w-full mb-40">
                         <div className="tf-tsparticles">
                             <div id="tsparticles2" data-color="#161616" data-line="#000" />
                         </div>
-                        <h2>Discover, create and sell your own NFT</h2>
+                        <h2>Arma tu paquete inmobiliario; ticket the inversión + ownership</h2>
                         <div className="flat-button flex">
-                            <Link href="#" className="tf-button style-2 h50 w190 mr-10">Explore now<i className="icon-arrow-up-right2" /></Link>
-                            <Link href="#" className="tf-button style-2 h50 w230">Create your first NFT<i className="icon-arrow-up-right2" /></Link>
+                            <Link href="#" className="tf-button style-2 h50 w190 mr-10">Descubre más<i className="icon-arrow-up-right2" /></Link>
+                            <Link href="#" className="tf-button style-2 h50 w230">¡Lo quiero!<i className="icon-arrow-up-right2" /></Link>
                         </div>
                         <div className="bg-home7">
                             <AutoSlider1 />
@@ -2106,7 +2106,7 @@ export default function ActiveBid() {
                         </div>
                     </div>
                 </div>
-                <div className="side-bar">
+               {/* <div className="side-bar">
                     <div className="widget widget-recently">
                         <h5 className="title-widget">Recently added</h5>
                         <div className="card-small-main">
@@ -2287,7 +2287,7 @@ export default function ActiveBid() {
                             <span className="time">16hr ago</span>
                         </div>
                     </div>
-                </div>
+                </div> */}
             </div>
             <BidModal handleBidModal={handleBidModal} isBidModal={isBidModal} />
         </>

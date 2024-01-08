@@ -287,12 +287,14 @@ export default function Home() {
                         <div className="themesflat-container">
                             <div className="row">
                                 <div className="col-12">
+                                <div style={{ padding: '30px' }}></div>
+                                <h2 className="tf-title pb-30" style={{ textAlign: 'center'}}>Estadísticas</h2>
                                     <div className="counter__body-1">
                                         <div className="counter-1">
                                             <div className="number-counter">
                                                 <span className="number" data-speed={3000} data-to={200} data-inviewport="yes"><CounterUp count={200} time={1} /></span>B+
                                             </div>
-                                            <h6 className="title">Velor Antes de la crisis financiera 2008</h6>
+                                            <h6 className="title">Valor Antes de la crisis financiera 2008</h6>
                                         </div>
                                         <div className="space">
                                             <svg width={80} height={19} viewBox="0 0 80 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -337,6 +339,7 @@ export default function Home() {
                                             <h6 className="title">De todos los tokens de valor provienen del sector inmobiliario</h6>
                                         </div>
                                     </div>
+                                    <div style={{ padding: '30px' }}></div>
                                 </div>
                             </div>
                         </div>
@@ -473,7 +476,7 @@ export default function Home() {
                                     <img src="/assets/images/box-icon/icon-02.png" alt="" />
                                     <p>Paso 2</p>
                                 </div>
-                                <h4 className="heading"><Link href="/contact-us">Tokenización Mastra</Link></h4>
+                                <h4 className="heading"><Link href="/contact-us">Tokenización Maestra</Link></h4>
                                 <p className="content">Convertimos el vehículo en tokens, permitiendo la participación de cualquier inversor.</p>
                                 <div className="arrow">
                                     <svg width={114} height={114} viewBox="0 0 114 114" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -684,7 +687,7 @@ export default function Home() {
                                         <div data-wow-delay="0s" className="wow fadeInUp flat-toggle">
                                             <h6 className={isActive.key == 5 ? "toggle-title active" : "toggle-title"} onClick={() => handleToggle(5)}>5. ¿Cómo configuro mi cuenta?</h6>
                                             <div className="toggle-content" style={{ display: `${isActive.key == 5 ? "block" : "none"}` }}>
-                                                <p>Configurar tu cuenta es sencillo. Ve a "login" en la barra de navegción, sigue los pasos de registro y completa la información necesaria. Asegúrate de proteger tus credenciales y seguir las indicaciones para acceder fácilmente a tu cuenta.</p>
+                                                <p>Configurar tu cuenta es sencillo. Ve a "login" en la barra de navegación, sigue los pasos de registro y completa la información necesaria. Asegúrate de proteger tus credenciales y seguir las indicaciones para acceder fácilmente a tu cuenta.</p>
                                             </div>
                                         </div>
                                     </div>

@@ -1,11 +1,11 @@
-import ActiveBid from "@/components/sections/ActiveBid"
-import Collection from "@/components/sections/Collection"
+import ActiveBid from "@/components/sections/OfertasActivas"
+import Collection from "@/components/sections/MisActivos"
 import Create from "@/components/sections/Create"
-import Explore from "@/components/sections/Explore"
+import Explore from "@/components/sections/Trade"
 import Favourite from "@/components/sections/Favourite"
-import History from "@/components/sections/History"
-import Market from "@/components/sections/Market"
-import Settings from "@/components/sections/Settings"
+import History from "@/components/sections/Historial"
+import Market from "@/components/sections/Disponibilidad"
+import Settings from "@/components/sections/Configuración"
 import Wallet from "@/components/sections/Wallet"
 import Link from "next/link"
 import { useState } from "react"
@@ -35,7 +35,7 @@ export default function Home() {
                         <div className="market-header flex items-center justify-between">
                             <div className="widget-search">
                                 <form action="#" method="get" role="search" className="search-form relative">
-                                    <input type="search" id="search" className="search-field style-1" placeholder="Search artwork, collection..." name="s" title="Search for" required />
+                                    <input type="search" id="search" className="search-field style-1" placeholder="¿Buscas algo en particular?..." name="s" title="Search for" required />
                                     <button className="search search-submit" type="submit" title="Search">
                                         <i className="icon-search" />
                                     </button>
@@ -132,7 +132,7 @@ export default function Home() {
                         </div>
                     </div>
                     <div className={`btn-canvas ${isMobileSidebar ? "" : "active"}`}>
-                        <div className="canvas" onClick={handleMobileSidebar}>
+                        <div className="canvas canvas-wallet" onClick={handleMobileSidebar}>
                             <span />
                         </div>
                     </div>
@@ -141,15 +141,15 @@ export default function Home() {
                             <div className="box-logo">
                                 <Link href="/" rel="home"><img src="assets/images/logo/logo_navbar.png" alt="" /></Link>
                             </div>
-                            <div className="create menu-tab">
+                          {/*  <div className="create menu-tab">
                                 <a className="tf-button style-1 type-1 tablinks" data-tabs="create" onClick={() => handleOnClick(9)}>
                                     <span>Crear</span>
                                     <i className="icon-create" />
                                 </a>
-                            </div>
+                          </div> */}
                             <div className="over-content">
                                 <div className="content">
-                                    <h6>Marketplace</h6>
+                                    <h6>Activos</h6>
                                     <ul className="menu-tab">
                                         <li className={activeIndex === 1 ? "tablinks active" : "tablinks"} data-tabs="market" onClick={() => handleOnClick(1)}>
                                             <svg width={22} height={22} viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -163,7 +163,7 @@ export default function Home() {
                                             <svg width={22} height={22} viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path fillRule="evenodd" clipRule="evenodd" d="M6.71982 1.83371H15.2806C18.3982 1.83371 20.1582 3.60196 20.1673 6.71954V15.2812C20.1673 18.3979 18.3982 20.167 15.2806 20.167H6.71982C3.60223 20.167 1.83398 18.3979 1.83398 15.2812V6.71954C1.83398 3.60196 3.60223 1.83371 6.71982 1.83371ZM11.0456 16.372C11.4407 16.372 11.7697 16.0787 11.8064 15.6845V6.34371C11.8431 6.05954 11.7065 5.77446 11.459 5.61954C11.2014 5.46371 10.8897 5.46371 10.6432 5.61954C10.3947 5.77446 10.2582 6.05954 10.2847 6.34371V15.6845C10.3315 16.0787 10.6606 16.372 11.0456 16.372ZM15.2628 16.372C15.6478 16.372 15.9769 16.0787 16.0237 15.6845V12.6779C16.0502 12.3836 15.9137 12.1095 15.6652 11.9537C15.4187 11.7979 15.107 11.7979 14.8503 11.9537C14.6019 12.1095 14.4653 12.3836 14.502 12.6779V15.6845C14.5387 16.0787 14.8677 16.372 15.2628 16.372ZM7.534 15.6845C7.49734 16.0787 7.16825 16.372 6.77317 16.372C6.379 16.372 6.049 16.0787 6.01325 15.6845V9.35038C5.98575 9.0653 6.12234 8.78205 6.37075 8.62621C6.61734 8.47038 6.92992 8.47038 7.17742 8.62621C7.424 8.78205 7.56242 9.0653 7.534 9.35038V15.6845Z" fill="#DDF247" />
                                             </svg>
-                                            Market
+                                            Dispoinibilidad
                                         </li>
                                         <li className={activeIndex === 2 ? "tablinks active" : "tablinks"} data-tabs="bid" onClick={() => handleOnClick(2)}>
                                             <svg width={22} height={22} viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -200,8 +200,8 @@ export default function Home() {
                                             <svg width={22} height={22} viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path fillRule="evenodd" clipRule="evenodd" d="M4.16134 1.83334H7.25967C8.55217 1.83334 9.58801 2.88751 9.58801 4.18093V7.30584C9.58801 8.60751 8.55217 9.65251 7.25967 9.65251H4.16134C2.87801 9.65251 1.83301 8.60751 1.83301 7.30584V4.18093C1.83301 2.88751 2.87801 1.83334 4.16134 1.83334ZM4.16134 12.3472H7.25967C8.55217 12.3472 9.58801 13.3932 9.58801 14.6948V17.8197C9.58801 19.1122 8.55217 20.1664 7.25967 20.1664H4.16134C2.87801 20.1664 1.83301 19.1122 1.83301 17.8197V14.6948C1.83301 13.3932 2.87801 12.3472 4.16134 12.3472ZM17.8381 1.83334H14.7398C13.4473 1.83334 12.4114 2.88751 12.4114 4.18093V7.30584C12.4114 8.60751 13.4473 9.65251 14.7398 9.65251H17.8381C19.1214 9.65251 20.1664 8.60751 20.1664 7.30584V4.18093C20.1664 2.88751 19.1214 1.83334 17.8381 1.83334ZM14.7398 12.3472H17.8381C19.1214 12.3472 20.1664 13.3932 20.1664 14.6948V17.8197C20.1664 19.1122 19.1214 20.1664 17.8381 20.1664H14.7398C13.4473 20.1664 12.4114 19.1122 12.4114 17.8197V14.6948C12.4114 13.3932 13.4473 12.3472 14.7398 12.3472Z" fill="#DDF247" />
                                             </svg>
-                                            Explorar
-                                        </li>
+                                            Trade
+                                           </li> 
                                     </ul>
                                 </div>
                                 <div className="content mt-30">
@@ -222,9 +222,9 @@ export default function Home() {
                                             <svg width={22} height={22} viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path fillRule="evenodd" clipRule="evenodd" d="M12.3279 4.47353H15.142C18.5245 4.47353 20.1745 6.27936 20.1654 9.9827V14.4469C20.1654 17.9852 17.9837 20.1669 14.4362 20.1669H7.55203C4.02286 20.1669 1.83203 17.9852 1.83203 14.4377V7.55353C1.83203 3.75853 3.5187 1.83353 6.8462 1.83353H8.29453C9.14795 1.82436 9.94453 2.21853 10.467 2.8877L11.2737 3.9602C11.5304 4.28103 11.9154 4.47353 12.3279 4.47353ZM6.75391 14.016H15.2422C15.6181 14.016 15.9206 13.7044 15.9206 13.3285C15.9206 12.9435 15.6181 12.641 15.2422 12.641H6.75391C6.36891 12.641 6.06641 12.9435 6.06641 13.3285C6.06641 13.7044 6.36891 14.016 6.75391 14.016Z" fill="#DDF247" />
                                             </svg>
-                                            Mis collecciones
+                                            Mis Activos
                                         </li>
-                                        <li className={activeIndex === 5 ? "tablinks active" : "tablinks"} data-tabs="favorite" onClick={() => handleOnClick(5)}>
+                                     {/*   <li className={activeIndex === 5 ? "tablinks active" : "tablinks"} data-tabs="favorite" onClick={() => handleOnClick(5)}>
                                             <svg width={22} height={22} viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <g opacity="0.2">
                                                     <path fillRule="evenodd" clipRule="evenodd" d="M2.63385 10.6318C1.65026 7.56096 2.79976 4.05104 6.02368 3.01246C7.71951 2.46521 9.59135 2.78788 11.0012 3.84846C12.3349 2.81721 14.2755 2.46888 15.9695 3.01246C19.1934 4.05104 20.3503 7.56096 19.3676 10.6318C17.8368 15.4993 11.0012 19.2485 11.0012 19.2485C11.0012 19.2485 4.21601 15.5561 2.63385 10.6318Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -234,8 +234,8 @@ export default function Home() {
                                             <svg width={22} height={22} viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path fillRule="evenodd" clipRule="evenodd" d="M14.5279 2.29232C15.1063 2.29232 15.6838 2.3739 16.2329 2.55815C19.6163 3.65815 20.8355 7.37066 19.817 10.6157C19.2395 12.2739 18.2954 13.7873 17.0588 15.0239C15.2887 16.7381 13.3463 18.2597 11.2554 19.5706L11.0262 19.709L10.7879 19.5614C8.68963 18.2597 6.73621 16.7381 4.94963 15.0147C3.7213 13.7782 2.77621 12.2739 2.18955 10.6157C1.15371 7.37066 2.37288 3.65815 5.79296 2.5389C6.0588 2.44724 6.33288 2.38307 6.60788 2.34732H6.71788C6.97546 2.30974 7.23121 2.29232 7.48788 2.29232H7.58871C8.16621 2.30974 8.72538 2.41057 9.26713 2.59482H9.32121C9.35788 2.61224 9.38538 2.63149 9.40371 2.6489C9.6063 2.71399 9.79788 2.78732 9.98121 2.88815L10.3295 3.04399C10.4137 3.08888 10.5082 3.15747 10.5898 3.21675C10.6416 3.25431 10.6882 3.28813 10.7237 3.30982C10.7387 3.31865 10.7539 3.32752 10.7692 3.33647C10.8478 3.38235 10.9297 3.43014 10.9987 3.48307C12.0171 2.70482 13.2537 2.28315 14.5279 2.29232ZM16.9674 8.8923C17.3432 8.88222 17.6641 8.58063 17.6916 8.19472V8.08563C17.7191 6.80138 16.9408 5.63813 15.7574 5.18897C15.3816 5.05972 14.9691 5.2623 14.8316 5.6473C14.7032 6.0323 14.9049 6.45397 15.2899 6.59055C15.8775 6.81055 16.2707 7.38897 16.2707 8.02972V8.05813C16.2533 8.26805 16.3166 8.47063 16.4449 8.62647C16.5732 8.7823 16.7657 8.87305 16.9674 8.8923Z" fill="#DDF247" />
                                             </svg>
-                                            Mis favoritos
-                                        </li>
+                                            Favoritos
+                                        </li> */}
                                         <li className={activeIndex === 6 ? "tablinks active" : "tablinks"} data-tabs="wallet" onClick={() => handleOnClick(6)}>
                                             <svg width={22} height={22} viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <g opacity="0.2">
@@ -254,7 +254,7 @@ export default function Home() {
                                                 <path fillRule="evenodd" clipRule="evenodd" d="M16.2883 7.68332H20.1668C20.1668 4.56921 18.3009 2.75 15.1394 2.75H6.8609C3.69942 2.75 1.8335 4.56921 1.8335 7.6436V14.3564C1.8335 17.4308 3.69942 19.25 6.8609 19.25H15.1394C18.3009 19.25 20.1668 17.4308 20.1668 14.3564V14.0704H16.2883C14.4883 14.0704 13.0291 12.6477 13.0291 10.8928C13.0291 9.13778 14.4883 7.71509 16.2883 7.71509V7.68332ZM16.2883 9.04971H19.4824C19.8604 9.04971 20.1668 9.34848 20.1668 9.71702V12.0367C20.1624 12.4035 19.8586 12.6997 19.4824 12.704H16.3616C15.4504 12.716 14.6535 12.1077 14.4468 11.2423C14.3433 10.7051 14.4886 10.1508 14.8438 9.72787C15.199 9.30496 15.7277 9.05674 16.2883 9.04971ZM16.4268 11.4886H16.7283C17.1153 11.4886 17.4291 11.1827 17.4291 10.8054C17.4291 10.428 17.1153 10.1222 16.7283 10.1222H16.4268C16.2417 10.12 16.0635 10.1903 15.9318 10.3171C15.8002 10.444 15.7261 10.617 15.7261 10.7974C15.7261 11.1761 16.0385 11.4842 16.4268 11.4886ZM6.17646 7.68332H11.3505C11.7375 7.68332 12.0513 7.37744 12.0513 7.00012C12.0513 6.6228 11.7375 6.31692 11.3505 6.31692H6.17646C5.79261 6.3169 5.48018 6.61796 5.47572 6.99218C5.47569 7.3708 5.78814 7.67897 6.17646 7.68332Z" fill="#DDF247" />
                                             </svg>
                                             Wallet
-                                        </li>
+                                        </li> 
                                         <li className={activeIndex === 7 ? "tablinks active" : "tablinks"} data-tabs="history" onClick={() => handleOnClick(7)}>
                                             <svg width={22} height={22} viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <g opacity="0.2">

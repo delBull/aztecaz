@@ -2687,6 +2687,16 @@ div#page {
 .web-none {
     display: none;
 }
+.canvas-wallet {
+    background-color: white;
+    border-radius: 5px;
+    right: 2.5px;
+}
+.walletwrap-top{
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}
 
 
   /* Estilos específicos para dispositivos móviles (tamaño de pantalla máximo de 599px) */

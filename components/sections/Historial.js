@@ -13,21 +13,6 @@ export default function History() {
         <>
             <div className="wrapper-content">
                 <div className="inner-content">
-                    <div className="action__body w-full mb-40">
-                        <div className="tf-tsparticles">
-                            <div id="tsparticles7" data-color="#161616" data-line="#000" />
-                        </div>
-                        <h2>Discover, create and sell your own NFT</h2>
-                        <div className="flat-button flex">
-                            <Link href="#" className="tf-button style-2 h50 w190 mr-10">Explore now<i className="icon-arrow-up-right2" /></Link>
-                            <Link href="#" className="tf-button style-2 h50 w230">Create your first NFT<i className="icon-arrow-up-right2" /></Link>
-                        </div>
-                        <div className="bg-home7">
-                            <AutoSlider1 />
-                            <AutoSlider2 />
-                            <AutoSlider1 />
-                        </div>
-                    </div>
                     <div className="heading-section">
                         <h2 className="tf-title pb-30">History</h2>
                     </div>
@@ -419,49 +404,9 @@ export default function History() {
                     </div>
                 </div>
                 <div className="side-bar">
-                    <div className="widget widget-recently">
-                        <h5 className="title-widget">Recently added</h5>
-                        <div className="card-small-main">
-                            <img src="assets/images/blog/sidebar-05.jpg" alt="" />
-                            <div className="card-bottom">
-                                <h5><Link href="#">Photography</Link></h5>
-                                <span className="date">16hr ago</span>
-                            </div>
-                        </div>
-                        <div className="card-small">
-                            <div className="author">
-                                <img src="assets/images/blog/sidebar-06.jpg" alt="" />
-                                <div className="info">
-                                    <h6><Link href="#">Propw</Link></h6>
-                                    <p><Link href="#">@themes</Link></p>
-                                </div>
-                            </div>
-                            <span className="date">Mon, 08 May </span>
-                        </div>
-                        <div className="card-small">
-                            <div className="author">
-                                <img src="assets/images/blog/sidebar-07.jpg" alt="" />
-                                <div className="info">
-                                    <h6><Link href="#">Propw</Link></h6>
-                                    <p><Link href="#">@themes</Link></p>
-                                </div>
-                            </div>
-                            <span className="date">Mon, 08 May </span>
-                        </div>
-                        <div className="card-small">
-                            <div className="author">
-                                <img src="assets/images/blog/sidebar-08.jpg" alt="" />
-                                <div className="info">
-                                    <h6><Link href="#">Propw</Link></h6>
-                                    <p><Link href="#">@themes</Link></p>
-                                </div>
-                            </div>
-                            <span className="date">Mon, 08 May </span>
-                        </div>
-                    </div>
                     <div className="widget widget-creators">
                         <div className="flex items-center justify-between">
-                            <h5 className="title-widget">Top Creators</h5>
+                            <h5 className="title-widget">Activos Guardados</h5>
                             <Link className="see-all" href="#">See all</Link>
                         </div>
                         <div className="widget-creators-item flex items-center mb-20">
@@ -521,7 +466,7 @@ export default function History() {
                         </div>
                     </div>
                     <div className="widget widget-coins">
-                        <h5 className="title-widget">Trending coins</h5>
+                        <h5 className="title-widget">Cryptos Trending</h5>
                         <div className="widget-coins-item flex items-center mb-20">
                             <img src="assets/images/box-icon/coin-01.png" alt="" />
                             <p><Link href="#">Bitcoin</Link></p>
