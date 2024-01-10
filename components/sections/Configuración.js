@@ -17,9 +17,9 @@ export default function Settings() {
                         </div>
                         <form action="#">
                             <div className="uploadfile flex">
-                                <img src="assets/images/avatar/avatar-07.png" alt="" />
+                                <img src="assets/images/avatar/team-04.png" style={{ width: '150px', height: '150px' }} />
                                 <div>
-                                    <h6>Subir nuevo avatar”</h6>
+                                    <h6>Carga tu foto de perfil</h6>
                                     <label>
                                         <input type="file" name="file" />
                                         <span className="text filename">No se detectaron archivos</span>
