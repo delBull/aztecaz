@@ -1162,7 +1162,7 @@ a:focus {
 .canvas::after {
     position: absolute;
     content: "";
-    height: 3px;
+    height: 2px;
     background-color: #000000;
     border-radius: 5px;
     right: 2.5px;
@@ -2692,10 +2692,32 @@ div#page {
     border-radius: 5px;
     right: 2.5px;
 }
-.walletwrap-top{
+.walletwrap-top {
     height: 100%;
     margin: 0;
     overflow: hidden;
+}
+.market-header {
+    background: #232323;
+}
+div#market-header {
+    padding: 0px;
+    left: 205px;
+    right: 5px;
+}
+.market-header.flex.items-center.justify-between {
+    height: 73px;
+}
+.btn-canvas.active {
+    background: transparent;
+    left: 180px !important;
+    z-index: 100;
+    top: 15px !important;
+}
+.btn-canvas {
+    background: transparent;
+    top: 15px !important;
+    border-radius: 2px;
 }
 
 

@@ -3589,8 +3589,9 @@ form label i.icon-star.active {
 }
 
 .market-header .widget-search {
-    max-width: 540px;
+    max-width: 640px;
     width: 100%;
+    margin-left: 40px;
 }
 
 /* admin_active */
