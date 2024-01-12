@@ -2719,7 +2719,41 @@ div#market-header {
     top: 15px !important;
     border-radius: 2px;
 }
-
+#page.market-page {
+    background: #232323;
+}
+.finanzas-inner {
+    width: 100%;
+}
+.finanzas-menu {
+    display: flex !important;
+    flex-direction: column !important;
+}
+.finanzas-wrapper {
+    display: flex !important;
+    align-items: stretch !important;
+}
+.widget-menu-tab {
+    list-style: none;
+}
+.item-title-fin {
+    cursor: pointer;
+    color: #969696 !important;
+    background-color: #232323 !important;
+    padding: 10px;
+    border: 1px solid #232323 !important;
+    width: 50vh;
+    height: 20vh;
+    text-align: left !important;
+  }
+  
+  .item-title-fin.active {
+    background-color: #2f2f2f !important;
+    color: #fff !important;
+  }
+  body.body.dashboard1 {
+    background: #232323;
+}
 
   /* Estilos específicos para dispositivos móviles (tamaño de pantalla máximo de 599px) */
 @media (max-width: 599px) {
@@ -2778,5 +2812,8 @@ div#market-header {
     }
     .main-logo {
         width: 50px !important;
+    }
+    .btn-canvas.active {
+        left: 20px !important;
     }
   }
