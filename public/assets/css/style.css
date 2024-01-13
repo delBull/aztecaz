@@ -2719,9 +2719,6 @@ div#market-header {
     top: 15px !important;
     border-radius: 2px;
 }
-#page.market-page {
-    background: #232323;
-}
 .finanzas-inner {
     width: 100%;
 }
@@ -2751,9 +2748,6 @@ div#market-header {
     background-color: #2f2f2f !important;
     color: #fff !important;
   }
-  body.body.dashboard1 {
-    background: #232323;
-}
 
   /* Estilos específicos para dispositivos móviles (tamaño de pantalla máximo de 599px) */
 @media (max-width: 599px) {
