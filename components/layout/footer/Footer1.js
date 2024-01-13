@@ -5,7 +5,7 @@ export default function Footer1() {
         <>
             <footer id="footer">
                 <div className="themesflat-container">
-                  {/*  <div className="row">
+                    <div id="footer details" className="row">
                         <div className="col-12">
                             <div className="footer-content flex flex-grow">
                                 <div className="widget-logo flex-grow">
@@ -61,7 +61,7 @@ export default function Footer1() {
                                 </div>
                             </div>
                         </div>
-                    </div> */}
+                    </div> 
                     <div className="footer-bottom">
                         <p>© {new Date().getFullYear()} ATECAZ: HUB INMOBILIARIO </p>
                         <ul className="flex">
