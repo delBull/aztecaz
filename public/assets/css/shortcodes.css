@@ -138,13 +138,13 @@
     height: 44px;
     gap: 10px;
     flex-shrink: 0;
-    background-color: #DDF247;
+    background-color: #be7157;
 }
 
 .tf-button.style-1:hover,
 .tf-button.style-1.active {
     color: #161616;
-    background-color: #fff;
+    background-color: #c98872;
 }
 
 .tf-button.style-1.active:hover {
@@ -2347,7 +2347,7 @@
     padding: 50px 40px;
     margin-left: 5px;
     margin-right: 5px;
-    background-color: rgba(221, 242, 71, 1);
+    background-color: #0f3743;
     border-radius: 30px;
     overflow: hidden;
     position: relative;
@@ -2370,8 +2370,8 @@
 }
 
 .tf-button.style-2 {
-    background-color: rgba(22, 22, 22, 1);
-    color: rgba(221, 242, 71, 1);
+    background-color: #be7157;
+    color: #232323;
     gap: 10px;
     flex-shrink: 0;
 }
@@ -3352,7 +3352,7 @@
 }
 
 .counter__body-1 .counter-1 .number-counter {
-    color: #DDF247;
+    color: #be7157;
     font-size: 54px;
     font-weight: 800;
     line-height: 74px;

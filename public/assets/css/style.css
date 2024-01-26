@@ -2437,7 +2437,7 @@ animation-delay: 0.8s;
     line-height: 44px;
     font-size: 16px;
     font-weight: 900;
-    color: #DDF247;
+    color: #be7157;
     left: 0;
     top: 0;
     height: 44px;
@@ -2464,7 +2464,7 @@ animation-delay: 0.8s;
   
 .progress-wrap svg.progress-circle path {
     box-sizing: border-box;
-    stroke: #DDF247;
+    stroke: #be7157;
     stroke-width: 5;
     transition-property: all;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -2671,18 +2671,18 @@ div#page {
   }
   button.p-tabview-nav-link {
     background-color: transparent;
-    color: #DDF247;
+    color: #6b6b6b;
     margin: 10px;
     padding-right: 20px;
 }
 .tabview-title {
     border-radius: 16px;
-    background: #232323;
+    background: #0f3743;
     padding: 14px 30px;
     margin-right: 10px;
     margin-bottom: 10px;
     position: relative;
-    color: darkgray;
+    color: #be7157;
 }
 .web-none {
     display: none;
@@ -2753,6 +2753,9 @@ div#market-header {
 }
 div#footer\ details {
     display: none;
+}
+.heading-section {
+    padding-top: 50px;
 }
 
   /* Estilos específicos para dispositivos móviles (tamaño de pantalla máximo de 599px) */

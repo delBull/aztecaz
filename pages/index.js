@@ -152,8 +152,8 @@ export default function Home() {
 {/* end Intro */}
 
 {/* Problema */}
+
 <Element name="problema">
-<div style={{ padding: '50px' }}></div>
 <div className="tf-section create-sell">
                 <div className="themesflat-container">
                     <div className="row pl-2-5">
@@ -730,7 +730,7 @@ export default function Home() {
                                     <div className="content">
                                         <div className="text">¿Aún te quedan dudas?</div>
                                         <p>Si no encuentras lo que buscas, entonces
-                                        <Link href={`https://wa.me/${numeroTelefono}`} target="_blank" rel="noopener noreferrer" style={{ color: 'yellow'}}> chatea con alguien del equipo</Link></p>
+                                        <Link href={`https://wa.me/${numeroTelefono}`} target="_blank" rel="noopener noreferrer" style={{ color: '#be7157'}}> chatea con alguien del equipo</Link></p>
                                     </div>
                                 </div>
                             </div>
