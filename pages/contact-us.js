@@ -12,7 +12,7 @@ export default function Home() {
                         <div className="themesflat-container">
                             <div className="row">
                                 <div className="col-12">
-                                    <h1 className="heading text-center">Get In Touch</h1>
+                                    <h1 className="heading text-center">Contáctanos</h1>
                                     <ul className="breadcrumbs flex justify-center">
                                         <li className="icon-keyboard_arrow_right">
                                             <Link href="/">Home</Link>
