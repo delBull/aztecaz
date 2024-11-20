@@ -2554,10 +2554,10 @@ body.background-white .tf-mouse-outer {
 
 .eagle-img {
     position: absolute;
-    right: 0;
-    top: 0;
-    width: 80vh;
-    opacity: 0.4;
+    left: 0;
+    bottom: -10;
+    width: 100vh;
+    opacity: 0.9;
 }
 
 .logo-rotador {
@@ -2812,3 +2812,80 @@ div#footer\ details {
         left: 20px !important;
     }
   }
+
+/*--------------------------------------------------------------
+# TabView Component Styles
+--------------------------------------------------------------*/
+
+/* TabView Container */
+.custom-tabview .p-tabview-nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    border: none;
+    background: transparent;
+}
+
+/* TabView Items */
+.custom-tabview .p-tabview-nav li {
+    margin: 5px;
+}
+
+/* TabView Links */
+.custom-tabview .p-tabview-nav-link {
+    background-color: transparent !important;
+    color: var(--color-text-secondary, #6b6b6b) !important;
+    margin: 10px;
+    padding-right: 20px;
+    border: none !important;
+    transition: all 0.3s ease;
+}
+
+/* TabView Hover & Active States */
+.custom-tabview .p-tabview-nav-link:hover,
+.custom-tabview .p-tabview-nav-link.p-highlight {
+    color: var(--color-primary, #be7157) !important;
+}
+
+/* TabView Title */
+.tabview-title {
+    border-radius: 16px;
+    background: var(--color-background-dark, #0f3743);
+    padding: 14px 30px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    position: relative;
+    color: var(--color-primary, #be7157);
+    transition: all 0.3s ease;
+}
+
+.tabview-title:hover {
+    background: var(--color-background-dark-hover, #1a4d5d);
+}
+
+/*--------------------------------------------------------------
+# TabView Responsive Styles
+--------------------------------------------------------------*/
+@media (max-width: 599px) {
+    /* Mobile TabView Navigation */
+    .custom-tabview .p-tabview-nav {
+        display: block;
+        text-align: center;
+    }
+
+    /* Mobile TabView Items */
+    .custom-tabview .p-unselectable-text {
+        display: inline-grid;
+        width: 130px;
+        text-align: center;
+    }
+
+    /* Mobile TabView Title */
+    .tabview-title {
+        padding: 14px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        position: relative;
+        color: var(--color-text-light, darkgray);
+    }
+}

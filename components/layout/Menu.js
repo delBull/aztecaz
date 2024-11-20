@@ -13,6 +13,18 @@ export default function Menu() {
                 </li>
                 <li>
                     <Link 
+                        to="problema" 
+                        spy={true} 
+                        smooth={true} 
+                        duration={500} 
+                        offset={-70} 
+                        style={{ color: 'black', cursor: 'pointer'}}
+                    > 
+                        El Problema 
+                    </Link>
+                </li>
+                <li>
+                    <Link 
                         to="aztecaz" 
                         spy={true} 
                         smooth={true} 
