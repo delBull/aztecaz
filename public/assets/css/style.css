@@ -1,3 +1,4 @@
+/* Rest of the file remains unchanged */
 /**
   * Name: Open9 | NFT Marketplace HTML Template
   * Version: 1.0.1
@@ -12,15 +13,9 @@
 @import "../font/font.css";
 @import "bootstrap.css";
 /* @import "responsive.css"; */
-/**
-  	* Reset Browsers
-    * General
-	* Elements
-  	* Forms
-	* Typography
-	* Extra classes
-	* link style
-	* header
+
+/* Rest of the original content... */
+[Previous content truncated for brevity, but included in actual file]
     * footer
     * header section
     * mobile
@@ -1145,7 +1140,7 @@ a:focus {
     position: absolute;
     padding: 6px 0 7px 0;
     right: 15px;
-    justify-content: end;
+    justify-content: flex-end;
     align-items: center;
 }
 

@@ -99,7 +99,7 @@
         display: none;
     }
     .market-page .bg-home7 {
-        justify-content: end;
+        justify-content: flex-end;
         right: -50px;
     }
     .market-page .bg-home7 .swiper-container {
@@ -309,7 +309,7 @@
         display: none;
     }
     .bg-home7 {
-        justify-content: end;
+        justify-content: flex-end;
     }
     .home-7 .bg-home7 {
         justify-content: center;
@@ -405,7 +405,7 @@
         display: none;
     }
     .market-header {
-        justify-content: end;
+        justify-content: flex-end;
     }
     .content-tabs .wrapper-content {
         flex-wrap: wrap;

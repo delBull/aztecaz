@@ -1,11 +1,11 @@
 import React from "react";
-import video from '../../public/assets/planeta.mp4';
+import Link from 'next/link';
 
-function bgVideo () {
+function BgVideo() {
     return (
     <div className="bgContainer">
         <div className="overlay"></div>
-            <video src={video} autoPlay loop muted />
+            <video src="/assets/planeta.mp4" autoPlay loop muted />
             <div className="container">
             <div className="themesflat-container w-full">
                     <div className="row">
@@ -14,7 +14,7 @@ function bgVideo () {
                                 <h1 data-wow-delay="0s" className="wow fadeInUp">Invierte En El Futuro Real Estate</h1>
                                         <p data-wow-delay="0.1s" className="wow fadeInUp" style={{ fontSize: '26px', lineHeight: '1.1' }}>Aplicacamos herramientas blockchain para impulsar el rendimiento en el sector inmobiliario.</p>
                                 <div data-wow-delay="0.2s" className="wow fadeInUp flat-button flex">
-                                    <Link href="/market-wallet" className="tf-button style-1 h50 w190 mr-30">¡Empieza Ahora!<i className="icon-arrow-up-right2" /></Link>
+                                    <Link href="/market-collection" className="tf-button style-1 h50 w190 mr-30">¡Empieza Ahora!<i className="icon-arrow-up-right2" /></Link>
                                 </div>
                             </div>
                         </div>
@@ -25,4 +25,4 @@ function bgVideo () {
     )
 }
 
-export default bgVideo;
+export default BgVideo;
