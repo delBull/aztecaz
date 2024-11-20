@@ -28,11 +28,10 @@ export default function Home() {
                                     </div>
                                 </div>
                             </div>
-                            <div className="status">Website Is Under</div>
-                            <h1>Maintenance</h1>
-                            <p>We’re sorry our staff is still working on the issue for better experience</p>
+                            <div className="status">¡Ups! Estamos bajo</div>
+                            <h1>Mantenimiento</h1>
+                            <p>Disuclpa por las molestias, estmaos trabajando para reactivar lo más pronto posible.</p>
                             <div className="box-button d-flex justify-content-center">
-                                <Link href="/market" className="tf-button style-1 h50 active mr-3">My dashboard<i className="icon-arrow-up-right2" /></Link>
                                 <Link href="/" className="tf-button style-1 h50">Back to home<i className="icon-arrow-up-right2" /></Link>
                             </div>
                         </div>
