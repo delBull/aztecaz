@@ -151,7 +151,7 @@ html {
 }
 
 body {
-    background : #161616;;
+    background : #161616;
     line-height: 1;
     padding: 0 !important;
 }
@@ -494,10 +494,7 @@ input[type="submit"] {
     cursor            : pointer;
     -webkit-appearance: button;
     -moz-appearance: button;
-  appearance: button;
-  /* Agrega la propiedad estándar */
-  appearance: auto;
-    border            : 0;
+    appearance: button;
 }
 
 input[type="checkbox"],

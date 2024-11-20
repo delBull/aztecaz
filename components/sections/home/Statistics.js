@@ -6,6 +6,7 @@ export default function Statistics() {
             <div className="themesflat-container">
                 <div className="row">
                     <div className="col-12">
+                        <div style={{ padding: '30px' }}></div>
                         <h2 className="tf-title pb-30" style={{ textAlign: 'center'}}>
                             Estadísticas
                         </h2>
@@ -21,8 +22,19 @@ export default function Statistics() {
                                 suffix="B+"
                                 title="Después de 2009 el valor del mercado inmobiliario"
                             />
-                            {/* ... más items ... */}
+                            <Separator />
+                            <StatItem
+                                value={2010}
+                                title="Adopción de tecnologías; AI, AR, Blockchain"
+                            />
+                            <Separator />
+                            <StatItem
+                                value={87}
+                                suffix="%"
+                                title="De todos los tokens de valor provienen del sector inmobiliario"
+                            />
                         </div>
+                        <div style={{ padding: '30px' }}></div>
                     </div>
                 </div>
             </div>
@@ -49,6 +61,11 @@ const StatItem = ({ value, suffix = '', title }) => (
 
 const Separator = () => (
     <div className="space">
-        {/* Tu SVG actual aquí */}
+        <svg width={80} height={19} viewBox="0 0 80 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect opacity="0.2" x="0.75" y="9.25" width="29.5" height="0.5" stroke="white" strokeWidth="0.5" strokeDasharray="4 2" />
+            <circle opacity="0.2" cx={40} cy="9.5" r={9} stroke="white" />
+            <circle opacity="0.2" cx={40} cy="9.5" r="4.5" fill="white" />
+            <rect opacity="0.2" x="49.75" y="9.25" width="29.5" height="0.5" stroke="white" strokeWidth="0.5" strokeDasharray="4 2" />
+        </svg>
     </div>
-); 
+);
