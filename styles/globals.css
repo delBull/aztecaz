@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-secondary text-white font-manrope;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary text-secondary px-4 py-2 rounded-lg font-bold hover:bg-secondary hover:text-primary transition-all duration-300;
+  }
+  
+  .btn-secondary {
+    @apply bg-secondary text-primary px-4 py-2 rounded-lg font-bold hover:bg-primary hover:text-secondary transition-all duration-300;
+  }
+
+  .nav-link {
+    @apply text-white hover:text-primary transition-colors duration-300;
+  }
+}

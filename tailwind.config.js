@@ -7,7 +7,17 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}"
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: '#DDF247',
+        secondary: '#161616',
+        accent: '#232323',
+        'text-light': 'rgba(255, 255, 255, 0.53)',
+      },
+      fontFamily: {
+        manrope: ['Manrope', 'sans-serif'],
+      },
+    },
   },
   plugins: [
     require('tailwindcss-animate')
