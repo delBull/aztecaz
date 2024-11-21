@@ -2,29 +2,7 @@ import BidModal from "@/components/elements/BidModal"
 import Layout from "@/components/layout/Layout"
 import dynamic from 'next/dynamic'
 import Link from "next/link"
-import { Autoplay, Navigation, Pagination } from "swiper/modules"
-import { Swiper, SwiperSlide } from "swiper/react"
 
-const swiperOptions = {
-    modules: [Autoplay, Pagination, Navigation],
-    loop: false,
-    slidesPerView: 1,
-    observer: true,
-    observeParents: true,
-    spaceBetween: 12,
-    autoplay: {
-        delay: 2000,
-        disableOnInteraction: false
-    },
-    breakpoints: {
-        768: {
-            slidesPerView: 2
-        },
-        1024: {
-            slidesPerView: 3
-        }
-    }
-}
 const CounterUp = dynamic(() => import('@/components/elements/CounterUp'), {
     ssr: false,
 })
@@ -76,9 +54,8 @@ export default function Home() {
                                         <img className="absolute item4" src="/assets/images/item-background/item13.png" alt="" />
                                     </div>
                                     <div className="relative">
-                                        <Swiper {...swiperOptions} className="swiper-container carousel3-type2">
+                                    <div className="tf-card-box">
                                             <div className="swiper-wrapper">
-                                                <SwiperSlide>
                                                     <div className="tf-card-box style-7">
                                                         <div className="card-media">
                                                             <Link href="#">
@@ -89,8 +66,6 @@ export default function Home() {
                                                             <a onClick={handleBidModal} href="#" className="tf-button"><span>Place Bid</span></a>
                                                         </div>
                                                     </div>
-                                                </SwiperSlide>
-                                                <SwiperSlide>
                                                     <div className="tf-card-box style-7">
                                                         <div className="card-media">
                                                             <Link href="#">
@@ -101,8 +76,6 @@ export default function Home() {
                                                             <a onClick={handleBidModal} href="#" className="tf-button"><span>Place Bid</span></a>
                                                         </div>
                                                     </div>
-                                                </SwiperSlide>
-                                                <SwiperSlide>
                                                     <div className="tf-card-box style-7">
                                                         <div className="card-media">
                                                             <Link href="#">
@@ -113,8 +86,6 @@ export default function Home() {
                                                             <a onClick={handleBidModal} href="#" className="tf-button"><span>Place Bid</span></a>
                                                         </div>
                                                     </div>
-                                                </SwiperSlide>
-                                                <SwiperSlide>
                                                     <div className="tf-card-box style-7">
                                                         <div className="card-media">
                                                             <Link href="#">
@@ -125,9 +96,8 @@ export default function Home() {
                                                             <a onClick={handleBidModal} href="#" className="tf-button"><span>Place Bid</span></a>
                                                         </div>
                                                     </div>
-                                                </SwiperSlide>
                                             </div>
-                                        </Swiper>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
