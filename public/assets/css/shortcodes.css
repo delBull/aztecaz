@@ -5776,12 +5776,6 @@ fieldset.password > i::before {
     color: #fff;
 }
 
-.page-title.no-result .widget-search {
-    width: 920px;
-    max-width: 100%;
-    margin: auto;
-    margin-bottom: 60px;
-}
 
 .page-title.faqs p {
     max-width: unset;

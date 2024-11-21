@@ -82,7 +82,6 @@ export default function Header2({ scroll, isMobileMenu, handleMobileMenu }) {
                                                     <li className="menu-item"><Link href="/author-1">Authors Style 1</Link></li>
                                                     <li className="menu-item"><Link href="/author-2">Authors Style 2</Link></li>
                                                     <li className="menu-item"><Link href="/terms-condition">Terms &amp; Condition</Link></li>
-                                                    <li className="menu-item"><Link href="/no-result">No Result</Link></li>
                                                     <li className="menu-item"><Link href="/faq">FAQs</Link></li>
                                                     <li className="menu-item"><Link href="/coming-soon">Coming Soon</Link></li>
                                                     <li className="menu-item"><Link href="/maintenance">Maintenance</Link></li>
