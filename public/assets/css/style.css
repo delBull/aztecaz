@@ -5,14 +5,12 @@
   * Author: Themesflat
   * Author URI: http://www.themesflat.com
 */
-@import "../icon/icon.css";
-@import "shortcodes.css";
-@import "animation.css";
-@import "animate.min.css";
-@import "swiper-bundle.min.css";
-@import "../font/font.css";
-@import "bootstrap.css";
-/* @import "responsive.css"; */
+@import url("shortcodes.css");
+@import url("animation.css");
+@import url("animate.min.css");
+@import url("swiper-bundle.min.css");
+@import url("bootstrap.css");
+@import url("responsive.css");
 
 /* Rest of the original content... */
 [Previous content truncated for brevity, but included in actual file]
@@ -241,6 +239,7 @@ img {
 }
 
 p {
+    font-family: 'Manrope', sans-serif;
     font-weight: 400;
     font-size  : 18px;
     line-height: 28px;
@@ -571,7 +570,7 @@ fieldset {
 
 form label {
     color: #FFF;
-    font-family: 'Manrope';
+    font-family: 'Manrope', sans-serif;
     font-size: 14px;
     font-weight: 700;
     line-height: 19px;
@@ -624,7 +623,7 @@ select {
     -moz-box-shadow: none;
     box-shadow: none;
     font-size: 14px;
-    font-family: 'Azeret Mono';
+    font-family: 'Manrope', sans-serif;
     line-height: 22px;
     border-radius: 12px;
     padding: 15px 26px;
@@ -662,7 +661,7 @@ input[type="color"] {
     -moz-box-shadow   : none;
     box-shadow        : none;
     font-size  : 14px;
-    font-family: 'Azeret Mono';
+    font-family: 'Manrope', sans-serif;
     line-height: 22px;
     border-radius: 12px;
     padding: 15px 26px;
@@ -712,7 +711,7 @@ input[type="color"]::placeholder {
     font-size  : 14px;
     font-weight: 400;
     line-height: 22px;
-    font-family: 'Azeret Mono';
+    font-family: 'Manrope', sans-serif;
     color      : rgba(255, 255, 255, 0.53);
 }
 
@@ -721,6 +720,7 @@ button,
 input[type="button"],
 input[type="reset"],
 input[type="submit"] {
+    font-family: 'Manrope', sans-serif;
     font-weight       : 700;
     font-size         : 14px;
     line-height       : 22px;
@@ -852,6 +852,7 @@ h3,
 h4,
 h5,
 h6 {
+    font-family: 'Manrope', sans-serif;
     font-weight   : 700;
     text-rendering: optimizeLegibility;
 }
@@ -1085,6 +1086,7 @@ label.error {
 /* link style
 -------------------------------------------------------------- */
 a {
+    font-family: 'Manrope', sans-serif;
     text-decoration   : none;
     color             : #fff;
     -webkit-transition: all 0.3s ease-in-out;
@@ -1211,6 +1213,7 @@ a:focus {
 }
 
 #main-nav>ul>li>a {
+    font-family: 'Manrope', sans-serif;
     position: relative;
     display: block;
     font-size: 16px;
@@ -1512,6 +1515,7 @@ a:focus {
 #footer {
     padding: 0 0 30px;
     background-color: #111;
+    font-family: 'Manrope', sans-serif;
 }
 
 #footer .widget {
@@ -1519,6 +1523,7 @@ a:focus {
 }
 
 #footer .title-widget {
+    font-family: 'Manrope', sans-serif;
     font-weight: 800; 
     line-height: 25px;
     margin-bottom: 20px;
@@ -1533,9 +1538,9 @@ a:focus {
 }
 
 .widget-menu ul li a {
+    font-family: 'Manrope', sans-serif;
     color: rgba(255, 255, 255, 0.53);;
     font-size: 14px;
-    font-family: 'Azeret Mono';
     line-height: 22px;
     position: relative;
 }
@@ -1583,6 +1588,7 @@ a:focus {
 }
 
 .widget-social ul li a {
+    font-family: 'Manrope', sans-serif;
     width: 38px;
     height: 38px;
     font-size: 18px;
@@ -1637,9 +1643,9 @@ a:focus {
 }
 
 .footer-bottom p {
+    font-family: 'Manrope', sans-serif;
     color: rgba(255, 255, 255, 0.53);
     font-size: 14px;
-    font-family: 'Azeret Mono';
     line-height: 22px;
 }
 
@@ -1648,8 +1654,8 @@ a:focus {
 }
 
 .footer-bottom ul li a {
+    font-family: 'Manrope', sans-serif;
     color: rgba(255, 255, 255, 0.53);
-    font-family: 'Azeret Mono';
     font-size: 14px;
     line-height: 22px;
 }
@@ -1993,7 +1999,7 @@ a:focus {
 .section-menu-left .bottom p {
     color: rgba(255, 255, 255, 0.53);
     font-size: 12px;
-    font-family: 'Azeret Mono';
+    font-family: 'Manrope', sans-serif;
     font-weight: 400;
     line-height: 19px;
     padding: 0 30px;
@@ -2539,6 +2545,13 @@ body.background-white .tf-mouse-outer {
     -ms-transition: all 0.2s ease;
     -o-transition: all 0.2s ease;
     transition: all 0.2s ease;
+}
+
+.card-info p {
+    font-family: 'Manrope', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #fff;
 }
 
 .tf-card-box:hover .card-info {
