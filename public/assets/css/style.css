@@ -2902,3 +2902,66 @@ div#footer\ details {
         color: var(--color-text-light, darkgray);
     }
 }
+
+/*--------------------------------------------------------------
+# Personalización de Slick Carousel
+--------------------------------------------------------------*/
+
+/* Personalización de flechas */
+.slick-prev,
+.slick-next {
+    z-index: 1;
+}
+
+.slick-prev {
+    left: 25px;
+}
+
+.slick-next {
+    right: 25px;
+}
+
+/* Personalización de dots */
+.slick-dots {
+    bottom: 25px;
+}
+
+.slick-dots li button:before {
+    color: #fff;
+}
+
+/*--------------------------------------------------------------
+Estilos de AutoSlider1
+--------------------------------------------------------------*/    
+/* Estilos para los sliders verticales */
+.autoSlider-container {
+    height: 400px; /* Ajusta según necesites */
+    overflow: hidden;
+}
+
+.autoSlider-container .slick-slider {
+    height: 100%;
+}
+
+.autoSlider-container .slick-list {
+    height: 100%;
+}
+
+.autoSlider-container .slick-track {
+    height: 100%;
+}
+
+.autoSlider-container .slick-slide {
+    height: auto;
+}
+
+.autoSlider-container .slick-slide img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* Animación suave */
+.autoSlider-container .slick-slide {
+    transition: all 0.3s ease;
+}

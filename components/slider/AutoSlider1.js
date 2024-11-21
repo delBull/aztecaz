@@ -1,39 +1,48 @@
-import { Autoplay, Navigation, Pagination } from "swiper/modules"
-import { Swiper, SwiperSlide } from "swiper/react"
+import Slider from "react-slick";
 
-const swiperOptions = {
-    modules: [Autoplay, Pagination, Navigation],
-    loop: true,
-    slidesPerView: 'auto',
-    spaceBetween: 14,
-    direction: 'vertical',
-    speed: 10000,
-    observer: true,
-    observeParents: true,
-    autoplay: {
-        delay: 0,
-        disableOnInteraction: false
-    }
+const AutoSlider1 = () => {
+    const settings = {
+        dots: false,
+        infinite: true,
+        speed: 10000,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 0,
+        cssEase: "linear",
+        vertical: true,
+        arrows: false,
+        pauseOnHover: false,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                }
+            }
+        ]
+    };
 
-
-}
-
-export default function AutoSlider1() {
     return (
-        <>
-            {/* <Swiper {...swiperOptions} className="abc">
-                <SwiperSlide>Slide 1</SwiperSlide>
-            </Swiper> */}
+        <div className="autoSlider-container">
+            <Slider {...settings}>
+                <div>
+                    <img src="/assets/images/card1.png" alt="" />
+                </div>
+                <div>
+                    <img src="/assets/images/card2.png" alt="" />
+                </div>
+            </Slider>
+        </div>
+    );
+};
 
-        
-                <Swiper {...swiperOptions} className="swiper-container autoslider3reverse swiper-container-vertical ">
-                    <SwiperSlide>
-                        <img src="/assets/images/card1.png" alt="" />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <img src="/assets/images/card2.png" alt="" />
-                    </SwiperSlide>
-                </Swiper>
-        </>
-    )
-}
+export default AutoSlider1;

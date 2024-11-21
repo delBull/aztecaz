@@ -1,29 +1,7 @@
 import { Element as ScrollElement } from 'react-scroll';
 import CountUp from 'react-countup';
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation, Pagination } from "swiper/modules";
 
 export default function Problem() {
-    const swiperOptions = {
-        modules: [Autoplay, Pagination, Navigation],
-        loop: false,
-        slidesPerView: 1,
-        observer: true,
-        observeParents: true,
-        spaceBetween: 12,
-        autoplay: {
-            delay: 2000,
-            disableOnInteraction: false
-        },
-        breakpoints: {
-            768: {
-                slidesPerView: 2
-            },
-            1024: {
-                slidesPerView: 3
-            }
-        }
-    }
 
     return (
         <ScrollElement name="problema">
@@ -78,9 +56,8 @@ export default function Problem() {
                     <div className="row">
                         <div className="col-12 pages-title">
                             <div className="relative">
-                                <Swiper {...swiperOptions} className="swiper-container carousel3-type2">
-                                    <SwiperSlide>
-                                        <div className="tf-card-box style-7">
+                                <div className="flex flex-col gap-4">
+                                        <div className="tf-card-box">
                                             <div className="card-media">
                                                 <img src="/assets/images/realestate4.jpeg" alt="" />
                                             </div>
@@ -94,9 +71,7 @@ export default function Problem() {
                                                     total de $8.7 mil millones.</p>
                                             </div>
                                         </div>
-                                    </SwiperSlide>
-                                    <SwiperSlide>
-                                        <div className="tf-card-box style-7">
+                                        <div className="tf-card-box">
                                             <div className="card-media">
                                                 <img src="/assets/images/realestate7.jpeg" alt="" />
                                             </div>
@@ -107,9 +82,7 @@ export default function Problem() {
                                                     con más valor que todas las acciones y los títulos de deuda combinados.</p>
                                             </div>
                                         </div>
-                                    </SwiperSlide>
-                                    <SwiperSlide>
-                                        <div className="tf-card-box style-7">
+                                        <div className="tf-card-box">
                                             <div className="card-media">
                                                 <img src="/assets/images/realestate.jpeg" alt="" />
                                             </div>
@@ -124,8 +97,7 @@ export default function Problem() {
                                                     el acceso al sector y creando nuevas oportunidades de inversión.</p>
                                             </div>
                                         </div>
-                                    </SwiperSlide>
-                                </Swiper>
+                                </div>
                             </div>
                         </div>
                     </div>

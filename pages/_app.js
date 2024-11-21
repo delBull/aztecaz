@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react"
-import 'swiper/css'
-import "swiper/css/navigation"
-import "swiper/css/pagination"
-import 'swiper/css/free-mode'
+import "slick-carousel/slick/slick.css"
+import "slick-carousel/slick/slick-theme.css"
 import "/public/assets/css/style.css"
 
 function MyApp({ Component, pageProps }) {
