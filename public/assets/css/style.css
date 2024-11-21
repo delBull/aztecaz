@@ -492,9 +492,9 @@ input[type="reset"],
 input[type="submit"] {
     line-height       : 1;
     cursor            : pointer;
-    -webkit-appearance: button;
-    -moz-appearance: button;
-    appearance: button;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 
 input[type="checkbox"],
@@ -511,9 +511,9 @@ input[type="radio"] {
 input[type="search"] {
     -webkit-appearance: textfield;
     -moz-appearance: textfield;
-  appearance: textfield;
-  /* Agrega la propiedad estándar */
-  appearance: auto;
+    appearance: textfield;
+    /* Agrega la propiedad estándar */
+    appearance: auto;
     /* Addresses appearance set to searchfield in S5, Chrome */
 }
 
@@ -733,9 +733,9 @@ input[type="submit"] {
     display           : inline-block;
     -webkit-appearance: none;
     -moz-appearance: none;
-  appearance: none;
-  /* Agrega la propiedad estándar */
-  appearance: auto;
+    appearance: none;
+    /* Agrega la propiedad estándar */
+    appearance: auto;
     -webkit-transition: all ease 0.3s;
     -moz-transition   : all ease 0.3s;
     transition        : all ease 0.3s;
@@ -757,9 +757,9 @@ input.style-1[type="submit"] {
     display           : inline-block;
     -webkit-appearance: none;
     -moz-appearance: none;
-  appearance: none;
-  /* Agrega la propiedad estándar */
-  appearance: auto;
+    appearance: none;
+    /* Agrega la propiedad estándar */
+    appearance: auto;
     -webkit-transition: all ease 0.3s;
     -moz-transition   : all ease 0.3s;
     transition        : all ease 0.3s;
