@@ -222,13 +222,13 @@ button,
 input,
 select,
 textarea {
-    font-family            : 'Manrope', sans-serif;
-    color                  : #fff;
-    -webkit-font-smoothing : antialiased;
+    font-family: 'Manrope', sans-serif;
+    color: #fff;
+    -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    text-rendering         : optimizeLegibility;
-    overflow-x             : hidden;
-    overflow-y             : auto;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 img {
@@ -2119,10 +2119,10 @@ a:focus {
     opacity: 0;
     visibility: hidden;
     -webkit-transition: all 0.3s ease;
-    -moz-transition   : all 0.3s ease;
-    -ms-transition    : all 0.3s ease;
-    -o-transition     : all 0.3s ease;
-    transition        : all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .canvas-nav-wrap.active .overlay-canvas-nav {
