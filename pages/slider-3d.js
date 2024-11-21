@@ -2,59 +2,7 @@ import BidModal from "@/components/elements/BidModal"
 import Layout from "@/components/layout/Layout"
 import Link from "next/link"
 import { useState } from "react"
-import { Autoplay, EffectCoverflow, FreeMode, Navigation, Pagination, } from "swiper/modules"
-import { Swiper, SwiperSlide } from "swiper/react"
-const swiperOptions = {
-    modules: [Autoplay, Pagination, Navigation, EffectCoverflow, FreeMode,],
-    loop: true,
-    spaceBetween: 0,
-    slidesPerView: 1,
-    centeredSlides: true,
-    freeMode: true,
-    watchSlidesProgress: true,
-    effect: "coverflow",
-    grabCursor: true,
-    coverflowEffect: {
-        rotate: 0,
-        stretch: 75,
-        depth: 0,
-        modifier: 1,
-        scale: 0.9,
-        slideShadows: false,
-    },
-    autoplay: {
-        delay: 2500,
-        disableOnInteraction: false,
-    },
-    navigation: {
-        nextEl: ".next-3d",
-        prevEl: ".prev-3d",
-    },
-    pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-        renderBullet: function (index, className) {
-            return '<span class="' + className + '">' + (index + 1) + "</span>"
-        },
-    },
-    breakpoints: {
-        500: {
-            slidesPerView: 2,
-        },
-        991: {
-            slidesPerView: 3,
-        },
-        1024: {
-            slidesPerView: 3,
-        },
-        1200: {
-            slidesPerView: 4,
-        },
-        1400: {
-            slidesPerView: 5,
-        },
-    },
-}
+
 export default function Home() {
     const [isBidModal, setBidModal] = useState(false)
     const handleBidModal = () => setBidModal(!isBidModal)
@@ -79,8 +27,7 @@ export default function Home() {
                                     </div>
                                 </div>
                                 <div className="relative">
-                                    <Swiper {...swiperOptions} className="swiper slider-3d">
-                                        <SwiperSlide>
+                                    <div className="tf-card-box">
                                             <div className="tf-card-box style-2">
                                                 <div className="card-media">
                                                     <Link href="#">
@@ -104,8 +51,6 @@ export default function Home() {
                                                     </div>
                                                 </div>
                                             </div>
-                                        </SwiperSlide>
-                                        <SwiperSlide>
                                             <div className="tf-card-box style-2">
                                                 <div className="card-media">
                                                     <Link href="#">
@@ -129,8 +74,6 @@ export default function Home() {
                                                     </div>
                                                 </div>
                                             </div>
-                                        </SwiperSlide>
-                                        <SwiperSlide>
                                             <div className="tf-card-box style-2">
                                                 <div className="card-media">
                                                     <Link href="#">
@@ -154,8 +97,6 @@ export default function Home() {
                                                     </div>
                                                 </div>
                                             </div>
-                                        </SwiperSlide>
-                                        <SwiperSlide>
                                             <div className="tf-card-box style-2">
                                                 <div className="card-media">
                                                     <Link href="#">
@@ -179,8 +120,6 @@ export default function Home() {
                                                     </div>
                                                 </div>
                                             </div>
-                                        </SwiperSlide>
-                                        <SwiperSlide>
                                             <div className="tf-card-box style-2">
                                                 <div className="card-media">
                                                     <Link href="#">
@@ -204,8 +143,6 @@ export default function Home() {
                                                     </div>
                                                 </div>
                                             </div>
-                                        </SwiperSlide>
-                                        <SwiperSlide>
                                             <div className="tf-card-box style-2">
                                                 <div className="card-media">
                                                     <Link href="#">
@@ -229,8 +166,6 @@ export default function Home() {
                                                     </div>
                                                 </div>
                                             </div>
-                                        </SwiperSlide>
-                                        <SwiperSlide>
                                             <div className="tf-card-box style-2">
                                                 <div className="card-media">
                                                     <Link href="#">
@@ -254,8 +189,6 @@ export default function Home() {
                                                     </div>
                                                 </div>
                                             </div>
-                                        </SwiperSlide>
-                                        <SwiperSlide>
                                             <div className="tf-card-box style-2">
                                                 <div className="card-media">
                                                     <Link href="#">
@@ -279,8 +212,7 @@ export default function Home() {
                                                     </div>
                                                 </div>
                                             </div>
-                                        </SwiperSlide>
-                                    </Swiper>
+                                    </div>
                                     <div className="swiper-pagination pagination-number" />
                                     <div className="swiper-button-next next-3d over" />
                                     <div className="swiper-button-prev prev-3d over" />

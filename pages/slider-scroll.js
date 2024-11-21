@@ -1,41 +1,6 @@
 import Layout from "@/components/layout/Layout"
 import Link from "next/link"
-import { Autoplay, Navigation, Pagination } from "swiper/modules"
-import { Swiper, SwiperSlide } from "swiper/react"
 
-const swiperOptions = {
-    modules: [Autoplay, Pagination, Navigation],
-    direction: 'vertical',
-    spaceBetween: 45,
-    grabCursor: false,
-    speed: 10000,
-    centeredSlides: false,
-    loop: true,
-    slidesPerView: 'auto',
-    autoplay: {
-        delay: 0,
-        disableOnInteraction: false
-    }
-
-
-}
-const swiperOptions2 = {
-    modules: [Autoplay, Pagination, Navigation],
-    direction: 'vertical',
-    spaceBetween: 45,
-    grabCursor: false,
-    speed: 10000,
-    centeredSlides: false,
-    loop: true,
-    slidesPerView: 'auto',
-    autoplay: {
-        delay: 0,
-        disableOnInteraction: false,
-        reverseDirection: true
-    }
-
-
-}
 
 export default function Home() {
 
@@ -69,30 +34,30 @@ export default function Home() {
                                     <img className="absolute item10" src="/assets/images/item-background/item2.png" alt="" />
                                 </div>
                                 <div className="bg-home7">
-                                    <Swiper {...swiperOptions} className="swiper-container autoslider1reverse swiper-container-vertical">
-                                        <SwiperSlide>
+                                    <div className="tf-card-box">
+                                        <div>
                                             <img src="/assets/images/item-background/bg-home7-item1.png" alt="" />
-                                        </SwiperSlide>
-                                        <SwiperSlide>
+                                        </div>
+                                        <div>
                                             <img src="/assets/images/item-background/bg-home7-item2.png" alt="" />
-                                        </SwiperSlide>
-                                    </Swiper>
-                                    <Swiper {...swiperOptions2} className="swiper-container autoslider1reverse swiper-container-vertical">
-                                        <SwiperSlide>
+                                        </div>
+                                    </div>
+                                    <div className="tf-card-box">
+                                        <div>
                                             <img src="/assets/images/item-background/bg-home7-item3.png" alt="" />
-                                        </SwiperSlide>
-                                        <SwiperSlide>
+                                        </div>
+                                        <div>
                                             <img src="/assets/images/item-background/bg-home7-item4.png" alt="" />
-                                        </SwiperSlide>
-                                    </Swiper>
-                                    <Swiper {...swiperOptions} className="swiper-container autoslider1reverse swiper-container-vertical">
-                                        <SwiperSlide>
+                                        </div>
+                                    </div>
+                                    <div className="tf-card-box">
+                                        <div>
                                             <img src="/assets/images/item-background/bg-home7-item5.png" alt="" />
-                                        </SwiperSlide>
-                                        <SwiperSlide>
+                                        </div>
+                                        <div>
                                             <img src="/assets/images/item-background/bg-home7-item6.png" alt="" />
-                                        </SwiperSlide>
-                                    </Swiper>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
