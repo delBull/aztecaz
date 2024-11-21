@@ -1,7 +1,7 @@
 
 
 import Link from "next/link"
-import FeaturedSlider8 from "../slider/FeaturedSlider8"
+import FeaturedSlider1 from "../slider/FeaturedSlider1"
 export default function FeaturedItem8() {
     return (
         <>
@@ -15,7 +15,7 @@ export default function FeaturedItem8() {
                             </div>
                         </div>
                         <div className="col-md-12">
-                            <FeaturedSlider8 />
+                            <FeaturedSlider1 />
                         </div>
                     </div>
                 </div>
