@@ -39,7 +39,7 @@ export default function DiscoverItem5() {
                                     </div>
                                 </div>
                                 <div className="divider" />
-                                <div className="meta-info flex items-center justify-between items-center">
+                                <div className="meta-info flex justify-between">
                                     <div>
                                         <span className="text-bid">Current Bid</span>
                                         <h6 className="price gem"><i className="icon-gem" />0,34</h6>
@@ -72,7 +72,7 @@ export default function DiscoverItem5() {
                                     </div>
                                 </div>
                                 <div className="divider" />
-                                <div className="meta-info flex items-center justify-between items-center">
+                                <div className="meta-info flex justify-betweenr">
                                     <div>
                                         <span className="text-bid">Current Bid</span>
                                         <h6 className="price gem"><i className="icon-gem" />0,34</h6>
@@ -105,7 +105,7 @@ export default function DiscoverItem5() {
                                     </div>
                                 </div>
                                 <div className="divider" />
-                                <div className="meta-info flex items-center justify-between items-center">
+                                <div className="meta-info flex justify-between items-center">
                                     <div>
                                         <span className="text-bid">Current Bid</span>
                                         <h6 className="price gem"><i className="icon-gem" />0,34</h6>
@@ -138,7 +138,7 @@ export default function DiscoverItem5() {
                                     </div>
                                 </div>
                                 <div className="divider" />
-                                <div className="meta-info flex items-center justify-between items-center">
+                                <div className="meta-info flex justify-between items-center">
                                     <div>
                                         <span className="text-bid">Current Bid</span>
                                         <h6 className="price gem"><i className="icon-gem" />0,34</h6>
@@ -171,7 +171,7 @@ export default function DiscoverItem5() {
                                     </div>
                                 </div>
                                 <div className="divider" />
-                                <div className="meta-info flex items-center justify-between items-center">
+                                <div className="meta-info flex justify-between items-center">
                                     <div>
                                         <span className="text-bid">Current Bid</span>
                                         <h6 className="price gem"><i className="icon-gem" />0,34</h6>
@@ -204,7 +204,7 @@ export default function DiscoverItem5() {
                                     </div>
                                 </div>
                                 <div className="divider" />
-                                <div className="meta-info flex items-center justify-between items-center">
+                                <div className="meta-info flex ustify-between items-center">
                                     <div>
                                         <span className="text-bid">Current Bid</span>
                                         <h6 className="price gem"><i className="icon-gem" />0,34</h6>
@@ -237,7 +237,7 @@ export default function DiscoverItem5() {
                                     </div>
                                 </div>
                                 <div className="divider" />
-                                <div className="meta-info flex items-center justify-between items-center">
+                                <div className="meta-info flex  justify-between items-center">
                                     <div>
                                         <span className="text-bid">Current Bid</span>
                                         <h6 className="price gem"><i className="icon-gem" />0,34</h6>
@@ -270,7 +270,7 @@ export default function DiscoverItem5() {
                                     </div>
                                 </div>
                                 <div className="divider" />
-                                <div className="meta-info flex items-center justify-between items-center">
+                                <div className="meta-info flex">
                                     <div>
                                         <span className="text-bid">Current Bid</span>
                                         <h6 className="price gem"><i className="icon-gem" />0,34</h6>

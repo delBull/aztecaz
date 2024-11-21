@@ -1,7 +1,5 @@
 import { Menu } from '@headlessui/react'
 import Link from 'next/link'
-import AutoSlider1 from '../slider/AutoSlider1'
-import AutoSlider2 from '../slider/AutoSlider2'
 
 import { useState } from "react"
 export default function History() {

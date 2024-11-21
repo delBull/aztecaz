@@ -1,28 +1,6 @@
 
 import Link from "next/link"
-import { Autoplay, Navigation, Pagination } from "swiper/modules"
-import { Swiper, SwiperSlide } from "swiper/react"
 
-const swiperOptions = {
-    modules: [Autoplay, Pagination, Navigation],
-    loop: false,
-    slidesPerView: 1,
-    spaceBetween: 30,
-    observer: true,
-    observeParents: true,
-    autoplay: {
-        delay: 2000,
-        disableOnInteraction: false
-    },
-    breakpoints: {
-        600: {
-            slidesPerView: 2
-        },
-        991: {
-            slidesPerView: 3
-        }
-    }
-}
 export default function TopCollections1() {
     return (
         <>
@@ -36,9 +14,8 @@ export default function TopCollections1() {
                             </div>
                         </div>
                         <div className="col-md-12">
-                            <Swiper {...swiperOptions} className="featured pt-10 swiper-container carousel3">
+                        <div className="tf-card-box">
                                 <div className="swiper-wrapper">
-                                    <SwiperSlide>
                                         <div className="tf-card-collection">
                                             <Link href="/author-2">
                                                 <div className="media-images-collection">
@@ -72,8 +49,6 @@ export default function TopCollections1() {
                                                 </div>
                                             </div>
                                         </div>
-                                    </SwiperSlide>
-                                    <SwiperSlide>
                                         <div className="tf-card-collection">
                                             <Link href="/author-2">
                                                 <div className="media-images-collection">
@@ -107,8 +82,6 @@ export default function TopCollections1() {
                                                 </div>
                                             </div>
                                         </div>
-                                    </SwiperSlide>
-                                    <SwiperSlide>
                                         <div className="tf-card-collection">
                                             <Link href="/author-2">
                                                 <div className="media-images-collection">
@@ -142,8 +115,6 @@ export default function TopCollections1() {
                                                 </div>
                                             </div>
                                         </div>
-                                    </SwiperSlide>
-                                    <SwiperSlide>
                                         <div className="tf-card-collection">
                                             <Link href="/author-2">
                                                 <div className="media-images-collection">
@@ -177,8 +148,6 @@ export default function TopCollections1() {
                                                 </div>
                                             </div>
                                         </div>
-                                    </SwiperSlide>
-                                    <SwiperSlide>
                                         <div className="tf-card-collection">
                                             <Link href="/author-2">
                                                 <div className="media-images-collection">
@@ -212,8 +181,6 @@ export default function TopCollections1() {
                                                 </div>
                                             </div>
                                         </div>
-                                    </SwiperSlide>
-                                    <SwiperSlide>
                                         <div className="tf-card-collection">
                                             <Link href="/author-2">
                                                 <div className="media-images-collection">
@@ -247,9 +214,8 @@ export default function TopCollections1() {
                                                 </div>
                                             </div>
                                         </div>
-                                    </SwiperSlide>
                                 </div>
-                            </Swiper>
+                            </div>
                         </div>
                     </div>
                 </div>
