@@ -2,45 +2,7 @@ import { Menu } from '@headlessui/react'
 import Link from 'next/link'
 import { useState } from "react"
 import BidModal from '../elements/BidModal'
-import AutoSlider1 from '../slider/AutoSlider1'
-import AutoSlider2 from '../slider/AutoSlider2'
 const currentTime = new Date()
-
-import { Autoplay, Navigation, Pagination } from "swiper/modules"
-import { Swiper, SwiperSlide } from "swiper/react"
-
-const swiperOptions = {
-    modules: [Autoplay, Pagination, Navigation],
-    loop: false,
-    slidesPerView: 1,
-    spaceBetween: 26.7,
-    observer: true,
-    observeParents: true,
-    autoplay: {
-        delay: 2000,
-        disableOnInteraction: false
-    },
-    navigation: {
-        clickable: true,
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev'
-    },
-    pagination: {
-        el: '.swiper-pagination',
-        clickable: true
-    },
-    breakpoints: {
-        768: {
-            slidesPerView: 2
-        },
-        1300: {
-            slidesPerView: 3
-        },
-        1500: {
-            slidesPerView: 4
-        }
-    }
-}
 
 export default function Market() {
     const [isBidModal, setBidModal] = useState(false)
@@ -135,9 +97,8 @@ export default function Market() {
                         <div className="widget-content-tab">
                             <div className="widget-content-inner" style={{ display: `${activeIndex === 1 ? "block" : "none"}` }}>
                                 <div className="featured-item style-bottom">
-                                    <Swiper {...swiperOptions} className="featured pt-10 swiper-container carousel1">
+                                <div className="tf-card-box">
                                         <div className="swiper-wrapper">
-                                            <SwiperSlide>
                                                 <div className="tf-card-box style-4">
                                                     <div className="author flex items-center">
                                                         <div className="avatar">
@@ -165,8 +126,7 @@ export default function Market() {
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </SwiperSlide>
-                                            <SwiperSlide>
+                                            </div>
                                                 <div className="tf-card-box style-4">
                                                     <div className="author flex items-center">
                                                         <div className="avatar">
@@ -194,8 +154,6 @@ export default function Market() {
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </SwiperSlide>
-                                            <SwiperSlide>
                                                 <div className="tf-card-box style-4">
                                                     <div className="author flex items-center">
                                                         <div className="avatar">
@@ -223,8 +181,6 @@ export default function Market() {
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </SwiperSlide>
-                                            <SwiperSlide>
                                                 <div className="tf-card-box style-4">
                                                     <div className="author flex items-center">
                                                         <div className="avatar">
@@ -252,8 +208,6 @@ export default function Market() {
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </SwiperSlide>
-                                            <SwiperSlide>
                                                 <div className="tf-card-box style-4">
                                                     <div className="author flex items-center">
                                                         <div className="avatar">
@@ -281,8 +235,6 @@ export default function Market() {
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </SwiperSlide>
-                                            <SwiperSlide>
                                                 <div className="tf-card-box style-4">
                                                     <div className="author flex items-center">
                                                         <div className="avatar">
@@ -310,12 +262,11 @@ export default function Market() {
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </SwiperSlide>
                                         </div>
                                         <div className="swiper-pagination" />
                                         <div className="swiper-button-next" />
                                         <div className="swiper-button-prev" />
-                                    </Swiper>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -524,7 +475,6 @@ export default function Market() {
                                                 </div>
                                             </div>
                                             </div>
-                                        </div>
                                         </div>
                                         </div>
               {/*  <div className="side-bar">

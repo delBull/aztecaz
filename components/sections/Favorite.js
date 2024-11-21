@@ -1,43 +1,11 @@
 import { Menu } from '@headlessui/react'
 import Link from "next/link"
 import { useState } from "react"
-import { Autoplay, Navigation, Pagination } from "swiper/modules"
-import { Swiper, SwiperSlide } from "swiper/react"
 import BidModal from "../elements/BidModal"
 import Countdown from "../elements/Countdown"
 import AutoSlider1 from '../slider/AutoSlider1'
 import AutoSlider2 from '../slider/AutoSlider2'
 const currentTime = new Date()
-
-const swiperOptions = {
-    modules: [Autoplay, Pagination, Navigation],
-    loop: false,
-    slidesPerView: 1,
-    spaceBetween: 25,
-    observer: true,
-    observeParents: true,
-    autoplay: {
-        delay: 2000,
-        disableOnInteraction: false
-    },
-    navigation: {
-        clickable: true,
-        nextEl: '.next-type1',
-        prevEl: '.prev-type1'
-    },
-    pagination: {
-        el: '.pagination-type1',
-        clickable: true
-    },
-    breakpoints: {
-        768: {
-            slidesPerView: 2
-        },
-        1024: {
-            slidesPerView: 3
-        }
-    }
-}
 
 export default function Favourite() {
     const [isBidModal, setBidModal] = useState(false)
@@ -70,9 +38,8 @@ export default function Favourite() {
                         <h2 className="tf-title pb-20">Favorite collection</h2>
                     </div>
                     <div className="top-collections style-bottom mb-40">
-                        <Swiper {...swiperOptions} className="featured pt-10 swiper-container carousel3-type1">
+                    <div className="tf-card-box">
                             <div className="swiper-wrapper">
-                                <SwiperSlide>
                                     <div className="tf-card-collection">
                                         <Link href="author-2.html">
                                             <div className="media-images-collection">
@@ -106,8 +73,6 @@ export default function Favourite() {
                                             </div>
                                         </div>
                                     </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
                                     <div className="tf-card-collection">
                                         <Link href="author-2.html">
                                             <div className="media-images-collection">
@@ -141,8 +106,6 @@ export default function Favourite() {
                                             </div>
                                         </div>
                                     </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
                                     <div className="tf-card-collection">
                                         <Link href="author-2.html">
                                             <div className="media-images-collection">
@@ -176,8 +139,6 @@ export default function Favourite() {
                                             </div>
                                         </div>
                                     </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
                                     <div className="tf-card-collection">
                                         <Link href="author-2.html">
                                             <div className="media-images-collection">
@@ -211,8 +172,6 @@ export default function Favourite() {
                                             </div>
                                         </div>
                                     </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
                                     <div className="tf-card-collection">
                                         <Link href="author-2.html">
                                             <div className="media-images-collection">
@@ -246,8 +205,6 @@ export default function Favourite() {
                                             </div>
                                         </div>
                                     </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
                                     <div className="tf-card-collection">
                                         <Link href="author-2.html">
                                             <div className="media-images-collection">
@@ -281,12 +238,11 @@ export default function Favourite() {
                                             </div>
                                         </div>
                                     </div>
-                                </SwiperSlide>
                             </div>
                             <div className="swiper-pagination pagination-type1" />
                             <div className="swiper-button-next next-type1" />
                             <div className="swiper-button-prev prev-type1" />
-                        </Swiper>
+                        </div>
                     </div>
                     <div className="heading-section">
                         <h2 className="tf-title pb-30">My favorite</h2>
