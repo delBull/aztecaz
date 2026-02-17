@@ -1,0 +1,21 @@
+{
+    "name": "@repo/database",
+    "version": "0.0.0",
+    "private": true,
+    "exports": {
+        ".": "./src/index.ts"
+    },
+    "scripts": {
+        "db:generate": "prisma generate",
+        "db:push": "prisma db push"
+    },
+    "devDependencies": {
+        "@repo/config": "workspace:*",
+        "@types/node": "^20.11.24",
+        "prisma": "^5.10.2",
+        "typescript": "^5.3.3"
+    },
+    "dependencies": {
+        "@prisma/client": "^5.10.2"
+    }
+}

@@ -1,0 +1,44 @@
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
+import ThirdwebProviderWrapper from "../components/ThirdwebProviderWrapper";
+import AuthGuard from "../components/AuthGuard";
+import { RoleProvider } from "../context/RoleContext";
+import { AnalyticsProvider, PageViewTracker } from "@repo/ui";
+
+const inter = Inter({ subsets: ["latin"] });
+
+export const metadata: Metadata = {
+  title: "Aztecaz Dashboard",
+  description: "Panel de control para gestión de propiedades y organización.",
+  icons: {
+    icon: "/logo.png",
+    shortcut: "/logo.png",
+    apple: "/logo.png",
+  },
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <body
+        className={`${inter.className} antialiased`}
+      >
+        <ThirdwebProviderWrapper>
+          <AuthGuard>
+            <RoleProvider>
+              <AnalyticsProvider>
+                <PageViewTracker />
+                {children}
+              </AnalyticsProvider>
+            </RoleProvider>
+          </AuthGuard>
+        </ThirdwebProviderWrapper>
+      </body>
+    </html>
+  );
+}
