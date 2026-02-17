@@ -20,7 +20,7 @@ export default async function MarketPage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {properties.map((property) => (
+                {properties.map((property: any) => (
                     <div key={property.id} className="bg-[#14141F] border border-[#2C2C39] rounded-2xl overflow-hidden hover:border-[#DDF247] transition-colors">
                         <div className="h-48 bg-[#1C1C29] relative">
                             {/* Placeholder for image */}
