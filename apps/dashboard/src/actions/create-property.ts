@@ -14,6 +14,8 @@ const CreatePropertySchema = z.object({
     visibility: z.enum(["PUBLIC", "PRIVATE", "UNLISTED"]),
     category: z.string().optional(),
     tags: z.string().optional(),
+    location: z.string().optional(),
+    locationUrl: z.string().optional(),
 });
 
 export async function createProperty(prevState: any, formData: FormData) {
@@ -30,6 +32,8 @@ export async function createProperty(prevState: any, formData: FormData) {
         visibility: formData.get("visibility"),
         category: formData.get("category"),
         tags: formData.get("tags"),
+        location: formData.get("location"),
+        locationUrl: formData.get("locationUrl"),
     });
 
     if (!validatedFields.success) {
@@ -39,7 +43,7 @@ export async function createProperty(prevState: any, formData: FormData) {
         };
     }
 
-    const { title, description, price, currency, status, visibility, category, tags: tagsRaw } = validatedFields.data;
+    const { title, description, price, currency, status, visibility, category, tags: tagsRaw, location, locationUrl } = validatedFields.data;
 
     const imageUrl = formData.get("imageUrl") as string;
     const videoUrl = formData.get("videoUrl") as string;
@@ -77,6 +81,8 @@ export async function createProperty(prevState: any, formData: FormData) {
                 category,
                 tags,
                 features,
+                location,
+                locationUrl,
             },
         });
     } catch (e) {

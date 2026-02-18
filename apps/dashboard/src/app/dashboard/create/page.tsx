@@ -146,6 +146,19 @@ export default function CreatePropertyPage() {
                     </div>
                 )}
 
+                {/* --- Location --- */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label htmlFor="location" className="block text-sm font-medium text-gray-400 mb-2">Ubicación (Texto)</label>
+                        <input type="text" id="location" name="location" className="w-full px-4 py-3 bg-[#1C1C29] border border-[#2C2C39] rounded-xl focus:border-[#DDF247] focus:outline-none transition-colors" placeholder="Ej. Polanco, CDMX" />
+                    </div>
+
+                    <div>
+                        <label htmlFor="locationUrl" className="block text-sm font-medium text-gray-400 mb-2">Google Maps URL 📍</label>
+                        <input type="url" id="locationUrl" name="locationUrl" className="w-full px-4 py-3 bg-[#1C1C29] border border-[#2C2C39] rounded-xl focus:border-[#DDF247] focus:outline-none transition-colors" placeholder="https://maps.google.com/..." />
+                    </div>
+                </div>
+
                 {category === "INDUSTRIAL" && (
                     <div className="p-4 bg-[#1C1C29] rounded-xl border border-[#2C2C39] space-y-4 animate-in fade-in">
                         <h3 className="tex-lg font-semibold text-[#DDF247]">Detalles Industriales</h3>

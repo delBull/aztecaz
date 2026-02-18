@@ -18,7 +18,15 @@ export default function PropertyDetails({ property }) {
                 <div className="container absolute bottom-10 left-0 right-0">
                     <span className="bg-[#DDF247] text-black px-3 py-1 rounded text-sm font-bold mb-4 inline-block">{property.status}</span>
                     <h1 className="text-4xl md:text-5xl font-bold text-white mb-2">{property.title}</h1>
-                    <p className="text-xl text-gray-300">{property.location}</p>
+                    <p className="text-xl text-gray-300 flex items-center gap-2">
+                        {property.location}
+                        {property.locationUrl && (
+                            <a href={property.locationUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-[#DDF247] text-sm font-bold border border-[#DDF247] px-3 py-1 rounded-full hover:bg-[#DDF247] hover:text-black transition-all">
+                                <span>Ver Ubicación</span>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                            </a>
+                        )}
+                    </p>
                 </div>
             </section>
 

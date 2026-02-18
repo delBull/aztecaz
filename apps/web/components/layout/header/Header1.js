@@ -44,9 +44,8 @@ export default function Header1({ isMobileMenu, handleMobileMenu }) {
                                 <div id="site-header-inner" style={{ position: 'relative', display: 'flex', justifyContent: 'left', alignItems: 'center', height: '100%', backgroundColor: 'transparent' }}>
 
                                     {/* Centered White Navbar Container (Logo + Menu) */}
-                                    {/* Centered White Navbar Container (Logo + Menu) */}
                                     <div className="nav-container-floating" style={{
-                                        width: isMobile ? '95%' : '66%',
+                                        width: isMobile ? '95%' : (window.location.pathname === '/market' ? '33%' : '66%'),
                                         backgroundColor: '#fff',
                                         display: 'flex',
                                         alignItems: 'center',
@@ -99,7 +98,18 @@ export default function Header1({ isMobileMenu, handleMobileMenu }) {
                                                 </div>
 
                                                 <nav id="main-nav" className="main-nav" style={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
-                                                    <Menu />
+                                                    {window.location.pathname === '/market' ? (
+                                                        <ul className="d-flex align-items-center" style={{ gap: '20px', margin: 0, padding: 0, listStyle: 'none' }}>
+                                                            <li>
+                                                                <Link href="/" style={{ color: '#14141F', fontWeight: '600' }}>Inicio</Link>
+                                                            </li>
+                                                            <li>
+                                                                <Link href={process.env.NEXT_PUBLIC_DASHBOARD_URL || "http://localhost:3001/dashboard"} style={{ color: '#14141F', fontWeight: '600' }}>Dashboard</Link>
+                                                            </li>
+                                                        </ul>
+                                                    ) : (
+                                                        <Menu />
+                                                    )}
                                                 </nav>
                                             </>
                                         )}

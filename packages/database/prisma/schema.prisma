@@ -117,6 +117,7 @@ model Property {
   bathrooms      Int?
   areaSqFt       Float?
   location       String?
+  locationUrl    String?  // Google Maps URL
   images         String[] // Array of URLs
   videoUrl       String?  // Main video URL
   features       Json?    // Flexible JSON for category-specific specs (bedrooms, bathrooms, etc.)
