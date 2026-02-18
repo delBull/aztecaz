@@ -1,7 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     output: "standalone",
-    transpilePackages: ["@repo/ui", "@vercel/blob", "undici"],
+    transpilePackages: ["@repo/ui"],
+    experimental: {
+        serverComponentsExternalPackages: ["@vercel/blob"],
+    },
     async headers() {
         return [
             {
