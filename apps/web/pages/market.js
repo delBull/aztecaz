@@ -3,32 +3,43 @@ import Link from "next/link";
 import Layout from "../components/layout/Layout";
 // import { Search, Filter } from "lucide-react"; 
 
-export async function getServerSideProps() {
-    const properties = await prisma.property.findMany({
-        where: {
-            status: {
-                in: ["PUBLISHED", "COMING_SOON", "SOLD", "RENTED"]
+export async function getStaticProps() {
+    try {
+        const properties = await prisma.property.findMany({
+            where: {
+                status: {
+                    in: ["PUBLISHED", "COMING_SOON", "SOLD", "RENTED"]
+                },
+                visibility: "PUBLIC"
             },
-            visibility: "PUBLIC"
-        },
-        orderBy: { createdAt: "desc" },
-        include: {
-            organization: true
-        }
-    });
+            orderBy: { createdAt: "desc" },
+            include: {
+                organization: true
+            }
+        });
 
-    const serializedProperties = properties.map(p => ({
-        ...p,
-        price: p.price.toString(),
-        createdAt: p.createdAt.toISOString(),
-        updatedAt: p.updatedAt.toISOString(),
-    }));
+        const serializedProperties = properties.map(p => ({
+            ...p,
+            price: p.price.toString(),
+            createdAt: p.createdAt.toISOString(),
+            updatedAt: p.updatedAt.toISOString(),
+        }));
 
-    return {
-        props: {
-            properties: serializedProperties
-        }
-    };
+        return {
+            props: {
+                properties: serializedProperties
+            },
+            revalidate: 60 // Revalidate every 60 seconds (ISR)
+        };
+    } catch (error) {
+        console.error("Error fetching properties for market:", error);
+        return {
+            props: {
+                properties: []
+            },
+            revalidate: 60
+        };
+    }
 }
 
 export default function Market({ properties }) {

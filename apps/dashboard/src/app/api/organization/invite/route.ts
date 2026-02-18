@@ -3,7 +3,9 @@ import { prisma } from "@repo/database";
 
 export async function POST(req: Request) {
     try {
-        const { organizationId, walletAddress, role } = await req.json();
+        const body = await req.json();
+        console.log("Invite API Request Body:", body);
+        const { organizationId, walletAddress, role } = body;
 
         if (!organizationId || !walletAddress || !role) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
@@ -40,6 +42,7 @@ export async function POST(req: Request) {
         return NextResponse.json({ success: true, membership });
     } catch (error) {
         console.error("Error adding member:", error);
-        return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+        // @ts-ignore
+        return NextResponse.json({ error: "Internal Server Error", details: error.message }, { status: 500 });
     }
 }

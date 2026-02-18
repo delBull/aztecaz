@@ -25,6 +25,7 @@ export async function POST(req: Request) {
         return NextResponse.json(user);
     } catch (error) {
         console.error("Error checking user:", error);
-        return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+        // @ts-ignore
+        return NextResponse.json({ error: "Internal Server Error", details: error.message }, { status: 500 });
     }
 }
