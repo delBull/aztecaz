@@ -49,7 +49,7 @@ export default function Header1({ isMobileMenu, handleMobileMenu }) {
                                         </nav>{/* /#main-nav */}
                                         <div className="flat-wallet flex">
                                             <div id="wallet-header">
-                                                <Link href="http://localhost:3001/dashboard" id="connectbtn" className="tf-button style-1">
+                                                <Link href={process.env.NEXT_PUBLIC_DASHBOARD_URL || "http://localhost:3001/dashboard"} id="connectbtn" className="tf-button style-1">
                                                     <span>Dashboard</span>
                                                     <i className="icon-wa" />
                                                 </Link>
