@@ -118,6 +118,10 @@ model Property {
   location       String?
   images         String[] // Array of URLs
   
+  // Categorization
+  category       String?
+  tags           String[]
+
   // Status & Visibility
   status         PropertyStatus @default(DRAFT)
   visibility     PropertyVisibility @default(UNLISTED)
@@ -135,6 +139,7 @@ enum PropertyStatus {
   ARCHIVED
   SOLD
   RENTED
+  COMING_SOON
 }
 
 enum PropertyVisibility {

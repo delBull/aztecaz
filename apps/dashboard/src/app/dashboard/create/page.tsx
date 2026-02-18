@@ -91,6 +91,34 @@ export default function CreatePropertyPage() {
 
                 <div className="grid grid-cols-2 gap-6">
                     <div>
+                        <label htmlFor="category" className="block text-sm font-medium text-gray-400 mb-2">Categoría</label>
+                        <select
+                            id="category"
+                            name="category"
+                            className="w-full px-4 py-3 bg-[#1C1C29] border border-[#2C2C39] rounded-xl focus:border-[#DDF247] focus:outline-none transition-colors text-white"
+                        >
+                            <option value="">Seleccionar...</option>
+                            <option value="RESIDENCIAL">Residencial</option>
+                            <option value="COMERCIAL">Comercial</option>
+                            <option value="INDUSTRIAL">Industrial</option>
+                            <option value="TERRENO">Terreno</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label htmlFor="tags" className="block text-sm font-medium text-gray-400 mb-2">Tags (separados por coma)</label>
+                        <input
+                            type="text"
+                            id="tags"
+                            name="tags"
+                            className="w-full px-4 py-3 bg-[#1C1C29] border border-[#2C2C39] rounded-xl focus:border-[#DDF247] focus:outline-none transition-colors"
+                            placeholder="Ej. Lujo, Playa, Oportunidad"
+                        />
+                    </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-6">
+                    <div>
                         <label htmlFor="status" className="block text-sm font-medium text-gray-400 mb-2">Estatus</label>
                         <select
                             id="status"
@@ -99,6 +127,7 @@ export default function CreatePropertyPage() {
                         >
                             <option value="DRAFT">Borrador</option>
                             <option value="PUBLISHED">Publicado</option>
+                            <option value="COMING_SOON">Próximo Lanzamiento</option>
                             <option value="ARCHIVED">Archivado</option>
                         </select>
                     </div>

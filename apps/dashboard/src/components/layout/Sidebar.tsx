@@ -14,7 +14,7 @@ function cn(...inputs: ClassValue[]) {
 const sidebarItems = [
     {
         name: "Disponibilidad",
-        href: "/dashboard/market",
+        href: process.env.NEXT_PUBLIC_WEB_URL ? `${process.env.NEXT_PUBLIC_WEB_URL}/market` : "http://localhost:3000/market",
         icon: (
             <svg width={22} height={22} viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g opacity="0.2">

@@ -12,9 +12,9 @@ export const metadata: Metadata = {
   title: "Aztecaz Dashboard",
   description: "Panel de control para gestión de propiedades y organización.",
   icons: {
-    icon: "/logo.png",
-    shortcut: "/logo.png",
-    apple: "/logo.png",
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
   },
 };
 

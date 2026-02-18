@@ -3,11 +3,22 @@ import React, { useState, useEffect } from 'react';
 import Menu from "../Menu"
 import MobileMenu from "../MobileMenu"
 import Headroom from 'react-headroom';
+import { Menu as MenuIcon } from 'lucide-react';
 export default function Header1({ isMobileMenu, handleMobileMenu }) {
     const [isSidebar, setSidebar] = useState(false);
     const handleSidebar = () => setSidebar(!isSidebar)
     const [lastScrollTop, setLastScrollTop] = useState(0);
     const [shouldHide, setShouldHide] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 992);
+        };
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     const handleScroll = () => {
         const scrollTop = window.scrollY || document.documentElement.scrollTop;
@@ -30,35 +41,96 @@ export default function Header1({ isMobileMenu, handleMobileMenu }) {
                     <div className="themesflat-container">
                         <div className="row">
                             <div className="col-md-12">
-                                <div id="site-header-inner">
-                                    <div className="wrap-box flex">
-                                        <div id="site-logo">
-                                            <div id="site-logo-inner">
-                                                <Link href="/" rel="home" className="main-logo mobile-none">
-                                                    <img id="logo_header" src="/assets/images/logo/only_h_g.png" style={{ height: '40px', width: 'auto' }} data-retina="/assets/images/logo/only_h_g.png" />
+                                <div id="site-header-inner" style={{ position: 'relative', display: 'flex', justifyContent: 'left', alignItems: 'center', height: '100%', backgroundColor: 'transparent' }}>
+
+                                    {/* Centered White Navbar Container (Logo + Menu) */}
+                                    {/* Centered White Navbar Container (Logo + Menu) */}
+                                    <div className="nav-container-floating" style={{
+                                        width: isMobile ? '95%' : '66%',
+                                        backgroundColor: '#fff',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: isMobile ? 'space-between' : 'space-between',
+                                        padding: isMobile ? '8px 12px' : '10px 30px',
+                                        borderRadius: '50px',
+                                        boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.05)',
+                                        position: 'relative',
+                                        zIndex: 5,
+                                        marginLeft: isMobile ? '0' : '0'
+                                    }}>
+                                        {isMobile ? (
+                                            <div className="flex items-center justify-between w-full">
+                                                {/* Mobile Logo */}
+                                                <Link href="/" rel="home" className="main-logo">
+                                                    <img src="/assets/images/logo/icon.png" style={{ height: '30px', width: 'auto' }} alt="Aztecaz" />
                                                 </Link>
-                                                <Link href="/" rel="home" className="web-none">
-                                                    <img id="logo_header" src="/assets/images/logo/icon_dark.png" style={{ width: '80px' }} data-retina="assets/images/logo/icon_dark.png" />
-                                                </Link>
+
+                                                {/* Mobile Actions */}
+                                                <div className="flex items-center" style={{ gap: '12px' }}>
+                                                    <Link href="/market" className="flex items-center justify-center" style={{
+                                                        backgroundColor: '#f3f4f6', color: 'black', height: '36px', padding: '0 12px', borderRadius: '18px', gap: '6px', textDecoration: 'none'
+                                                    }}>
+                                                        <span style={{ fontSize: '12px', fontWeight: 'bold' }}>Propiedades</span>
+                                                    </Link>
+                                                    <Link href={process.env.NEXT_PUBLIC_DASHBOARD_URL || "http://localhost:3001/dashboard"} className="flex items-center justify-center" style={{
+                                                        backgroundColor: '#14141F', color: 'white', height: '36px', padding: '0 12px', borderRadius: '18px', gap: '6px', textDecoration: 'none'
+                                                    }}>
+                                                        <span style={{ fontSize: '12px', fontWeight: 'bold' }}>Dash</span>
+                                                        <i className="icon-wa" style={{ fontSize: '12px' }} />
+                                                    </Link>
+                                                    {/* Burger Menu Trigger */}
+                                                    <div onClick={handleMobileMenu} style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+                                                        <MenuIcon size={24} color="black" />
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>{/* logo */}
-                                        {/* <div className="mobile-button" onClick={handleMobileMenu}>
-                                        <span /></div> */} {/* /.mobile-button */}
-                                        <nav id="main-nav" className="main-nav">
-                                            <Menu />
-                                        </nav>{/* /#main-nav */}
-                                        <div className="flat-wallet flex">
-                                            <div id="wallet-header">
-                                                <Link href={process.env.NEXT_PUBLIC_DASHBOARD_URL || "http://localhost:3001/dashboard"} id="connectbtn" className="tf-button style-1">
-                                                    <span>Dashboard</span>
-                                                    <i className="icon-wa" />
-                                                </Link>
-                                            </div>
-                                            {/* <div className="canvas" onClick={handleSidebar}> 
-                                            <span /> </div> */}
-                                        </div>
+                                        ) : (
+                                            // Desktop: Logo + Menu
+                                            <>
+                                                <div id="site-logo">
+                                                    <div id="site-logo-inner">
+                                                        <Link href="/" rel="home" className="main-logo mobile-none">
+                                                            <img id="logo_header" src="/assets/images/logo/only_h_g.png" style={{ height: '40px', width: 'auto' }} data-retina="/assets/images/logo/only_h_g.png" />
+                                                        </Link>
+                                                        <Link href="/" rel="home" className="web-none">
+                                                            <img id="logo_header" src="/assets/images/logo/icon_dark.png" style={{ width: '80px' }} data-retina="assets/images/logo/icon_dark.png" />
+                                                        </Link>
+                                                    </div>
+                                                </div>
+
+                                                <nav id="main-nav" className="main-nav" style={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
+                                                    <Menu />
+                                                </nav>
+                                            </>
+                                        )}
                                     </div>
+
+                                    {/* Action Buttons (Right, Floating Outside) - Desktop Only */}
+                                    {!isMobile && (
+                                        <div className="flat-wallet flex" style={{ position: 'absolute', right: 0, zIndex: 4, height: '100%', alignItems: 'center' }}>
+                                            <div id="wallet-header" className="flex items-center gap-2">
+                                                <Link href="/market" className="tf-button style-1" style={{ color: 'white', whiteSpace: 'nowrap', backdropFilter: 'blur(5px)', textShadow: '0 1px 2px rgba(0,0,0,0.5)' }}>
+                                                    <span>Propiedades</span>
+                                                </Link>
+                                                <Link href={process.env.NEXT_PUBLIC_DASHBOARD_URL || "http://localhost:3001/dashboard"} id="connectbtn" className="tf-button style-1" style={{ backgroundColor: 'transparent', border: '1px solid rgba(255,255,255,0.2)', color: 'white', marginLeft: '5px', whiteSpace: 'nowrap' }}>
+                                                    <span>Dashboard</span>
+                                                    <i className="icon-wa" style={{ marginLeft: '5px' }} />
+                                                </Link>
+                                            </div>
+                                        </div>
+                                    )}
+
                                 </div>
+                                <style jsx>{`
+                                    .header_1 {
+                                        background-color: transparent !important;
+                                        box-shadow: none !important;
+                                    }
+                                    /* Ensure menu items color is correct inside the white box */
+                                    .header_1 .main-nav > ul > li > a {
+                                        color: #14141F !important; 
+                                    }
+                                `}</style>
                             </div>
                         </div>
                     </div>
@@ -121,18 +193,32 @@ export default function Header1({ isMobileMenu, handleMobileMenu }) {
                             </div>
                         </div>
                     </div>
-                    <div className={`mobile-nav-wrap ${isMobileMenu ? "active" : ""}`}>
-                        <div className="overlay-mobile-nav" onClick={handleMobileMenu} />
-                        <div className="inner-mobile-nav">
-                            <Link href="/" rel="home" className="main-logo">
-                                <img id="mobile-logo_header" src="/assets/images/logo/logo_navbar.png" data-retina="assets/images/logo/logo_h.png" />
-                            </Link>
-                            <div className="mobile-nav-close" onClick={handleMobileMenu}>
-                                <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" fill="white" x="0px" y="0px" width="20px" height="20px" viewBox="0 0 122.878 122.88" enableBackground="new 0 0 122.878 122.88" xmlSpace="preserve"><g><path d="M1.426,8.313c-1.901-1.901-1.901-4.984,0-6.886c1.901-1.902,4.984-1.902,6.886,0l53.127,53.127l53.127-53.127 c1.901-1.902,4.984-1.902,6.887,0c1.901,1.901,1.901,4.985,0,6.886L68.324,61.439l53.128,53.128c1.901,1.901,1.901,4.984,0,6.886 c-1.902,1.902-4.985,1.902-6.887,0L61.438,68.326L8.312,121.453c-1.901,1.902-4.984,1.902-6.886,0 c-1.901-1.901-1.901-4.984,0-6.886l53.127-53.128L1.426,8.313L1.426,8.313z" /></g></svg>
+                    {isMobile && (
+                        <div className={`mobile-nav-wrap ${isMobileMenu ? "active" : ""}`} style={{
+                            zIndex: 9999999,
+                            position: 'fixed',
+                            top: 0,
+                            left: 0,
+                            width: '100vw',
+                            height: '100vh',
+                            transform: isMobileMenu ? 'translateX(0)' : 'translateX(100%)',
+                            visibility: isMobileMenu ? 'visible' : 'hidden',
+                            opacity: isMobileMenu ? 1 : 0,
+                            pointerEvents: isMobileMenu ? 'auto' : 'none',
+                            transition: 'transform 0.3s ease-in-out, opacity 0.3s ease-in-out, visibility 0.3s'
+                        }}>
+                            <div className="overlay-mobile-nav" onClick={handleMobileMenu} style={{ position: 'absolute', width: '100%', height: '100%', background: 'rgba(0,0,0,0.5)' }} />
+                            <div className="inner-mobile-nav" style={{ position: 'relative', height: '100%', background: '#1c1c1c', zIndex: 10000000 }}>
+                                <Link href="/" rel="home" className="main-logo">
+                                    <img id="mobile-logo_header" src="/assets/images/logo/logo_navbar.png" data-retina="assets/images/logo/logo_h.png" />
+                                </Link>
+                                <div className="mobile-nav-close" onClick={handleMobileMenu}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" fill="white" x="0px" y="0px" width="20px" height="20px" viewBox="0 0 122.878 122.88" enableBackground="new 0 0 122.878 122.88" xmlSpace="preserve"><g><path d="M1.426,8.313c-1.901-1.901-1.901-4.984,0-6.886c1.901-1.902,4.984-1.902,6.886,0l53.127,53.127l53.127-53.127 c1.901-1.902,4.984-1.902,6.887,0c1.901,1.901,1.901,4.985,0,6.886L68.324,61.439l53.128,53.128c1.901,1.901,1.901,4.984,0,6.886 c-1.902,1.902-4.985,1.902-6.887,0L61.438,68.326L8.312,121.453c-1.901,1.902-4.984,1.902-6.886,0 c-1.901-1.901-1.901-4.984,0-6.886l53.127-53.128L1.426,8.313L1.426,8.313z" /></g></svg>
+                                </div>
+                                <MobileMenu />
                             </div>
-                            <MobileMenu />
                         </div>
-                    </div>
+                    )}
                 </header>
             </Headroom>
         </>

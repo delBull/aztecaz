@@ -22,7 +22,7 @@ export default function HowItWorks() {
                                 <p className="content">Identifica las oportunidades más destacadas para la adquisición</p>
                                 <div className="arrow">
                                     <svg width={114} height={114} viewBox="0 0 114 114" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M13.0682 58.6163C14.3723 57.8473 15.7186 57.1206 17.0509 56.436L16.1333 54.65C14.7448 55.3625 13.3845 56.1032 12.0524 56.9002L13.0683 58.6444L13.0682 58.6163Z" fill="#919191"/>
+                                        <path d="M13.0682 58.6163C14.3723 57.8473 15.7186 57.1206 17.0509 56.436L16.1333 54.65C14.7448 55.3625 13.3845 56.1032 12.0524 56.9002L13.0683 58.6444L13.0682 58.6163Z" fill="#919191" />
                                     </svg>
                                 </div>
                             </div>
@@ -37,7 +37,7 @@ export default function HowItWorks() {
                                 <p className="content">Convertimos el vehículo en tokens, permitiendo la participación de cualquier inversor.</p>
                                 <div className="arrow">
                                     <svg width={114} height={114} viewBox="0 0 114 114" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M13.0682 58.6163C14.3723 57.8473 15.7186 57.1206 17.0509 56.436L16.1333 54.65C14.7448 55.3625 13.3845 56.1032 12.0524 56.9002L13.0683 58.6444L13.0682 58.6163Z" fill="#919191"/>
+                                        <path d="M13.0682 58.6163C14.3723 57.8473 15.7186 57.1206 17.0509 56.436L16.1333 54.65C14.7448 55.3625 13.3845 56.1032 12.0524 56.9002L13.0683 58.6444L13.0682 58.6163Z" fill="#919191" />
                                     </svg>
                                 </div>
                             </div>
@@ -52,7 +52,7 @@ export default function HowItWorks() {
                                 <p className="content">Recolección de los beneficios generados por tus ingresos pasivos y/o ventas directas.</p>
                                 <div className="arrow">
                                     <svg width={114} height={114} viewBox="0 0 114 114" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M13.0682 58.6163C14.3723 57.8473 15.7186 57.1206 17.0509 56.436L16.1333 54.65C14.7448 55.3625 13.3845 56.1032 12.0524 56.9002L13.0683 58.6444L13.0682 58.6163Z" fill="#919191"/>
+                                        <path d="M13.0682 58.6163C14.3723 57.8473 15.7186 57.1206 17.0509 56.436L16.1333 54.65C14.7448 55.3625 13.3845 56.1032 12.0524 56.9002L13.0683 58.6444L13.0682 58.6163Z" fill="#919191" />
                                     </svg>
                                 </div>
                             </div>
@@ -70,7 +70,7 @@ export default function HowItWorks() {
                     </div>
                     <div className="row">
                         <div className="col-12">
-                            <Link href="/market-wallet" className="tf-button style-1 h50 w190 m-auto">¡Empieza ya!<i className="icon-arrow-up-right2" /></Link>
+                            <Link href="/market" className="tf-button style-1 h50 w190 m-auto">¡Empieza ya!<i className="icon-arrow-up-right2" /></Link>
                         </div>
                     </div>
                     <div style={{ padding: '50px' }}></div>

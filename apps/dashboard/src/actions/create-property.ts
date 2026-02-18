@@ -10,8 +10,10 @@ const CreatePropertySchema = z.object({
     description: z.string().optional(),
     price: z.coerce.number().min(0),
     currency: z.enum(["USD", "MXN"]).default("USD"), // Assuming MXN is needed
-    status: z.enum(["DRAFT", "PUBLISHED", "ARCHIVED", "SOLD", "RENTED"]),
+    status: z.enum(["DRAFT", "PUBLISHED", "ARCHIVED", "SOLD", "RENTED", "COMING_SOON"]),
     visibility: z.enum(["PUBLIC", "PRIVATE", "UNLISTED"]),
+    category: z.string().optional(),
+    tags: z.string().optional(),
 });
 
 export async function createProperty(prevState: any, formData: FormData) {
@@ -26,6 +28,8 @@ export async function createProperty(prevState: any, formData: FormData) {
         // currency: formData.get("currency"), // Defaulting to USD for now in UI or handle here
         status: formData.get("status"),
         visibility: formData.get("visibility"),
+        category: formData.get("category"),
+        tags: formData.get("tags"),
     });
 
     if (!validatedFields.success) {
@@ -35,9 +39,10 @@ export async function createProperty(prevState: any, formData: FormData) {
         };
     }
 
-    const { title, description, price, status, visibility } = validatedFields.data;
+    const { title, description, price, status, visibility, category, tags: tagsRaw } = validatedFields.data;
     const imageUrl = formData.get("imageUrl") as string;
     const images = imageUrl ? [imageUrl] : [];
+    const tags = tagsRaw ? tagsRaw.split(",").map(t => t.trim()).filter(Boolean) : [];
     const slug = title.toLowerCase().replace(/ /g, "-") + "-" + Date.now();
     const organizationId = formData.get("organizationId") as string;
 
@@ -56,6 +61,8 @@ export async function createProperty(prevState: any, formData: FormData) {
                 visibility,
                 organizationId,
                 images,
+                category,
+                tags,
             },
         });
     } catch (e) {
