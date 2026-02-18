@@ -4,7 +4,10 @@ import Menu from "../Menu"
 import MobileMenu from "../MobileMenu"
 import Headroom from 'react-headroom';
 import { Menu as MenuIcon } from 'lucide-react';
+import { useRouter } from "next/router";
+
 export default function Header1({ isMobileMenu, handleMobileMenu }) {
+    const router = useRouter();
     const [isSidebar, setSidebar] = useState(false);
     const handleSidebar = () => setSidebar(!isSidebar)
     const [lastScrollTop, setLastScrollTop] = useState(0);
@@ -45,7 +48,7 @@ export default function Header1({ isMobileMenu, handleMobileMenu }) {
 
                                     {/* Centered White Navbar Container (Logo + Menu) */}
                                     <div className="nav-container-floating" style={{
-                                        width: isMobile ? '95%' : (window.location.pathname === '/market' ? '33%' : '66%'),
+                                        width: isMobile ? '95%' : (router.pathname === '/market' ? '33%' : '66%'),
                                         backgroundColor: '#fff',
                                         display: 'flex',
                                         alignItems: 'center',
@@ -98,7 +101,7 @@ export default function Header1({ isMobileMenu, handleMobileMenu }) {
                                                 </div>
 
                                                 <nav id="main-nav" className="main-nav" style={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
-                                                    {window.location.pathname === '/market' ? (
+                                                    {router.pathname === '/market' ? (
                                                         <ul className="d-flex align-items-center" style={{ gap: '20px', margin: 0, padding: 0, listStyle: 'none' }}>
                                                             <li>
                                                                 <Link href="/" style={{ color: '#14141F', fontWeight: '600' }}>Inicio</Link>
