@@ -25,6 +25,9 @@
                 "^lint"
             ]
         },
+        "db:generate": {
+            "cache": false
+        },
         "dev": {
             "cache": false,
             "persistent": true
