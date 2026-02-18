@@ -25,7 +25,7 @@ export async function createProperty(prevState: any, formData: FormData) {
         title: formData.get("title"),
         description: formData.get("description"),
         price: formData.get("price"),
-        // currency: formData.get("currency"), // Defaulting to USD for now in UI or handle here
+        currency: formData.get("currency") || "USD",
         status: formData.get("status"),
         visibility: formData.get("visibility"),
         category: formData.get("category"),
@@ -39,12 +39,23 @@ export async function createProperty(prevState: any, formData: FormData) {
         };
     }
 
-    const { title, description, price, status, visibility, category, tags: tagsRaw } = validatedFields.data;
+    const { title, description, price, currency, status, visibility, category, tags: tagsRaw } = validatedFields.data;
+
     const imageUrl = formData.get("imageUrl") as string;
+    const videoUrl = formData.get("videoUrl") as string;
+    const featuresRaw = formData.get("features") as string;
+
     const images = imageUrl ? [imageUrl] : [];
     const tags = tagsRaw ? tagsRaw.split(",").map(t => t.trim()).filter(Boolean) : [];
-    const slug = title.toLowerCase().replace(/ /g, "-") + "-" + Date.now();
+    const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, "-") + "-" + Date.now();
     const organizationId = formData.get("organizationId") as string;
+
+    let features = {};
+    try {
+        features = featuresRaw ? JSON.parse(featuresRaw) : {};
+    } catch {
+        features = {};
+    }
 
     if (!organizationId) {
         return { message: "Error: Organization ID Missing" };
@@ -56,13 +67,16 @@ export async function createProperty(prevState: any, formData: FormData) {
                 title,
                 description,
                 price,
+                currency,
                 slug,
                 status,
                 visibility,
                 organizationId,
                 images,
+                videoUrl: videoUrl || null,
                 category,
                 tags,
+                features,
             },
         });
     } catch (e) {
