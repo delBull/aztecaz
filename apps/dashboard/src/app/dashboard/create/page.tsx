@@ -14,21 +14,18 @@ const initialState = {
     errors: {},
 };
 
-// Hardcoded for demo/seed
-const ORG_ID = "cmlqzj3wy0000zfvlxlmlcy28";
-
 export default function CreatePropertyPage() {
     const account = useActiveAccount();
     // @ts-ignore
     const [state, dispatch] = useFormState(createProperty, initialState);
-    const { isSuperAdmin, hasRole, isLoading } = useRole();
+    const { isSuperAdmin, hasRole, isLoading, organization } = useRole();
     const router = useRouter();
 
     // Form State
     const [imageUrl, setImageUrl] = useState("");
     const [videoUrl, setVideoUrl] = useState("");
+    const [pdfUrl, setPdfUrl] = useState("");
     const [category, setCategory] = useState("");
-    const [features, setFeatures] = useState<Record<string, any>>({});
 
     useEffect(() => {
         if (!isLoading && !isSuperAdmin && !hasRole(["AGENT", "BROKER"])) {
@@ -36,202 +33,227 @@ export default function CreatePropertyPage() {
         }
     }, [isLoading, isSuperAdmin, hasRole, router]);
 
-    const handleFeatureChange = (key: string, value: any) => {
-        setFeatures(prev => ({ ...prev, [key]: value }));
-    };
-
-    if (isLoading) {
-        return <div className="text-white flex justify-center items-center h-64">Loading...</div>;
+    if (isLoading || !organization) {
+        return <div className="text-white flex justify-center items-center h-64">Cargando organización...</div>;
     }
 
     if (!isSuperAdmin && !hasRole(["AGENT", "BROKER"])) {
         return null;
     }
 
+    const documentsJson = pdfUrl ? JSON.stringify([{ name: "Layout/Plano", url: pdfUrl }]) : "[]";
+
     return (
-        <div className="max-w-3xl mx-auto text-white">
+        <div className="max-w-4xl mx-auto text-white pb-20">
             <h1 className="text-3xl font-bold mb-8">Crear Nueva Propiedad</h1>
 
             <form action={dispatch} className="space-y-8 bg-[#14141F] p-8 rounded-2xl border border-[#2C2C39]">
                 {/* Hidden Inputs for Non-Standard Fields */}
-                <input type="hidden" name="organizationId" value={ORG_ID} />
+                <input type="hidden" name="organizationId" value={organization.id} />
                 <input type="hidden" name="creatorWalletAddress" value={account?.address || ""} />
                 <input type="hidden" name="imageUrl" value={imageUrl} />
                 <input type="hidden" name="videoUrl" value={videoUrl} />
-                <input type="hidden" name="features" value={JSON.stringify(features)} />
+                <input type="hidden" name="documents" value={documentsJson} />
 
-                {/* --- Basic Info --- */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="col-span-full">
-                        <label htmlFor="title" className="block text-sm font-medium text-gray-400 mb-2">Título</label>
-                        <input type="text" id="title" name="title" required className="w-full px-4 py-3 bg-[#1C1C29] border border-[#2C2C39] rounded-xl focus:border-[#DDF247] focus:outline-none transition-colors" placeholder="Ej. Departamento de Lujo en Polanco" />
-                        {state.errors?.title && <p className="mt-2 text-sm text-red-500">{state.errors.title}</p>}
-                    </div>
+                {/* --- SECCIÓN 1: INFORMACIÓN BÁSICA --- */}
+                <div className="space-y-6">
+                    <h2 className="text-xl font-semibold text-[#DDF247] border-b border-[#2C2C39] pb-2">Información Básica</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="col-span-full">
+                            <label htmlFor="title" className="block text-sm font-medium text-gray-400 mb-2">Título de la Propiedad</label>
+                            <input type="text" id="title" name="title" required className="w-full px-4 py-3 bg-[#1C1C29] border border-[#2C2C39] rounded-xl focus:border-[#DDF247] focus:outline-none transition-colors" placeholder="Ej. Villa Paraíso - Preventa Exclusiva" />
+                            {state.errors?.title && <p className="mt-2 text-sm text-red-500">{state.errors.title}</p>}
+                        </div>
 
-                    <div>
-                        <label htmlFor="price" className="block text-sm font-medium text-gray-400 mb-2">Precio (USD)</label>
-                        <input type="number" id="price" name="price" required min="0" step="0.01" className="w-full px-4 py-3 bg-[#1C1C29] border border-[#2C2C39] rounded-xl focus:border-[#DDF247] focus:outline-none transition-colors" placeholder="0.00" />
-                    </div>
+                        <div>
+                            <label htmlFor="price" className="block text-sm font-medium text-gray-400 mb-2">Precio</label>
+                            <input type="number" id="price" name="price" required min="0" step="0.01" className="w-full px-4 py-3 bg-[#1C1C29] border border-[#2C2C39] rounded-xl focus:border-[#DDF247] focus:outline-none transition-colors" placeholder="0.00" />
+                        </div>
 
-                    <div>
-                        <label htmlFor="currency" className="block text-sm font-medium text-gray-400 mb-2">Moneda</label>
-                        <select name="currency" className="w-full px-4 py-3 bg-[#1C1C29] border border-[#2C2C39] rounded-xl focus:border-[#DDF247] focus:outline-none transition-colors text-white">
-                            <option value="USD">USD</option>
-                            <option value="MXN">MXN</option>
-                        </select>
-                    </div>
-                </div>
+                        <div>
+                            <label htmlFor="currency" className="block text-sm font-medium text-gray-400 mb-2">Moneda</label>
+                            <select name="currency" className="w-full px-4 py-3 bg-[#1C1C29] border border-[#2C2C39] rounded-xl focus:border-[#DDF247] focus:outline-none transition-colors text-white">
+                                <option value="USD">USD - Dólares</option>
+                                <option value="MXN">MXN - Pesos Mexicanos</option>
+                            </select>
+                        </div>
 
-                {/* --- Media Uploads --- */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <Upload
-                        label="Imagen Principal"
-                        accept="image/*"
-                        type="image"
-                        onUploadComplete={setImageUrl}
-                        currentValue={imageUrl}
-                    />
-                    <Upload
-                        label="Video Promocional (Opcional)"
-                        accept="video/*"
-                        type="video"
-                        onUploadComplete={setVideoUrl}
-                        currentValue={videoUrl}
-                    />
-                </div>
+                        <div>
+                            <label htmlFor="category" className="block text-sm font-medium text-gray-400 mb-2">Tipo de Propiedad</label>
+                            <select
+                                id="category"
+                                name="category"
+                                value={category}
+                                onChange={(e) => setCategory(e.target.value)}
+                                required
+                                className="w-full px-4 py-3 bg-[#1C1C29] border border-[#2C2C39] rounded-xl focus:border-[#DDF247] focus:outline-none transition-colors text-white"
+                            >
+                                <option value="">Seleccionar...</option>
+                                <option value="RESIDENCIAL">Residencial</option>
+                                <option value="COMERCIAL">Comercial</option>
+                                <option value="INDUSTRIAL">Industrial</option>
+                                <option value="TERRENO">Terreno / Lote</option>
+                            </select>
+                        </div>
 
-                {/* --- Categorization --- */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label htmlFor="category" className="block text-sm font-medium text-gray-400 mb-2">Categoría</label>
-                        <select
-                            id="category"
-                            name="category"
-                            value={category}
-                            onChange={(e) => {
-                                setCategory(e.target.value);
-                                setFeatures({}); // Reset features on category change
-                            }}
-                            className="w-full px-4 py-3 bg-[#1C1C29] border border-[#2C2C39] rounded-xl focus:border-[#DDF247] focus:outline-none transition-colors text-white"
-                        >
-                            <option value="">Seleccionar...</option>
-                            <option value="RESIDENCIAL">Residencial</option>
-                            <option value="COMERCIAL">Comercial</option>
-                            <option value="INDUSTRIAL">Industrial</option>
-                            <option value="TERRENO">Terreno</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label htmlFor="tags" className="block text-sm font-medium text-gray-400 mb-2">Tags (separados por coma)</label>
-                        <input type="text" id="tags" name="tags" className="w-full px-4 py-3 bg-[#1C1C29] border border-[#2C2C39] rounded-xl focus:border-[#DDF247] focus:outline-none transition-colors" placeholder="Ej. Lujo, Playa, Oportunidad" />
-                    </div>
-                </div>
-
-                {/* --- Dynamic Fields based on Category --- */}
-                {category === "RESIDENCIAL" && (
-                    <div className="p-4 bg-[#1C1C29] rounded-xl border border-[#2C2C39] space-y-4 animate-in fade-in">
-                        <h3 className="tex-lg font-semibold text-[#DDF247]">Detalles Residenciales</h3>
-                        <div className="grid grid-cols-3 gap-4">
-                            <div>
-                                <label className="text-xs text-gray-400">Recámaras</label>
-                                <input type="number" onChange={(e) => handleFeatureChange("bedrooms", e.target.value)} className="w-full mt-1 px-3 py-2 bg-[#14141F] rounded border border-[#2C2C39] focus:border-[#DDF247] outline-none" />
-                            </div>
-                            <div>
-                                <label className="text-xs text-gray-400">Baños</label>
-                                <input type="number" onChange={(e) => handleFeatureChange("bathrooms", e.target.value)} className="w-full mt-1 px-3 py-2 bg-[#14141F] rounded border border-[#2C2C39] focus:border-[#DDF247] outline-none" />
-                            </div>
-                            <div>
-                                <label className="text-xs text-gray-400">Estacionamientos</label>
-                                <input type="number" onChange={(e) => handleFeatureChange("parking", e.target.value)} className="w-full mt-1 px-3 py-2 bg-[#14141F] rounded border border-[#2C2C39] focus:border-[#DDF247] outline-none" />
-                            </div>
+                        <div>
+                            <label htmlFor="tags" className="block text-sm font-medium text-gray-400 mb-2">Tags / Etiquetas</label>
+                            <input type="text" id="tags" name="tags" className="w-full px-4 py-3 bg-[#1C1C29] border border-[#2C2C39] rounded-xl focus:border-[#DDF247] focus:outline-none transition-colors" placeholder="Lujo, Preventa, Alberca..." />
                         </div>
                     </div>
-                )}
+                </div>
 
-                {/* --- Location --- */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label htmlFor="location" className="block text-sm font-medium text-gray-400 mb-2">Ubicación (Texto)</label>
-                        <input type="text" id="location" name="location" className="w-full px-4 py-3 bg-[#1C1C29] border border-[#2C2C39] rounded-xl focus:border-[#DDF247] focus:outline-none transition-colors" placeholder="Ej. Polanco, CDMX" />
-                    </div>
-
-                    <div>
-                        <label htmlFor="locationUrl" className="block text-sm font-medium text-gray-400 mb-2">Google Maps URL 📍</label>
-                        <input type="url" id="locationUrl" name="locationUrl" className="w-full px-4 py-3 bg-[#1C1C29] border border-[#2C2C39] rounded-xl focus:border-[#DDF247] focus:outline-none transition-colors" placeholder="https://maps.google.com/..." />
+                {/* --- SECCIÓN 2: MULTIMEDIA Y DOCUMENTOS --- */}
+                <div className="space-y-6">
+                    <h2 className="text-xl font-semibold text-[#DDF247] border-b border-[#2C2C39] pb-2">Multimedia y Planos</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <Upload
+                            label="Foto Principal"
+                            accept="image/*"
+                            onUploadComplete={setImageUrl}
+                            currentValue={imageUrl}
+                        />
+                        <Upload
+                            label="Video Tour"
+                            accept="video/*"
+                            type="video"
+                            onUploadComplete={setVideoUrl}
+                            currentValue={videoUrl}
+                        />
+                        <Upload
+                            label="Plano / Layout (PDF)"
+                            accept=".pdf"
+                            type="document"
+                            onUploadComplete={setPdfUrl}
+                            currentValue={pdfUrl}
+                        />
                     </div>
                 </div>
 
-                {category === "INDUSTRIAL" && (
-                    <div className="p-4 bg-[#1C1C29] rounded-xl border border-[#2C2C39] space-y-4 animate-in fade-in">
-                        <h3 className="tex-lg font-semibold text-[#DDF247]">Detalles Industriales</h3>
-                        <div className="grid grid-cols-2 gap-4">
+                {/* --- SECCIÓN 3: ESPECIFICACIONES TÉCNICAS (DINÁMICO) --- */}
+                <div className="space-y-6">
+                    <h2 className="text-xl font-semibold text-[#DDF247] border-b border-[#2C2C39] pb-2">Especificaciones Técnicas</h2>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        {/* Fields common to most or specific categories */}
+                        {(category === "RESIDENCIAL" || category === "COMERCIAL" || category === "INDUSTRIAL") && (
+                            <>
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-400 mb-2">Área Construida (m²)</label>
+                                    <input type="number" name="areaSqFt" className="w-full px-4 py-2 bg-[#1C1C29] border border-[#2C2C39] rounded-xl outline-none focus:border-[#DDF247]" />
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-400 mb-2">Estacionamientos</label>
+                                    <input type="number" name="parkingSpaces" className="w-full px-4 py-2 bg-[#1C1C29] border border-[#2C2C39] rounded-xl outline-none focus:border-[#DDF247]" />
+                                </div>
+                            </>
+                        )}
+
+                        {category === "RESIDENCIAL" && (
+                            <>
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-400 mb-2">Recámaras</label>
+                                    <input type="number" name="bedrooms" className="w-full px-4 py-2 bg-[#1C1C29] border border-[#2C2C39] rounded-xl outline-none focus:border-[#DDF247]" />
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-400 mb-2">Baños</label>
+                                    <input type="number" name="bathrooms" step="0.5" className="w-full px-4 py-2 bg-[#1C1C29] border border-[#2C2C39] rounded-xl outline-none focus:border-[#DDF247]" />
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-400 mb-2">Año de Construcción</label>
+                                    <input type="number" name="yearBuilt" className="w-full px-4 py-2 bg-[#1C1C29] border border-[#2C2C39] rounded-xl outline-none focus:border-[#DDF247]" />
+                                </div>
+                            </>
+                        )}
+
+                        {(category === "INDUSTRIAL" || category === "COMERCIAL") && (
+                            <>
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-400 mb-2">Altura de Techo (m)</label>
+                                    <input type="number" name="ceilingHeight" step="0.1" className="w-full px-4 py-2 bg-[#1C1C29] border border-[#2C2C39] rounded-xl outline-none focus:border-[#DDF247]" />
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-400 mb-2">Capacidad Eléctrica</label>
+                                    <input type="text" name="electricalCapacity" placeholder="Ej. 50 KVA" className="w-full px-4 py-2 bg-[#1C1C29] border border-[#2C2C39] rounded-xl outline-none focus:border-[#DDF247]" />
+                                </div>
+                            </>
+                        )}
+
+                        {category === "INDUSTRIAL" && (
                             <div>
-                                <label className="text-xs text-gray-400">Altura Techumbre (m)</label>
-                                <input type="number" onChange={(e) => handleFeatureChange("ceilingHeight", e.target.value)} className="w-full mt-1 px-3 py-2 bg-[#14141F] rounded border border-[#2C2C39] focus:border-[#DDF247] outline-none" />
+                                <label className="block text-sm font-medium text-gray-400 mb-2">Carga de Piso (Ton/m²)</label>
+                                <input type="number" name="floorLoad" step="0.1" className="w-full px-4 py-2 bg-[#1C1C29] border border-[#2C2C39] rounded-xl outline-none focus:border-[#DDF247]" />
                             </div>
+                        )}
+
+                        {(category === "TERRENO" || category === "RESIDENCIAL" || category === "INDUSTRIAL") && (
                             <div>
-                                <label className="text-xs text-gray-400">Andenes de Carga</label>
-                                <input type="number" onChange={(e) => handleFeatureChange("loadingDocks", e.target.value)} className="w-full mt-1 px-3 py-2 bg-[#14141F] rounded border border-[#2C2C39] focus:border-[#DDF247] outline-none" />
+                                <label className="block text-sm font-medium text-gray-400 mb-2">Superficie Terreno (m²)</label>
+                                <input type="number" name="lotSize" className="w-full px-4 py-2 bg-[#1C1C29] border border-[#2C2C39] rounded-xl outline-none focus:border-[#DDF247]" />
                             </div>
-                            <div className="col-span-2">
-                                <label className="text-xs text-gray-400">Capacidad Eléctrica (KVA)</label>
-                                <input type="text" onChange={(e) => handleFeatureChange("powerCapacity", e.target.value)} className="w-full mt-1 px-3 py-2 bg-[#14141F] rounded border border-[#2C2C39] focus:border-[#DDF247] outline-none" />
-                            </div>
+                        )}
+
+                        {category === "TERRENO" && (
+                            <>
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-400 mb-2">Frente (m)</label>
+                                    <input type="number" name="frontage" className="w-full px-4 py-2 bg-[#1C1C29] border border-[#2C2C39] rounded-xl outline-none focus:border-[#DDF247]" />
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-400 mb-2">Fondo (m)</label>
+                                    <input type="number" name="depth" className="w-full px-4 py-2 bg-[#1C1C29] border border-[#2C2C39] rounded-xl outline-none focus:border-[#DDF247]" />
+                                </div>
+                            </>
+                        )}
+
+                        <div>
+                            <label className="block text-sm font-medium text-gray-400 mb-2">Uso de Suelo / Zonificación</label>
+                            <input type="text" name="zoning" placeholder="Ej. H5/20, Industrial Ligera" className="w-full px-4 py-2 bg-[#1C1C29] border border-[#2C2C39] rounded-xl outline-none focus:border-[#DDF247]" />
                         </div>
                     </div>
-                )}
+                </div>
 
-                {category === "TERRENO" && (
-                    <div className="p-4 bg-[#1C1C29] rounded-xl border border-[#2C2C39] space-y-4 animate-in fade-in">
-                        <h3 className="tex-lg font-semibold text-[#DDF247]">Detalles del Terreno</h3>
-                        <div className="grid grid-cols-1 gap-4">
-                            <div>
-                                <label className="text-xs text-gray-400">Uso de Suelo</label>
-                                <select onChange={(e) => handleFeatureChange("landUse", e.target.value)} className="w-full mt-1 px-3 py-2 bg-[#14141F] rounded border border-[#2C2C39] text-white outline-none">
-                                    <option value="">Seleccionar...</option>
-                                    <option value="Habitacional">Habitacional</option>
-                                    <option value="Comercial">Comercial</option>
-                                    <option value="Mixto">Mixto</option>
-                                    <option value="Industrial">Industrial</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label className="text-xs text-gray-400">Topografía</label>
-                                <input type="text" placeholder="Ej. Plano, Irregular, Pendiente ascendente" onChange={(e) => handleFeatureChange("topography", e.target.value)} className="w-full mt-1 px-3 py-2 bg-[#14141F] rounded border border-[#2C2C39] focus:border-[#DDF247] outline-none" />
-                            </div>
+                {/* --- SECCIÓN 4: UBICACIÓN Y ESTATUS --- */}
+                <div className="space-y-6">
+                    <h2 className="text-xl font-semibold text-[#DDF247] border-b border-[#2C2C39] pb-2">Ubicación y Estatus</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label htmlFor="location" className="block text-sm font-medium text-gray-400 mb-2">Dirección / Zona</label>
+                            <input type="text" id="location" name="location" className="w-full px-4 py-3 bg-[#1C1C29] border border-[#2C2C39] rounded-xl focus:border-[#DDF247] focus:outline-none transition-colors" placeholder="Ej. Polanco, CDMX" />
+                        </div>
+
+                        <div>
+                            <label htmlFor="locationUrl" className="block text-sm font-medium text-gray-400 mb-2">Google Maps URL 📍</label>
+                            <input type="url" id="locationUrl" name="locationUrl" className="w-full px-4 py-3 bg-[#1C1C29] border border-[#2C2C39] rounded-xl focus:border-[#DDF247] focus:outline-none transition-colors" placeholder="https://maps.google.com/..." />
+                        </div>
+
+                        <div>
+                            <label htmlFor="status" className="block text-sm font-medium text-gray-400 mb-2">Estatus de Publicación</label>
+                            <select id="status" name="status" className="w-full px-4 py-3 bg-[#1C1C29] border border-[#2C2C39] rounded-xl focus:border-[#DDF247] focus:outline-none transition-colors text-white">
+                                <option value="DRAFT">Borrador</option>
+                                <option value="PUBLISHED">Publicado</option>
+                                <option value="COMING_SOON">Próximo Lanzamiento (Preventa)</option>
+                                <option value="ARCHIVED">Archivado</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label htmlFor="visibility" className="block text-sm font-medium text-gray-400 mb-2">Visibilidad</label>
+                            <select id="visibility" name="visibility" className="w-full px-4 py-3 bg-[#1C1C29] border border-[#2C2C39] rounded-xl focus:border-[#DDF247] focus:outline-none transition-colors text-white">
+                                <option value="PUBLIC">Público (En Market)</option>
+                                <option value="PRIVATE">Privado (Solo enlaces directos)</option>
+                                <option value="UNLISTED">No Listado</option>
+                            </select>
                         </div>
                     </div>
-                )}
-
-                {/* --- Status & Visibility --- */}
-                <div className="grid grid-cols-2 gap-6">
-                    <div>
-                        <label htmlFor="status" className="block text-sm font-medium text-gray-400 mb-2">Estatus</label>
-                        <select id="status" name="status" className="w-full px-4 py-3 bg-[#1C1C29] border border-[#2C2C39] rounded-xl focus:border-[#DDF247] focus:outline-none transition-colors text-white">
-                            <option value="DRAFT">Borrador</option>
-                            <option value="PUBLISHED">Publicado</option>
-                            <option value="COMING_SOON">Próximo Lanzamiento</option>
-                            <option value="ARCHIVED">Archivado</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label htmlFor="visibility" className="block text-sm font-medium text-gray-400 mb-2">Visibilidad</label>
-                        <select id="visibility" name="visibility" className="w-full px-4 py-3 bg-[#1C1C29] border border-[#2C2C39] rounded-xl focus:border-[#DDF247] focus:outline-none transition-colors text-white">
-                            <option value="PUBLIC">Público</option>
-                            <option value="PRIVATE">Privado</option>
-                            <option value="UNLISTED">No Listado</option>
-                        </select>
-                    </div>
                 </div>
 
-                <div>
-                    <label htmlFor="description" className="block text-sm font-medium text-gray-400 mb-2">Descripción</label>
-                    <textarea id="description" name="description" rows={4} className="w-full px-4 py-3 bg-[#1C1C29] border border-[#2C2C39] rounded-xl focus:border-[#DDF247] focus:outline-none transition-colors" placeholder="Describe la propiedad..." />
+                <div className="space-y-4">
+                    <label htmlFor="description" className="block text-sm font-medium text-gray-400 mb-2">Descripción Detallada</label>
+                    <textarea id="description" name="description" rows={6} className="w-full px-4 py-3 bg-[#1C1C29] border border-[#2C2C39] rounded-xl focus:border-[#DDF247] focus:outline-none transition-colors" placeholder="Describe los beneficios y características únicas de la propiedad..." />
                 </div>
 
-                <div className="pt-4">
+                <div className="pt-8 block">
                     <SubmitButton />
                 </div>
 
