@@ -6,6 +6,7 @@ import { useActiveAccount } from "thirdweb/react";
 import { useRole } from "@/context/RoleContext";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { deleteProperty } from "@/actions/delete-property";
 
 interface OrganizationTabsProps {
     organization: any;
@@ -25,18 +26,17 @@ export function OrganizationTabs({ organization, properties }: OrganizationTabsP
     });
 
     const handleDelete = async (id: string) => {
+        if (!account?.address) return;
+
         if (window.confirm("¡Alerta! ¿Estás seguro de que deseas eliminar esta propiedad? Esta acción es permanente.")) {
             try {
-                const res = await fetch("/api/properties/delete", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ id, walletAddress: account?.address })
-                });
+                const result = await deleteProperty(id, account.address);
 
-                if (res.ok) {
+                if (result.success) {
+                    // Start transition or refresh
                     router.refresh();
                 } else {
-                    alert("Error al eliminar la propiedad");
+                    alert("Error al eliminar la propiedad: " + (result.error || "Desconocido"));
                 }
             } catch (err) {
                 console.error(err);
@@ -94,8 +94,8 @@ export function OrganizationTabs({ organization, properties }: OrganizationTabsP
                                                 </td>
                                                 <td className="px-6 py-4">
                                                     <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${member.role === 'ADMIN' || member.role === 'ORG_ADMIN' ? "bg-purple-900/30 border-purple-500/30 text-purple-400" :
-                                                            member.role === 'BROKER' ? "bg-blue-900/30 border-blue-500/30 text-blue-400" :
-                                                                "bg-green-900/30 border-green-500/30 text-green-400"
+                                                        member.role === 'BROKER' ? "bg-blue-900/30 border-blue-500/30 text-blue-400" :
+                                                            "bg-green-900/30 border-green-500/30 text-green-400"
                                                         }`}>
                                                         {member.role}
                                                     </span>

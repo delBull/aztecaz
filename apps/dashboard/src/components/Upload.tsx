@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
+import { upload } from '@vercel/blob/client';
 
 interface UploadProps {
     label: string;
@@ -27,23 +28,20 @@ export default function Upload({ label, accept, onUploadComplete, currentValue, 
             setPreview(null);
         }
 
+        // ... inside component
+
         try {
             setUploading(true);
 
-            const response = await fetch(`/api/upload?filename=${file.name}`, {
-                method: 'POST',
-                body: file,
+            const newBlob = await upload(file.name, file, {
+                access: 'public',
+                handleUploadUrl: '/api/upload',
             });
 
-            if (!response.ok) {
-                throw new Error("Upload failed");
-            }
-
-            const newBlob = await response.json();
             onUploadComplete(newBlob.url);
         } catch (error) {
             console.error("Error uploading file:", error);
-            alert("Error al subir archivo. Verifique su conexión.");
+            alert("Error al subir archivo. Verifique su conexión y configuración.");
         } finally {
             setUploading(false);
         }

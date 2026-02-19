@@ -1,23 +1,32 @@
-import { put } from '@vercel/blob';
+import { handleUpload, type HandleUploadBody } from '@vercel/blob/client';
 import { NextResponse } from 'next/server';
 
 export async function POST(request: Request): Promise<NextResponse> {
-    const { searchParams } = new URL(request.url);
-    const filename = searchParams.get('filename') || 'file';
-
-    if (!request.body) {
-        return NextResponse.json({ error: 'No body' }, { status: 400 });
-    }
+    const body = (await request.json()) as HandleUploadBody;
 
     try {
-        const blob = await put(filename, request.body, {
-            access: 'public',
-            token: process.env.BLOB_READ_WRITE_TOKEN, // Uses env var or defaults if configured globally
+        const jsonResponse = await handleUpload({
+            body,
+            request,
+            onBeforeGenerateToken: async (pathname) => {
+                // Verify strict content types if needed, for now broadly allow
+                return {
+                    allowedContentTypes: ['image/jpeg', 'image/png', 'image/gif', 'video/mp4', 'application/pdf'],
+                    tokenPayload: JSON.stringify({
+                        // optional, sent to your server on upload completion
+                    }),
+                };
+            },
+            onUploadCompleted: async ({ blob, tokenPayload }) => {
+                console.log('Blob uploaded:', blob.url);
+            },
         });
 
-        return NextResponse.json(blob);
+        return NextResponse.json(jsonResponse);
     } catch (error) {
-        console.error("Blob upload error:", error);
-        return NextResponse.json({ error: 'Upload failed' }, { status: 500 });
+        return NextResponse.json(
+            { error: (error as Error).message },
+            { status: 400 },
+        );
     }
 }
