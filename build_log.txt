@@ -1,0 +1,102 @@
+
+> aztecaz-monorepo@ build /Users/Marco/Documents/Company/Aztecas/Web/aztecaz
+> turbo build "--filter=@repo/web"
+
+• turbo 2.8.9
+• Packages in scope: @repo/web
+• Running build in 1 packages
+• Remote caching disabled
+@repo/database:build: cache hit, replaying logs f747174bbf62a68a
+@repo/database:build: 
+@repo/database:build: 
+@repo/database:build: > @repo/database@0.0.0 build /Users/Marco/Documents/Company/Aztecas/Web/aztecaz/packages/database
+@repo/database:build: > prisma generate
+@repo/database:build: 
+@repo/database:build: [2mEnvironment variables loaded from .env[22m
+@repo/database:build: [2mPrisma schema loaded from prisma/schema.prisma[22m
+@repo/database:build: 
+@repo/database:build: ✔ Generated [1mPrisma Client[22m (v5.22.0)[2m to ./../../node_modules/.pnpm/@prisma+client@5.22.0_prisma@5.22.0/node_modules/@prisma/client[22m in 82ms
+@repo/database:build: 
+@repo/database:build: Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+@repo/database:build: 
+@repo/database:build: Tip: Interested in query caching in just a few lines of code? Try Accelerate today! https://pris.ly/tip-3-accelerate
+@repo/database:build: 
+@repo/web:build: cache miss, executing b428a615823de04a
+@repo/web:build: 
+@repo/web:build: > @repo/web@0.1.1 build /Users/Marco/Documents/Company/Aztecas/Web/aztecaz/apps/web
+@repo/web:build: > next build
+@repo/web:build: 
+@repo/web:build:   ▲ Next.js 14.2.35
+@repo/web:build:   - Environments: .env.local, .env
+@repo/web:build:   - Experiments (use with caution):
+@repo/web:build:     · optimizeCss
+@repo/web:build: 
+@repo/web:build:    Linting and checking validity of types ...
+@repo/web:build:    Creating an optimized production build ...
+@repo/web:build: <w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|/Users/Marco/Documents/Company/Aztecas/Web/aztecaz/node_modules/.pnpm/next@14.2.35_@babel+core@7.29.0_react-dom@18.2.0_react@18.2.0_sass@1.97.3/node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[7].oneOf[14].use[1]!/Users/Marco/Documents/Company/Aztecas/Web/aztecaz/node_modules/.pnpm/next@14.2.35_@babel+core@7.29.0_react-dom@18.2.0_react@18.2.0_sass@1.97.3/node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[7].oneOf[14].use[2]!/Users/Marco/Documents/Company/Aztecas/Web/aztecaz/apps/web/styles/globals.css': No serializer registered for PostCSSSyntaxError
+@repo/web:build: <w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> webpack/lib/ModuleBuildError -> PostCSSSyntaxError
+@repo/web:build: Failed to compile.
+@repo/web:build: 
+@repo/web:build: ./styles/globals.css:1:1
+@repo/web:build: Syntax error: /Users/Marco/Documents/Company/Aztecas/Web/aztecaz/apps/web/styles/globals.css The `border-border` class does not exist. If `border-border` is a custom class, make sure it is defined within a `@layer` directive.
+@repo/web:build: 
+@repo/web:build: > 1 | @tailwind base;
+@repo/web:build:     | ^
+@repo/web:build:   2 | @tailwind components;
+@repo/web:build:   3 | @tailwind utilities;
+@repo/web:build: 
+@repo/web:build: ./styles/globals.css
+@repo/web:build: Syntax error: /Users/Marco/Documents/Company/Aztecas/Web/aztecaz/apps/web/styles/globals.css The `border-border` class does not exist. If `border-border` is a custom class, make sure it is defined within a `@layer` directive. (1:1)
+@repo/web:build: 
+@repo/web:build: [1m[31m>[39m[22m[90m 1 | [39m[36m@tailwind[39m base[33m;[39m
+@repo/web:build:  [90m   | [39m[1m[31m^[39m[22m
+@repo/web:build:  [90m 2 | [39m[36m@tailwind[39m components[33m;[39m
+@repo/web:build:  [90m 3 | [39m[36m@tailwind[39m utilities[33m;[39m
+@repo/web:build: 
+@repo/web:build:     at tryRunOrWebpackError (/Users/Marco/Documents/Company/Aztecas/Web/aztecaz/node_modules/.pnpm/next@14.2.35_@babel+core@7.29.0_react-dom@18.2.0_react@18.2.0_sass@1.97.3/node_modules/next/dist/compiled/webpack/bundle5.js:28:312989)
+@repo/web:build:     at __webpack_require_module__ (/Users/Marco/Documents/Company/Aztecas/Web/aztecaz/node_modules/.pnpm/next@14.2.35_@babel+core@7.29.0_react-dom@18.2.0_react@18.2.0_sass@1.97.3/node_modules/next/dist/compiled/webpack/bundle5.js:28:131165)
+@repo/web:build:     at __nested_webpack_require_153728__ (/Users/Marco/Documents/Company/Aztecas/Web/aztecaz/node_modules/.pnpm/next@14.2.35_@babel+core@7.29.0_react-dom@18.2.0_react@18.2.0_sass@1.97.3/node_modules/next/dist/compiled/webpack/bundle5.js:28:130607)
+@repo/web:build:     at /Users/Marco/Documents/Company/Aztecas/Web/aztecaz/node_modules/.pnpm/next@14.2.35_@babel+core@7.29.0_react-dom@18.2.0_react@18.2.0_sass@1.97.3/node_modules/next/dist/compiled/webpack/bundle5.js:28:131454
+@repo/web:build:     at symbolIterator (/Users/Marco/Documents/Company/Aztecas/Web/aztecaz/node_modules/.pnpm/next@14.2.35_@babel+core@7.29.0_react-dom@18.2.0_react@18.2.0_sass@1.97.3/node_modules/next/dist/compiled/neo-async/async.js:1:14444)
+@repo/web:build:     at done (/Users/Marco/Documents/Company/Aztecas/Web/aztecaz/node_modules/.pnpm/next@14.2.35_@babel+core@7.29.0_react-dom@18.2.0_react@18.2.0_sass@1.97.3/node_modules/next/dist/compiled/neo-async/async.js:1:14824)
+@repo/web:build:     at Hook.eval [as callAsync] (eval at create (/Users/Marco/Documents/Company/Aztecas/Web/aztecaz/node_modules/.pnpm/next@14.2.35_@babel+core@7.29.0_react-dom@18.2.0_react@18.2.0_sass@1.97.3/node_modules/next/dist/compiled/webpack/bundle5.js:13:28858), <anonymous>:15:1)
+@repo/web:build:     at Hook.CALL_ASYNC_DELEGATE [as _callAsync] (/Users/Marco/Documents/Company/Aztecas/Web/aztecaz/node_modules/.pnpm/next@14.2.35_@babel+core@7.29.0_react-dom@18.2.0_react@18.2.0_sass@1.97.3/node_modules/next/dist/compiled/webpack/bundle5.js:13:26012)
+@repo/web:build:     at /Users/Marco/Documents/Company/Aztecas/Web/aztecaz/node_modules/.pnpm/next@14.2.35_@babel+core@7.29.0_react-dom@18.2.0_react@18.2.0_sass@1.97.3/node_modules/next/dist/compiled/webpack/bundle5.js:28:130328
+@repo/web:build:     at symbolIterator (/Users/Marco/Documents/Company/Aztecas/Web/aztecaz/node_modules/.pnpm/next@14.2.35_@babel+core@7.29.0_react-dom@18.2.0_react@18.2.0_sass@1.97.3/node_modules/next/dist/compiled/neo-async/async.js:1:14402)
+@repo/web:build: -- inner error --
+@repo/web:build: Syntax error: /Users/Marco/Documents/Company/Aztecas/Web/aztecaz/apps/web/styles/globals.css The `border-border` class does not exist. If `border-border` is a custom class, make sure it is defined within a `@layer` directive. (1:1)
+@repo/web:build: 
+@repo/web:build: [1m[31m>[39m[22m[90m 1 | [39m[36m@tailwind[39m base[33m;[39m
+@repo/web:build:  [90m   | [39m[1m[31m^[39m[22m
+@repo/web:build:  [90m 2 | [39m[36m@tailwind[39m components[33m;[39m
+@repo/web:build:  [90m 3 | [39m[36m@tailwind[39m utilities[33m;[39m
+@repo/web:build: 
+@repo/web:build:     at Object.<anonymous> (/Users/Marco/Documents/Company/Aztecas/Web/aztecaz/node_modules/.pnpm/next@14.2.35_@babel+core@7.29.0_react-dom@18.2.0_react@18.2.0_sass@1.97.3/node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[7].oneOf[14].use[1]!/Users/Marco/Documents/Company/Aztecas/Web/aztecaz/node_modules/.pnpm/next@14.2.35_@babel+core@7.29.0_react-dom@18.2.0_react@18.2.0_sass@1.97.3/node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[7].oneOf[14].use[2]!/Users/Marco/Documents/Company/Aztecas/Web/aztecaz/apps/web/styles/globals.css:1:7)
+@repo/web:build:     at /Users/Marco/Documents/Company/Aztecas/Web/aztecaz/node_modules/.pnpm/next@14.2.35_@babel+core@7.29.0_react-dom@18.2.0_react@18.2.0_sass@1.97.3/node_modules/next/dist/compiled/webpack/bundle5.js:28:922493
+@repo/web:build:     at Hook.eval [as call] (eval at create (/Users/Marco/Documents/Company/Aztecas/Web/aztecaz/node_modules/.pnpm/next@14.2.35_@babel+core@7.29.0_react-dom@18.2.0_react@18.2.0_sass@1.97.3/node_modules/next/dist/compiled/webpack/bundle5.js:13:28636), <anonymous>:7:1)
+@repo/web:build:     at Hook.CALL_DELEGATE [as _call] (/Users/Marco/Documents/Company/Aztecas/Web/aztecaz/node_modules/.pnpm/next@14.2.35_@babel+core@7.29.0_react-dom@18.2.0_react@18.2.0_sass@1.97.3/node_modules/next/dist/compiled/webpack/bundle5.js:13:25906)
+@repo/web:build:     at /Users/Marco/Documents/Company/Aztecas/Web/aztecaz/node_modules/.pnpm/next@14.2.35_@babel+core@7.29.0_react-dom@18.2.0_react@18.2.0_sass@1.97.3/node_modules/next/dist/compiled/webpack/bundle5.js:28:131198
+@repo/web:build:     at tryRunOrWebpackError (/Users/Marco/Documents/Company/Aztecas/Web/aztecaz/node_modules/.pnpm/next@14.2.35_@babel+core@7.29.0_react-dom@18.2.0_react@18.2.0_sass@1.97.3/node_modules/next/dist/compiled/webpack/bundle5.js:28:312943)
+@repo/web:build:     at __webpack_require_module__ (/Users/Marco/Documents/Company/Aztecas/Web/aztecaz/node_modules/.pnpm/next@14.2.35_@babel+core@7.29.0_react-dom@18.2.0_react@18.2.0_sass@1.97.3/node_modules/next/dist/compiled/webpack/bundle5.js:28:131165)
+@repo/web:build:     at __nested_webpack_require_153728__ (/Users/Marco/Documents/Company/Aztecas/Web/aztecaz/node_modules/.pnpm/next@14.2.35_@babel+core@7.29.0_react-dom@18.2.0_react@18.2.0_sass@1.97.3/node_modules/next/dist/compiled/webpack/bundle5.js:28:130607)
+@repo/web:build:     at /Users/Marco/Documents/Company/Aztecas/Web/aztecaz/node_modules/.pnpm/next@14.2.35_@babel+core@7.29.0_react-dom@18.2.0_react@18.2.0_sass@1.97.3/node_modules/next/dist/compiled/webpack/bundle5.js:28:131454
+@repo/web:build:     at symbolIterator (/Users/Marco/Documents/Company/Aztecas/Web/aztecaz/node_modules/.pnpm/next@14.2.35_@babel+core@7.29.0_react-dom@18.2.0_react@18.2.0_sass@1.97.3/node_modules/next/dist/compiled/neo-async/async.js:1:14444)
+@repo/web:build: 
+@repo/web:build: Generated code for /Users/Marco/Documents/Company/Aztecas/Web/aztecaz/node_modules/.pnpm/next@14.2.35_@babel+core@7.29.0_react-dom@18.2.0_react@18.2.0_sass@1.97.3/node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[7].oneOf[14].use[1]!/Users/Marco/Documents/Company/Aztecas/Web/aztecaz/node_modules/.pnpm/next@14.2.35_@babel+core@7.29.0_react-dom@18.2.0_react@18.2.0_sass@1.97.3/node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[7].oneOf[14].use[2]!/Users/Marco/Documents/Company/Aztecas/Web/aztecaz/apps/web/styles/globals.css
+@repo/web:build: 
+@repo/web:build: Import trace for requested module:
+@repo/web:build: ./styles/globals.css
+@repo/web:build: 
+@repo/web:build: 
+@repo/web:build: > Build failed because of webpack errors
+@repo/web:build:  ELIFECYCLE  Command failed with exit code 1.
+@repo/web:build: ERROR: command finished with error: command (/Users/Marco/Documents/Company/Aztecas/Web/aztecaz/apps/web) /Users/Marco/.nvm/versions/node/v22.18.0/bin/pnpm run build exited (1)
+@repo/web#build: command (/Users/Marco/Documents/Company/Aztecas/Web/aztecaz/apps/web) /Users/Marco/.nvm/versions/node/v22.18.0/bin/pnpm run build exited (1)
+
+ Tasks:    1 successful, 2 total
+Cached:    1 cached, 2 total
+  Time:    6.719s 
+Failed:    @repo/web#build
+
+ ERROR  run failed: command  exited (1)
+ ELIFECYCLE  Command failed with exit code 1.

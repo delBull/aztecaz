@@ -71,6 +71,17 @@ model Organization {
   members     OrganizationMember[]
   properties  Property[]
   leads       Lead[]
+  
+  // Profile / Config
+  logo        String?
+  phone       String?
+  email       String?
+  website     String?
+  description String?   @db.Text
+  facebook    String?
+  instagram   String?
+  twitter     String?
+  linkedin    String?
 }
 
 enum OrgPlan {

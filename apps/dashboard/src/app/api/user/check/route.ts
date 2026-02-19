@@ -18,7 +18,11 @@ export async function POST(req: Request) {
                 name: `User ${walletAddress.slice(0, 6)}`,
             },
             include: {
-                memberships: true,
+                memberships: {
+                    include: {
+                        organization: true
+                    }
+                },
             },
         });
 

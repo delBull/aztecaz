@@ -14,7 +14,7 @@ function cn(...inputs: ClassValue[]) {
 const sidebarItems = [
     {
         name: "Disponibilidad",
-        href: process.env.NEXT_PUBLIC_WEB_URL ? `${process.env.NEXT_PUBLIC_WEB_URL}/market` : "https://www.aztecaz.xyz/market",
+        href: "/dashboard/market",
         icon: (
             <svg width={22} height={22} viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g opacity="0.2">
@@ -93,7 +93,12 @@ export default function Sidebar() {
     const [isCollapsed, setIsCollapsed] = useState(false);
     const { disconnect } = useDisconnect();
     const wallet = useActiveWallet();
+
+    // Safely use Role Context - might fail if unauthenticated, so we wrap or use optional chaining if RoleProvider supports it.
+    // Assuming RoleProvider might not provide values if unauthenticated.
+    // Better strategy: Use useActiveAccount to check auth status here too.
     const { isSuperAdmin, hasRole, isLoading } = useRole();
+    const isAuthenticated = !!wallet;
 
     // Define restrictions for specific routes
     const restrictedItems = {
@@ -101,6 +106,10 @@ export default function Sidebar() {
         "/dashboard/launches": ["ADMIN", "ORG_ADMIN", "BROKER", "AGENT"],
         "/dashboard/finance": ["ADMIN", "ORG_ADMIN", "BROKER"],
     };
+
+    // If not authenticated, we might want to hide the sidebar completely or show a minimal version
+    // For now, let's keep it but hide all protected items
+    const publicItems = ["/dashboard/market", "/dashboard/launches"];
 
     return (
         <div
@@ -137,7 +146,7 @@ export default function Sidebar() {
 
             <div className="flex flex-col flex-1 overflow-y-auto py-4 overflow-x-hidden">
                 {/* Create Property - Only for Admins/Agents */}
-                {(isSuperAdmin || hasRole("AGENT")) && (
+                {isAuthenticated && (isSuperAdmin || hasRole("AGENT")) && (
                     <div className="px-4 mb-6">
                         <Link
                             href="/dashboard/create"
@@ -155,18 +164,27 @@ export default function Sidebar() {
 
                 <nav className="flex-1 px-2 space-y-2">
                     <div>
-                        {/* Activos Section - Mostly for Admins/Agents */}
-                        {(isSuperAdmin || hasRole("AGENT")) && (
+                        {/* Activos/Public Section */}
+                        {(true) && (
                             <>
-                                {!isCollapsed && (
+                                {isAuthenticated && !isCollapsed && (
                                     <p className="px-4 text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">
                                         Activos
                                     </p>
                                 )}
                                 {sidebarItems.slice(0, 3).map((item) => {
-                                    // Skip if user doesn't have required role for this item
+                                    // 1. If it's a public item, ALWAYS show it (regardless of auth or role)
+                                    if (publicItems.includes(item.href)) {
+                                        // Pass through
+                                    }
+                                    // 2. If it's a restricted item, check roles
                                     // @ts-ignore
-                                    if (restrictedItems[item.href] && !hasRole(restrictedItems[item.href])) {
+                                    else if (restrictedItems[item.href] && hasRole && !hasRole(restrictedItems[item.href])) {
+                                        return null;
+                                    }
+
+                                    // If unauthenticated, only show public items
+                                    if (!isAuthenticated && !publicItems.includes(item.href)) {
                                         return null;
                                     }
 
@@ -194,14 +212,15 @@ export default function Sidebar() {
                     </div>
 
                     <div className="mt-8">
-                        {!isCollapsed && (
+                        {/* Only show "Cuenta" header if authenticated */}
+                        {isAuthenticated && !isCollapsed && (
                             <p className="px-4 text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">
                                 Cuenta
                             </p>
                         )}
 
                         {/* Organization - Only for those who belong to one */}
-                        {(isSuperAdmin || hasRole("AGENT")) && (
+                        {isAuthenticated && (isSuperAdmin || hasRole("AGENT")) && (
                             <Link
                                 href="/dashboard/organization"
                                 className={cn(
@@ -225,8 +244,8 @@ export default function Sidebar() {
                             </Link>
                         )}
 
-                        {/* Common items for everyone (Wallet, History, Settings) */}
-                        {sidebarItems.slice(3).map((item) => {
+                        {/* Common items for everyone (Wallet, History, Settings) - ONLY IF AUTHENTICATED */}
+                        {isAuthenticated && sidebarItems.slice(3).map((item) => {
                             const isActive = pathname === item.href;
                             return (
                                 <Link
@@ -246,28 +265,37 @@ export default function Sidebar() {
                                 </Link>
                             );
                         })}
+
+                        {/* Only show "Cuenta" header if there are visible items */}
+                        {isAuthenticated && (
+                            <div className="mt-8">
+                                {/* Only for uncollapsed state */}
+                            </div>
+                        )}
                     </div>
                 </nav>
 
                 <div className="p-4 border-t border-[#2C2C39]">
-                    <button
-                        onClick={() => {
-                            if (wallet) disconnect(wallet);
-                            router.push("/");
-                        }}
-                        className={cn(
-                            "flex items-center w-full py-3 text-sm font-medium text-gray-400 rounded-xl hover:bg-[#1C1C29] hover:text-white transition-colors text-left",
-                            isCollapsed ? "justify-center px-0" : "px-4"
-                        )}
-                        title={isCollapsed ? "Cerrar Sesión" : undefined}
-                    >
-                        <svg width={22} height={22} viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" className={cn("flex-shrink-0", !isCollapsed && "mr-3")}>
-                            <path fillRule="evenodd" clipRule="evenodd" d="M13.7627 6.77369V5.91844C13.7627 4.05303 12.2502 2.54053 10.3848 2.54053H5.91606C4.05156 2.54053 2.53906 4.05303 2.53906 5.91844V16.1209C2.53906 17.9864 4.05156 19.4989 5.91606 19.4989H10.394C12.2539 19.4989 13.7627 17.9909 13.7627 16.131V15.2666" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                            <path d="M19.9907 11.0196H8.95312" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                            <path d="M17.3047 8.34741L19.9887 11.0195L17.3047 13.6925" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                        {!isCollapsed && <span>Cerrar Sesión</span>}
-                    </button>
+                    {isAuthenticated && (
+                        <button
+                            onClick={() => {
+                                if (wallet) disconnect(wallet);
+                                router.push("/");
+                            }}
+                            className={cn(
+                                "flex items-center w-full py-3 text-sm font-medium text-gray-400 rounded-xl hover:bg-[#1C1C29] hover:text-white transition-colors text-left",
+                                isCollapsed ? "justify-center px-0" : "px-4"
+                            )}
+                            title={isCollapsed ? "Cerrar Sesión" : undefined}
+                        >
+                            <svg width={22} height={22} viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" className={cn("flex-shrink-0", !isCollapsed && "mr-3")}>
+                                <path fillRule="evenodd" clipRule="evenodd" d="M13.7627 6.77369V5.91844C13.7627 4.05303 12.2502 2.54053 10.3848 2.54053H5.91606C4.05156 2.54053 2.53906 4.05303 2.53906 5.91844V16.1209C2.53906 17.9864 4.05156 19.4989 5.91606 19.4989H10.394C12.2539 19.4989 13.7627 17.9909 13.7627 16.131V15.2666" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                <path d="M19.9907 11.0196H8.95312" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                <path d="M17.3047 8.34741L19.9887 11.0195L17.3047 13.6925" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                            </svg>
+                            {!isCollapsed && <span>Cerrar Sesión</span>}
+                        </button>
+                    )}
                 </div>
             </div>
         </div>

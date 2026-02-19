@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { ConnectEmbed, useAutoConnect } from "thirdweb/react";
 import { createThirdwebClient } from "thirdweb";
 import { darkTheme } from "thirdweb/react";
+import { usePathname } from "next/navigation";
 
 const client = createThirdwebClient({
     clientId: process.env.NEXT_PUBLIC_TEMPLATE_CLIENT_ID || "",
@@ -14,8 +15,18 @@ const client = createThirdwebClient({
 export default function AuthGuard({ children }: { children: React.ReactNode }) {
     const account = useActiveAccount();
     const isAutoConnecting = useIsAutoConnecting();
+    const pathname = usePathname();
 
-    // If auto-connecting, show a loading state to prevent flash of login content
+    const isPublicRoute = pathname?.startsWith('/dashboard/market') ||
+        pathname?.startsWith('/dashboard/launches') ||
+        pathname?.startsWith('/dashboard/properties');
+
+    // 1. Priority: If it's a public route, render immediately (don't wait for wallet)
+    if (isPublicRoute) {
+        return <>{children}</>;
+    }
+
+    // 2. If auto-connecting, show a loading state
     if (isAutoConnecting) {
         return (
             <div className="flex h-screen w-full items-center justify-center bg-[#14141F]">
@@ -24,7 +35,7 @@ export default function AuthGuard({ children }: { children: React.ReactNode }) {
         );
     }
 
-    // If connected, render the protected content
+    // 3. If connected, render the protected content
     if (account) {
         return <>{children}</>;
     }
