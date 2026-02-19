@@ -53,6 +53,17 @@ export async function createProperty(prevState: any, formData: FormData) {
     const tags = tagsRaw ? tagsRaw.split(",").map(t => t.trim()).filter(Boolean) : [];
     const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, "-") + "-" + Date.now();
     const organizationId = formData.get("organizationId") as string;
+    const creatorWalletAddress = formData.get("creatorWalletAddress") as string;
+
+    let userId = null;
+    if (creatorWalletAddress) {
+        const user = await prisma.user.findUnique({
+            where: { walletAddress: creatorWalletAddress },
+        });
+        if (user) {
+            userId = user.id;
+        }
+    }
 
     let features = {};
     try {
@@ -76,6 +87,7 @@ export async function createProperty(prevState: any, formData: FormData) {
                 status,
                 visibility,
                 organizationId,
+                userId, // Associate with creator
                 images,
                 videoUrl: videoUrl || null,
                 category,

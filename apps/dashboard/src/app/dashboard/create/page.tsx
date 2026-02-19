@@ -1,6 +1,7 @@
 "use client";
 
 import { useFormState } from "react-dom";
+import { useActiveAccount } from "thirdweb/react";
 import { createProperty } from "@/actions/create-property";
 import { SubmitButton } from "@/components/SubmitButton";
 import { useRole } from "@/context/RoleContext";
@@ -17,6 +18,7 @@ const initialState = {
 const ORG_ID = "cmlqzj3wy0000zfvlxlmlcy28";
 
 export default function CreatePropertyPage() {
+    const account = useActiveAccount();
     // @ts-ignore
     const [state, dispatch] = useFormState(createProperty, initialState);
     const { isSuperAdmin, hasRole, isLoading } = useRole();
@@ -53,6 +55,7 @@ export default function CreatePropertyPage() {
             <form action={dispatch} className="space-y-8 bg-[#14141F] p-8 rounded-2xl border border-[#2C2C39]">
                 {/* Hidden Inputs for Non-Standard Fields */}
                 <input type="hidden" name="organizationId" value={ORG_ID} />
+                <input type="hidden" name="creatorWalletAddress" value={account?.address || ""} />
                 <input type="hidden" name="imageUrl" value={imageUrl} />
                 <input type="hidden" name="videoUrl" value={videoUrl} />
                 <input type="hidden" name="features" value={JSON.stringify(features)} />

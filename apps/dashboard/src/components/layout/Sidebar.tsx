@@ -87,10 +87,14 @@ import { useRouter } from "next/navigation";
 import { useDisconnect, useActiveWallet } from "thirdweb/react";
 import { useRole } from "@/context/RoleContext";
 
-export default function Sidebar() {
+interface SidebarProps {
+    isCollapsed: boolean;
+    setIsCollapsed: (value: boolean) => void;
+}
+
+export default function Sidebar({ isCollapsed, setIsCollapsed }: SidebarProps) {
     const pathname = usePathname();
     const router = useRouter();
-    const [isCollapsed, setIsCollapsed] = useState(false);
     const { disconnect } = useDisconnect();
     const wallet = useActiveWallet();
 

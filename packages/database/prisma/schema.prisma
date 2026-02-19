@@ -26,6 +26,7 @@ model User {
 
   // Relationships
   memberships   OrganizationMember[]
+  properties    Property[]
   accounts      Account[]
   sessions      Session[]
 }
@@ -145,6 +146,8 @@ model Property {
   updatedAt      DateTime @updatedAt
 
   organization   Organization @relation(fields: [organizationId], references: [id])
+  userId         String?
+  user           User?        @relation(fields: [userId], references: [id])
   inquiries      Inquiry[]
 
   @@index([status, visibility])
