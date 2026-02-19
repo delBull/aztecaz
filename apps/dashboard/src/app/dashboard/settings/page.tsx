@@ -2,13 +2,17 @@
 
 import { useActiveAccount } from "thirdweb/react";
 import { useRole } from "@/context/RoleContext";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 
 export default function SettingsPage() {
     const account = useActiveAccount();
     const { userRole, organization, isLoading } = useRole();
     const [activeTab, setActiveTab] = useState("profile");
+
+    const [isSaving, setIsSaving] = useState(false);
+    const [isUploading, setIsUploading] = useState(false);
+    const fileInputRef = useRef<HTMLInputElement>(null);
 
     // State for Organization Form
     const [orgForm, setOrgForm] = useState({
@@ -46,8 +50,53 @@ export default function SettingsPage() {
 
     const handleOrgSave = async (e: React.FormEvent) => {
         e.preventDefault();
-        // TODO: Implement API call to update organization
-        alert("Función de guardar en desarrollo. Backend implementation pending.");
+        setIsSaving(true);
+        try {
+            const response = await fetch('/api/organization/update', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    walletAddress: account?.address,
+                    organizationId: organization?.id,
+                    data: orgForm
+                })
+            });
+
+            if (!response.ok) throw new Error('Failed to update organization');
+
+            alert("Organización actualizada correctamente");
+            // Optionally reload window or re-fetch context
+            window.location.reload();
+        } catch (error) {
+            console.error("Error updating organization:", error);
+            alert("Error al actualizar la organización");
+        } finally {
+            setIsSaving(false);
+        }
+    };
+
+    const handleLogoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (!e.target.files || e.target.files.length === 0) return;
+
+        setIsUploading(true);
+        const file = e.target.files[0];
+
+        try {
+            const response = await fetch(`/api/upload?filename=${encodeURIComponent(file.name)}`, {
+                method: 'POST',
+                body: file,
+            });
+
+            if (!response.ok) throw new Error('Upload failed');
+
+            const blob = await response.json();
+            setOrgForm(prev => ({ ...prev, logo: blob.url }));
+        } catch (error) {
+            console.error("Error uploading logo:", error);
+            alert("Error al subir el logo");
+        } finally {
+            setIsUploading(false);
+        }
     };
 
     if (isLoading) {
@@ -111,6 +160,42 @@ export default function SettingsPage() {
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div className="col-span-full">
+                                <label className="block text-sm font-medium text-gray-400 mb-2">Logo de la Organización</label>
+                                <div className="flex items-center gap-6">
+                                    <div
+                                        onClick={() => fileInputRef.current?.click()}
+                                        className="w-24 h-24 bg-[#1C1C29] rounded-xl flex items-center justify-center border border-dashed border-gray-600 cursor-pointer hover:border-[#DDF247] overflow-hidden relative"
+                                    >
+                                        {isUploading ? (
+                                            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#DDF247]"></div>
+                                        ) : orgForm.logo ? (
+                                            <Image
+                                                src={orgForm.logo}
+                                                alt="Logo"
+                                                fill
+                                                className="object-cover"
+                                            />
+                                        ) : (
+                                            <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                            </svg>
+                                        )}
+                                        <input
+                                            type="file"
+                                            ref={fileInputRef}
+                                            className="hidden"
+                                            accept="image/*"
+                                            onChange={handleLogoUpload}
+                                        />
+                                    </div>
+                                    <div className="flex-1">
+                                        <p className="text-sm text-gray-300 mb-1">Sube el logo de tu organización.</p>
+                                        <p className="text-xs text-gray-500">Recomendado: 500x500px, PNG o JPG.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="col-span-full">
                                 <label className="block text-sm font-medium text-gray-400 mb-2">Nombre de la Organización</label>
                                 <input
                                     type="text"
@@ -164,16 +249,8 @@ export default function SettingsPage() {
                                 />
                             </div>
 
-                            <div>
-                                <label className="block text-sm font-medium text-gray-400 mb-2">Logo URL</label>
-                                <input
-                                    type="url"
-                                    value={orgForm.logo}
-                                    onChange={(e) => setOrgForm({ ...orgForm, logo: e.target.value })}
-                                    className="w-full bg-[#1C1C29] border border-[#2C2C39] rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#DDF247]"
-                                    placeholder="https://..."
-                                />
-                            </div>
+                            {/* Removed redundant Logo URL input as we have upload now */}
+
                         </div>
                     </div>
 
@@ -226,9 +303,10 @@ export default function SettingsPage() {
                     <div className="flex justify-end">
                         <button
                             type="submit"
-                            className="bg-[#DDF247] text-black font-bold py-3 px-8 rounded-xl hover:bg-[#cce336] transition-colors shadow-lg shadow-[#DDF247]/20"
+                            disabled={isSaving}
+                            className="bg-[#DDF247] text-black font-bold py-3 px-8 rounded-xl hover:bg-[#cce336] transition-colors shadow-lg shadow-[#DDF247]/20 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
-                            Guardar Cambios
+                            {isSaving ? "Guardando..." : "Guardar Cambios"}
                         </button>
                     </div>
                 </form>
