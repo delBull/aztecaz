@@ -56,7 +56,7 @@ export default function Market({ properties }) {
         <Layout headerStyle={1} footerStyle={1}>
             {/* Dark Theme Background Wrapper - Matching Dashboard #14141F background mostly, or page background */}
             <div style={{ backgroundColor: '#0B0B15', minHeight: '100vh', color: 'white' }}>
-                <div className="themesflat-container" style={{ paddingTop: '140px', paddingBottom: '80px' }}>
+                <div className={properties.length > 0 ? "container-fluid" : "themesflat-container"} style={{ paddingTop: '140px', paddingBottom: '80px', maxWidth: '1600px', margin: '0 auto', paddingLeft: '20px', paddingRight: '20px' }}>
 
                     {/* Header Section from Dashboard */}
                     <div className="flex items-center justify-between mb-12">

@@ -40,7 +40,7 @@ export default function Header1({ isMobileMenu, handleMobileMenu }) {
     return (
         <>
             <Headroom style={{ zIndex: '100' }}>
-                <header id="header_main" className={`header_1 header-fixed ${shouldHide ? 'ocultar' : ''}`}>
+                <header id="header_main" className={`header_1 header-fixed ${shouldHide ? 'ocultar' : ''} ${router.pathname === '/market' ? 'market-header' : ''}`}>
                     <div className="themesflat-container">
                         <div className="row">
                             <div className="col-md-12">
@@ -139,8 +139,8 @@ export default function Header1({ isMobileMenu, handleMobileMenu }) {
                                         background-color: transparent !important;
                                         box-shadow: none !important;
                                     }
-                                    /* Ensure menu items color is correct inside the white box */
-                                    .header_1 .main-nav > ul > li > a {
+                                    /* Ensure menu items color is correct inside the white box, but NOT on market page if we want custom */
+                                    .header_1:not(.market-header) .main-nav > ul > li > a {
                                         color: #14141F !important; 
                                     }
                                 `}</style>
