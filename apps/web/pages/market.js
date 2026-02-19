@@ -23,6 +23,11 @@ export async function getStaticProps() {
             price: p.price.toString(),
             createdAt: p.createdAt.toISOString(),
             updatedAt: p.updatedAt.toISOString(),
+            organization: {
+                ...p.organization,
+                createdAt: p.organization.createdAt.toISOString(),
+                updatedAt: p.organization.updatedAt.toISOString(),
+            }
         }));
 
         return {

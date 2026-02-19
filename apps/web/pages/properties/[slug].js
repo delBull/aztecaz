@@ -142,7 +142,8 @@ export async function getStaticProps({ params }) {
             property: {
                 ...property,
                 price: property.price.toString(),
-                // createdAt: property.createdAt.toISOString()
+                createdAt: property.createdAt.toISOString(),
+                updatedAt: property.updatedAt.toISOString(),
             }
         },
         revalidate: 60,
