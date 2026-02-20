@@ -28,8 +28,6 @@ export default function Upload({ label, accept, onUploadComplete, currentValue, 
             setPreview(null);
         }
 
-        // ... inside component
-
         try {
             setUploading(true);
 
@@ -39,9 +37,9 @@ export default function Upload({ label, accept, onUploadComplete, currentValue, 
             });
 
             onUploadComplete(newBlob.url);
-        } catch (error) {
+        } catch (error: any) {
             console.error("Error uploading file:", error);
-            alert("Error al subir archivo. Verifique su conexión y configuración.");
+            alert(`Error al subir archivo: ${error.message || 'Verifique su conexión y configuración.'}`);
         } finally {
             setUploading(false);
         }
