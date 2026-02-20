@@ -143,5 +143,6 @@ export async function updateProperty(prevState: any, formData: FormData) {
 
     revalidatePath("/dashboard/organization");
     revalidatePath("/dashboard/market");
+    revalidatePath("/dashboard/launches");
     redirect("/dashboard/organization");
 }

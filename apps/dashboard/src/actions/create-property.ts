@@ -164,5 +164,6 @@ export async function createProperty(prevState: any, formData: FormData) {
     }
 
     revalidatePath("/dashboard/market");
+    revalidatePath("/dashboard/launches");
     redirect("/dashboard/market");
 }

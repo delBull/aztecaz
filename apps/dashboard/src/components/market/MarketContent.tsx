@@ -42,8 +42,15 @@ export default function MarketContent({ initialProperties }: MarketContentProps)
         });
     }, [initialProperties, globalSearchQuery, category, minPrice, maxPrice]);
 
-    const comingSoon = filteredProperties.filter(p => p.status === "COMING_SOON");
-    const available = filteredProperties.filter(p => p.status !== "COMING_SOON" && p.status !== "ARCHIVED");
+    const isSearchingGlobal = !!globalSearchQuery;
+
+    // Si hay una búsqueda global activa, mostramos tanto las activas como los lanzamientos.
+    // Si no, solo mostramos las activas (los lanzamientos tienen su propia página).
+    const available = filteredProperties.filter(p => {
+        if (p.status === "ARCHIVED") return false;
+        if (isSearchingGlobal) return true;
+        return p.status !== "COMING_SOON";
+    });
 
     return (
         <div className="text-white">
