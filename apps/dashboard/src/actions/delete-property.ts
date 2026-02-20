@@ -37,7 +37,8 @@ export async function deleteProperty(id: string, walletAddress: string) {
         await prisma.property.delete({ where: { id } });
 
         revalidatePath("/dashboard/organization");
-        revalidatePath("/dashboard/properties");
+        revalidatePath("/dashboard/market");
+        revalidatePath("/dashboard/launches");
         return { success: true };
     } catch (error) {
         console.error("Delete property error:", error);

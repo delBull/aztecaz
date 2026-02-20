@@ -62,7 +62,7 @@ export default function AuthGuard({ children }: { children: React.ReactNode }) {
                             primaryButtonText: "#000000",
                         }
                     })}
-                    modalSize="wide"
+                    modalSize="compact"
                 />
             </div>
         </div>

@@ -2,6 +2,8 @@
 
 import { ConnectButton } from "thirdweb/react";
 import { createThirdwebClient } from "thirdweb";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 // Make sure to replace this with your actual client ID or use the Environment Variable
 const client = createThirdwebClient({
@@ -9,22 +11,36 @@ const client = createThirdwebClient({
 });
 
 export default function Header() {
+    const router = useRouter();
+    const [searchTerm, setSearchTerm] = useState("");
+
+    const handleSearch = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (searchTerm.trim()) {
+            router.push(`/dashboard/market?q=${encodeURIComponent(searchTerm)}`);
+        } else {
+            router.push(`/dashboard/market`);
+        }
+    };
+
     return (
         <header className="flex items-center justify-between h-20 px-8 bg-[#14141F] border-b border-[#2C2C39]">
             <div className="flex-1 max-w-xl">
-                <div className="relative">
+                <form onSubmit={handleSearch} className="relative">
                     <input
                         type="text"
-                        placeholder="¿Buscas algo en particular?..."
+                        placeholder="Buscar propiedades, tags, o folios..."
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
                         className="w-full px-4 py-2.5 bg-[#1C1C29] border border-[#2C2C39] rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-[#DDF247] transition-colors"
                     />
-                    <button className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white">
+                    <button type="submit" className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#DDF247] transition-colors">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                             <circle cx="11" cy="11" r="8"></circle>
                             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                         </svg>
                     </button>
-                </div>
+                </form>
             </div>
             <div className="flex items-center space-x-6">
                 <button className="relative p-2 text-gray-400 hover:text-white transition-colors">
@@ -39,10 +55,11 @@ export default function Header() {
                 <ConnectButton
                     client={client}
                     theme="dark"
-                    connectButton={{ label: "Conectar Wallet" }}
+                    connectButton={{ label: "Login" }}
                     connectModal={{
-                        size: "wide",
+                        size: "compact",
                         title: "Inicia Sesión",
+                        showThirdwebBranding: false,
                     }}
                 />
             </div>

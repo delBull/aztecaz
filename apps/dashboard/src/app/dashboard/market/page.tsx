@@ -1,5 +1,6 @@
 import { prisma } from "@repo/database";
 import MarketContent from "@/components/market/MarketContent";
+import { Suspense } from "react";
 
 export default async function MarketPage() {
     const properties = await prisma.property.findMany({
@@ -17,5 +18,10 @@ export default async function MarketPage() {
         updatedAt: p.updatedAt.toISOString(),
     }));
 
-    return <MarketContent initialProperties={serializedProperties} />;
+    return (
+        <Suspense fallback={<div className="text-white p-8">Cargando disponibilidad...</div>}>
+            <MarketContent initialProperties={serializedProperties} />
+        </Suspense>
+    );
 }
+

@@ -104,7 +104,7 @@ export default function SettingsPage() {
     }
 
     if (!account) {
-        return <div className="p-8 text-white">Debes conectar tu wallet para ver esta página.</div>;
+        return <div className="p-8 text-white">Debes iniciar sesión para ver esta página.</div>;
     }
 
     return (
