@@ -26,9 +26,9 @@ export default function DashboardPage() {
 
                 <div className="pt-8">
                     <img
-                        src="/assets/home/Aztecaz 512.svg"
+                        src="/logo_aztecaz.png"
                         alt="AztecaZ Logo"
-                        className="w-24 h-24 mx-auto opacity-80"
+                        className="h-16 w-auto mx-auto"
                     />
                 </div>
             </div>

@@ -12,6 +12,7 @@ export async function POST(request: Request): Promise<NextResponse> {
                 // Verify strict content types if needed, for now broadly allow
                 return {
                     allowedContentTypes: ['image/jpeg', 'image/png', 'image/gif', 'video/mp4', 'application/pdf'],
+                    addRandomSuffix: true,
                     tokenPayload: JSON.stringify({
                         // optional, sent to your server on upload completion
                     }),
