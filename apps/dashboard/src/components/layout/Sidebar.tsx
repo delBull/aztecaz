@@ -125,9 +125,9 @@ export default function Sidebar({ isCollapsed, setIsCollapsed }: SidebarProps) {
             <div className="flex items-center justify-between h-20 px-4 border-b border-[#2C2C39]">
                 <Link href="/dashboard" className="flex items-center justify-center w-full">
                     {isCollapsed ? (
-                        <NextImage src="/favicon.png" alt="Aztecaz" width={32} height={32} className="h-8 w-8 object-contain" />
+                        <NextImage src="/favicon.png" alt="Aztecaz" width={64} height={64} className="h-8 w-8 object-contain" quality={100} />
                     ) : (
-                        <NextImage src="/assets/images/logo/only_h_o.png" alt="Aztecaz" width={40} height={40} className="h-10 w-auto object-contain" />
+                        <NextImage src="/assets/images/logo/only_h_o.png" alt="Aztecaz" width={200} height={80} className="h-10 w-auto object-contain" quality={100} />
                     )}
                 </Link>
                 <button

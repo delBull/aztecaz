@@ -192,6 +192,76 @@ export default async function PropertyDetailPage({ params }: Props) {
                             </div>
                         </div>
                     )}
+
+                    {/* Documents / PDFs Section */}
+                    {property.documents && Array.isArray(property.documents) && (property.documents as any[]).length > 0 && (
+                        <div className="bg-[#14141F] rounded-2xl border border-[#2C2C39] p-8">
+                            <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                                <span className="w-9 h-9 bg-red-500/15 rounded-xl flex items-center justify-center flex-shrink-0">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                        <polyline points="14 2 14 8 20 8" />
+                                        <line x1="16" y1="13" x2="8" y2="13" />
+                                        <line x1="16" y1="17" x2="8" y2="17" />
+                                        <polyline points="10 9 9 9 8 9" />
+                                    </svg>
+                                </span>
+                                Documentos y Planos
+                            </h2>
+                            <ul className="space-y-3">
+                                {(property.documents as any[]).map((doc: { name: string; url: string }, idx: number) => (
+                                    <li
+                                        key={idx}
+                                        className="flex items-center gap-4 p-4 bg-[#1C1C29] rounded-xl border border-[#2C2C39] hover:border-[#DDF247]/30 transition-colors group"
+                                    >
+                                        {/* PDF icon */}
+                                        <div className="w-10 h-10 bg-red-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                                            <span className="text-red-400 font-bold text-xs">PDF</span>
+                                        </div>
+
+                                        {/* Name */}
+                                        <span className="flex-1 text-white font-medium truncate text-sm">
+                                            {doc.name || `Documento ${idx + 1}`}
+                                        </span>
+
+                                        {/* Actions */}
+                                        <div className="flex items-center gap-2 flex-shrink-0">
+                                            {/* View Online */}
+                                            <a
+                                                href={doc.url}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex items-center gap-1.5 px-3 py-2 bg-[#2C2C39] hover:bg-[#DDF247] hover:text-black text-gray-300 text-xs font-semibold rounded-lg transition-all"
+                                                title="Ver en línea"
+                                            >
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                                    <circle cx="12" cy="12" r="3" />
+                                                </svg>
+                                                Ver
+                                            </a>
+
+                                            {/* Download */}
+                                            <a
+                                                href={doc.url}
+                                                download={doc.name || `documento-${idx + 1}.pdf`}
+                                                className="flex items-center gap-1.5 px-3 py-2 bg-[#2C2C39] hover:bg-[#2C2C39]/70 text-gray-300 text-xs font-semibold rounded-lg transition-all border border-[#3D3D4D]"
+                                                title="Descargar"
+                                            >
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                                    <polyline points="7 10 12 15 17 10" />
+                                                    <line x1="12" y1="15" x2="12" y2="3" />
+                                                </svg>
+                                                Descargar
+                                            </a>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
+
                 </div>
 
                 {/* Sidebar */}
@@ -275,6 +345,26 @@ export default async function PropertyDetailPage({ params }: Props) {
                                     <span className="text-gray-400">Fecha de listado</span>
                                     <span className="text-white font-mono">{new Date(property.createdAt).toLocaleDateString()}</span>
                                 </li>
+                                {property.documents && Array.isArray(property.documents) && (property.documents as any[]).length > 0 && (
+                                    <li className="flex justify-between items-center pb-3 border-b border-[#2C2C39]">
+                                        <span className="text-gray-400">Documentos</span>
+                                        <div className="flex flex-wrap gap-1 justify-end max-w-[60%]">
+                                            {(property.documents as any[]).map((doc: { name: string; url: string }, idx: number) => (
+                                                <a
+                                                    key={idx}
+                                                    href={doc.url}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="flex items-center gap-1 px-2 py-1 bg-red-500/10 hover:bg-[#DDF247] hover:text-black text-red-400 text-[10px] font-bold rounded-md transition-all"
+                                                    title={doc.name || `Documento ${idx + 1}`}
+                                                >
+                                                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /></svg>
+                                                    {doc.name ? doc.name.replace(/\.pdf$/i, '').substring(0, 12) : `PDF ${idx + 1}`}
+                                                </a>
+                                            ))}
+                                        </div>
+                                    </li>
+                                )}
                                 <li className="flex justify-between items-center">
                                     <span className="text-gray-400">ID Propiedad</span>
                                     <span className="text-white font-mono text-xs opacity-70">#{property.id.substring(0, 8)}</span>

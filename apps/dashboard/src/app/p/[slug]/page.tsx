@@ -246,7 +246,7 @@ export default async function PropertyLandingPage({ params }: PropertyLandingPag
             <footer className="py-20 border-t border-white/5 bg-[#08080C]">
                 <div className="max-w-7xl mx-auto px-6 flex flex-col items-center">
                     <p className="text-gray-600 text-sm mb-4">Propulsado por Aztecaz Platform</p>
-                    <NextImage src="/assets/images/logo/only_h_o.png" alt="Aztecaz" width={40} height={40} className="opacity-20 grayscale brightness-200" />
+                    <NextImage src="/assets/images/logo/only_h_o.png" alt="Aztecaz" width={200} height={80} className="opacity-20 grayscale brightness-200" quality={100} />
                 </div>
             </footer>
         </div>

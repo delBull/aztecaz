@@ -6,13 +6,105 @@ import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { searchProperties } from "@/actions/search-properties";
+import { getNotifications, type Notification } from "@/actions/get-notifications";
 
 // Make sure to replace this with your actual client ID or use the Environment Variable
 const client = createThirdwebClient({
     clientId: process.env.NEXT_PUBLIC_TEMPLATE_CLIENT_ID || "",
 });
 
+
+function NotificationsPanel() {
+    const [open, setOpen] = useState(false);
+    const [notifications, setNotifications] = useState<Notification[]>([]);
+    const [loading, setLoading] = useState(false);
+    const ref = useRef<HTMLDivElement>(null);
+    const unreadCount = notifications.filter(n => n.unread).length;
+
+    useEffect(() => {
+        function handleClick(e: MouseEvent) {
+            if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+        }
+        document.addEventListener("mousedown", handleClick);
+        return () => document.removeEventListener("mousedown", handleClick);
+    }, []);
+
+    // Fetch from DB when panel opens
+    useEffect(() => {
+        if (!open) return;
+        setLoading(true);
+        getNotifications().then((data) => {
+            setNotifications(data);
+            setLoading(false);
+        });
+    }, [open]);
+
+    const markAllRead = () => setNotifications(prev => prev.map(n => ({ ...n, unread: false })));
+
+    return (
+        <div className="relative" ref={ref}>
+            <button
+                onClick={() => setOpen(!open)}
+                className="relative p-2 text-gray-400 hover:text-white transition-colors"
+                aria-label="Notificaciones"
+            >
+                <svg width={22} height={22} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                    <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                </svg>
+                {unreadCount > 0 && (
+                    <span className="absolute top-1 right-1 w-4 h-4 bg-[#DDF247] text-black text-[9px] font-black rounded-full flex items-center justify-center leading-none">
+                        {unreadCount}
+                    </span>
+                )}
+            </button>
+
+            {open && (
+                <div className="absolute top-full right-0 mt-2 w-80 bg-[#1C1C29] border border-[#2C2C39] rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.8)] z-50 overflow-hidden">
+                    {/* Header */}
+                    <div className="flex items-center justify-between px-5 py-4 border-b border-[#2C2C39]">
+                        <h3 className="text-sm font-bold text-white">Notificaciones</h3>
+                        {unreadCount > 0 && (
+                            <button onClick={markAllRead} className="text-[10px] text-[#DDF247] hover:underline font-semibold">
+                                Marcar todo como leído
+                            </button>
+                        )}
+                    </div>
+
+                    {/* Feed */}
+                    <ul className="max-h-80 overflow-y-auto divide-y divide-[#2C2C39]/50">
+                        {notifications.map(n => (
+                            <li
+                                key={n.id}
+                                className={`flex gap-3 px-4 py-3 hover:bg-[#2C2C39]/50 transition-colors cursor-pointer ${n.unread ? "bg-[#DDF247]/5" : ""}`}
+                            >
+                                <span className="text-xl flex-shrink-0 mt-0.5">{n.icon}</span>
+                                <div className="flex-1 min-w-0">
+                                    <p className={`text-xs font-semibold ${n.unread ? "text-white" : "text-gray-300"}`}>{n.title}</p>
+                                    <p className="text-[11px] text-gray-400 mt-0.5 leading-snug">{n.body}</p>
+                                    <p className="text-[10px] text-gray-600 mt-1">{n.time}</p>
+                                </div>
+                                {n.unread && (
+                                    <span className="w-2 h-2 bg-[#DDF247] rounded-full flex-shrink-0 mt-1.5" />
+                                )}
+                            </li>
+                        ))}
+                    </ul>
+
+                    {/* Footer */}
+                    <div className="px-5 py-3 border-t border-[#2C2C39] text-center">
+                        <Link href="/dashboard" onClick={() => setOpen(false)} className="text-xs text-[#DDF247] hover:underline font-semibold">
+                            Ver todo el historial →
+                        </Link>
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+}
+
 export default function Header() {
+
     const router = useRouter();
     const [searchTerm, setSearchTerm] = useState("");
     const [isSearching, setIsSearching] = useState(false);
@@ -132,15 +224,8 @@ export default function Header() {
                     )}
                 </div>
             </div>
-            <div className="flex items-center space-x-6">
-                <button className="relative p-2 text-gray-400 hover:text-white transition-colors">
-                    <svg width={24} height={25} viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fillRule="evenodd" clipRule="evenodd" d="M12 18.8476C17.6392 18.8476 20.2481 18.1242 20.5 15.2205C20.5 12.3188 18.6812 12.5054 18.6812 8.94511C18.6812 6.16414 16.0452 3 12 3C7.95477 3 5.31885 6.16414 5.31885 8.94511C5.31885 12.5054 3.5 12.3188 3.5 15.2205C3.75295 18.1352 6.36177 18.8476 12 18.8476Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                        <path d="M14.3888 21.8574C13.0247 23.3721 10.8967 23.3901 9.51947 21.8574" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                        <circle cx={17} cy={5} r={4} fill="#DDF247" stroke="#1D1D1D" strokeWidth="1.5" />
-                    </svg>
-                </button>
-
+            <div className="flex items-center space-x-4">
+                <NotificationsPanel />
                 {/* Thirdweb Connect Button */}
                 <ConnectButton
                     client={client}
@@ -153,6 +238,7 @@ export default function Header() {
                     }}
                 />
             </div>
+
         </header>
     );
 }

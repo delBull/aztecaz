@@ -46,7 +46,7 @@ export default function AuthGuard({ children }: { children: React.ReactNode }) {
         <div className="flex h-screen w-full flex-col items-center justify-center bg-[#000000] bg-[url('/assets/images/bg-login.png')] bg-cover bg-center">
             <div className="z-10 flex flex-col items-center justify-center p-8 bg-[#111111]/95 backdrop-blur-xl rounded-2xl border border-[#222222] shadow-2xl">
                 <div className="mb-8 flex flex-col items-center">
-                    <NextImage src="/assets/images/logo/only_h_o.png" alt="Aztecaz" width={64} height={64} className="h-16 w-auto mb-4 object-contain" />
+                    <NextImage src="/assets/images/logo/only_h_o.png" alt="Aztecaz" width={320} height={120} className="h-16 w-auto mb-4 object-contain" quality={100} />
                     <h1 className="text-2xl font-bold text-white mb-2">Bienvenido al Dashboard</h1>
                     <p className="text-gray-400 text-center max-w-xs">
                         Conecta tu wallet para acceder a tus propiedades y organización.
