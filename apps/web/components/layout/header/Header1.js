@@ -69,12 +69,12 @@ export default function Header1({ isMobileMenu, handleMobileMenu }) {
 
                                                 {/* Mobile Actions */}
                                                 <div className="flex items-center" style={{ gap: '12px' }}>
-                                                    <Link href={process.env.NEXT_PUBLIC_DASHBOARD_URL ? `${process.env.NEXT_PUBLIC_DASHBOARD_URL}/dashboard/market` : "http://localhost:3001/dashboard/market"} className="flex items-center justify-center" style={{
+                                                    <Link href="/dashboard/market" className="flex items-center justify-center" style={{
                                                         backgroundColor: '#f3f4f6', color: 'black', height: '36px', padding: '0 12px', borderRadius: '18px', gap: '6px', textDecoration: 'none'
                                                     }}>
                                                         <span style={{ fontSize: '12px', fontWeight: 'bold' }}>Propiedades</span>
                                                     </Link>
-                                                    <Link href={process.env.NEXT_PUBLIC_DASHBOARD_URL || "http://localhost:3001/dashboard"} className="flex items-center justify-center" style={{
+                                                    <Link href="/dashboard" className="flex items-center justify-center" style={{
                                                         backgroundColor: '#14141F', color: 'white', height: '36px', padding: '0 12px', borderRadius: '18px', gap: '6px', textDecoration: 'none'
                                                     }}>
                                                         <span style={{ fontSize: '12px', fontWeight: 'bold' }}>Dash</span>
@@ -107,7 +107,7 @@ export default function Header1({ isMobileMenu, handleMobileMenu }) {
                                                                 <Link href="/" style={{ color: '#14141F', fontWeight: '600' }}>Inicio</Link>
                                                             </li>
                                                             <li>
-                                                                <Link href={process.env.NEXT_PUBLIC_DASHBOARD_URL || "http://localhost:3001/dashboard"} style={{ color: '#14141F', fontWeight: '600' }}>Dashboard</Link>
+                                                                <Link href="/dashboard" style={{ color: '#14141F', fontWeight: '600' }}>Dashboard</Link>
                                                             </li>
                                                         </ul>
                                                     ) : (
@@ -122,10 +122,10 @@ export default function Header1({ isMobileMenu, handleMobileMenu }) {
                                     {!isMobile && (
                                         <div className="flat-wallet flex" style={{ position: 'absolute', right: 0, zIndex: 4, height: '100%', alignItems: 'center' }}>
                                             <div id="wallet-header" className="flex items-center gap-2">
-                                                <Link href={process.env.NEXT_PUBLIC_DASHBOARD_URL ? `${process.env.NEXT_PUBLIC_DASHBOARD_URL}/dashboard/market` : "http://localhost:3001/dashboard/market"} className="tf-button style-1" style={{ color: 'white', whiteSpace: 'nowrap', backdropFilter: 'blur(5px)', textShadow: '0 1px 2px rgba(0,0,0,0.5)' }}>
+                                                <Link href="/dashboard/market" className="tf-button style-1" style={{ color: 'white', whiteSpace: 'nowrap', backdropFilter: 'blur(5px)', textShadow: '0 1px 2px rgba(0,0,0,0.5)' }}>
                                                     <span>Propiedades</span>
                                                 </Link>
-                                                <Link href={process.env.NEXT_PUBLIC_DASHBOARD_URL || "http://localhost:3001/dashboard"} id="connectbtn" className="tf-button style-1" style={{ backgroundColor: 'transparent', border: '1px solid rgba(255,255,255,0.2)', color: 'white', marginLeft: '5px', whiteSpace: 'nowrap' }}>
+                                                <Link href="/dashboard" id="connectbtn" className="tf-button style-1" style={{ backgroundColor: 'transparent', border: '1px solid rgba(255,255,255,0.2)', color: 'white', marginLeft: '5px', whiteSpace: 'nowrap' }}>
                                                     <span>Dashboard</span>
                                                     <i className="icon-wa" style={{ marginLeft: '5px' }} />
                                                 </Link>

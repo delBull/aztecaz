@@ -7,7 +7,7 @@ export default function Statistics() {
                 <div className="row">
                     <div className="col-12">
                         <div style={{ padding: '30px' }}></div>
-                        <h2 className="tf-title pb-30" style={{ textAlign: 'center'}}>
+                        <h2 className="tf-title pb-30 text-center w-full" style={{ color: 'white' }}>
                             Estadísticas
                         </h2>
                         <div className="counter__body-1">

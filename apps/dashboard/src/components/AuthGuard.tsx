@@ -20,6 +20,7 @@ export default function AuthGuard({ children }: { children: React.ReactNode }) {
     const isPublicRoute = pathname?.startsWith('/dashboard/market') ||
         pathname?.startsWith('/dashboard/launches') ||
         pathname?.startsWith('/dashboard/properties') ||
+        pathname?.startsWith('/dashboard/docs') ||
         pathname?.startsWith('/p/');
 
     // 1. Priority: If it's a public route, render immediately (don't wait for wallet)

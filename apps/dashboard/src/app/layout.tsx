@@ -24,9 +24,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark" style={{ backgroundColor: '#0E0E17' }}>
       <body
-        className={`${inter.className} antialiased`}
+        className={`${inter.className} antialiased bg-[#0E0E17] text-white`}
       >
         <ThirdwebProviderWrapper>
           <AuthGuard>

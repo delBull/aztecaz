@@ -66,17 +66,17 @@ export default function Header3({ scroll, isMobileMenu, handleMobileMenu }) {
                                                 <a>Pages</a>
                                                 <ul className="sub-menu">
                                                     <li className="menu-item has-item">
-                                                        <Link href="/market">Market</Link>
+                                                        <Link href="/dashboard/market">Market</Link>
                                                         <ul className="nav-sub-menu">
-                                                            <li className="nav-menu-item"><Link href="/market-create">Create</Link></li>
-                                                            <li className="nav-menu-item"><Link href="/market">Market</Link></li>
-                                                            <li className="nav-menu-item"><Link href="/market-active-bid">Active Bid</Link></li>
-                                                            <li className="nav-menu-item"><Link href="/market-explore">Explore</Link></li>
-                                                            <li className="nav-menu-item"><Link href="/market-collection">My collection</Link></li>
-                                                            <li className="nav-menu-item"><Link href="/market-favorite">My favorite</Link></li>
-                                                            <li className="nav-menu-item"><Link href="/market-wallet">Wallet</Link></li>
-                                                            <li className="nav-menu-item"><Link href="/market-history">History</Link></li>
-                                                            <li className="nav-menu-item"><Link href="/market">Settings</Link></li>
+                                                            <li className="nav-menu-item"><Link href="/dashboard/market-create">Create</Link></li>
+                                                            <li className="nav-menu-item"><Link href="/dashboard/market">Market</Link></li>
+                                                            <li className="nav-menu-item"><Link href="/dashboard/market-active-bid">Active Bid</Link></li>
+                                                            <li className="nav-menu-item"><Link href="/dashboard/market-explore">Explore</Link></li>
+                                                            <li className="nav-menu-item"><Link href="/dashboard/market-collection">My collection</Link></li>
+                                                            <li className="nav-menu-item"><Link href="/dashboard/market-favorite">My favorite</Link></li>
+                                                            <li className="nav-menu-item"><Link href="/dashboard/market-wallet">Wallet</Link></li>
+                                                            <li className="nav-menu-item"><Link href="/dashboard/market-history">History</Link></li>
+                                                            <li className="nav-menu-item"><Link href="/dashboard/market">Settings</Link></li>
                                                         </ul>
                                                     </li>
                                                     <li className="menu-item"><Link href="/author-1">Authors Style 1</Link></li>

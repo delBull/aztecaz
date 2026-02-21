@@ -15,7 +15,7 @@ export default function HowItWorks() {
                         <div className="col-lg-3 col-md-6">
                             <div className="tf-box-icon relative text-center">
                                 <div className="image">
-                                    <img src="/assets/images/box-icon/icon-01.png" alt="" />
+                                    <img src="/assets/images/box-icon/icon-01.png" alt="" className="mx-auto" />
                                     <p>Paso 1</p>
                                 </div>
                                 <h4 className="heading"><Link href="/contact-us">Descubrimiento</Link></h4>
@@ -30,7 +30,7 @@ export default function HowItWorks() {
                         <div className="col-lg-3 col-md-6">
                             <div className="tf-box-icon relative text-center type-1">
                                 <div className="image">
-                                    <img src="/assets/images/box-icon/icon-02.png" alt="" />
+                                    <img src="/assets/images/box-icon/icon-02.png" alt="" className="mx-auto" />
                                     <p>Paso 2</p>
                                 </div>
                                 <h4 className="heading"><Link href="/contact-us">Tokenización Maestra</Link></h4>
@@ -45,7 +45,7 @@ export default function HowItWorks() {
                         <div className="col-lg-3 col-md-6">
                             <div className="tf-box-icon relative text-center">
                                 <div className="image">
-                                    <img src="/assets/images/box-icon/icon-03.png" alt="" />
+                                    <img src="/assets/images/box-icon/icon-03.png" alt="" className="mx-auto" />
                                     <p>Paso 3</p>
                                 </div>
                                 <h4 className="heading"><Link href="/contact-us">Frutos Financieros</Link></h4>
@@ -60,7 +60,7 @@ export default function HowItWorks() {
                         <div className="col-lg-3 col-md-6">
                             <div className="tf-box-icon relative text-center">
                                 <div className="image">
-                                    <img src="/assets/images/box-icon/icon-04.png" alt="" />
+                                    <img src="/assets/images/box-icon/icon-04.png" alt="" className="mx-auto" />
                                     <p>Paso 4</p>
                                 </div>
                                 <h4 className="heading"><Link href="/contact-us">Ciclo de Crecimiento</Link></h4>
@@ -70,7 +70,7 @@ export default function HowItWorks() {
                     </div>
                     <div className="row">
                         <div className="col-12">
-                            <Link href="/market" className="tf-button style-1 h50 w190 m-auto">¡Empieza ya!<i className="icon-arrow-up-right2" /></Link>
+                            <Link href="/dashboard/market" className="tf-button style-1 h50 w190 m-auto">¡Empieza ya!<i className="icon-arrow-up-right2" /></Link>
                         </div>
                     </div>
                     <div style={{ padding: '50px' }}></div>

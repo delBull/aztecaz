@@ -8,61 +8,61 @@ export default function MobileMenu() {
         <>
 
 
-                   
-                    <div className="inner-canvas-nav">
-                        <div className="side-bar">
-                            
-                            <div className="widget-search mt-30">
-                               {/* <form action="#" method="get" role="search" className="search-form relative">
+
+            <div className="inner-canvas-nav">
+                <div className="side-bar">
+
+                    <div className="widget-search mt-30">
+                        {/* <form action="#" method="get" role="search" className="search-form relative">
                                     <input type="search" id="search" className="search-field style-1" placeholder="Search..." name="s" title="Search for" required />
                                     <button className="search search-submit" type="submit" title="Search">
                                         <i className="icon-search" />
                                     </button>
                                 </form> */}
-                            </div>
-                            <div className="widget widget-categories">
-                                <h5 className="title-widget">Categorías</h5>
-                                <ul>
-                                    <li>
-                                        <div className="cate-item"><Link href="#">NFT Rentas</Link></div>
-                                        <div className="number">(1.483)</div>
-                                    </li>
-                                    <li>
-                                        <div className="cate-item"><Link href="#">NFT Accionarios</Link></div>
-                                        <div className="number">(97)</div>
-                                    </li>
-                                    <li>
-                                        <div className="cate-item"><Link href="#">Tokens por Respaldo</Link></div>
-                                        <div className="number">(45)</div>
-                                    </li>
-                                    <li>
-                                        <div className="cate-item"><Link href="#">Inversiones NFTs</Link></div>
-                                        <div className="number">(728)</div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div className="widget widget-menu style-4">
-                                <h5 className="title-widget">Empresa</h5>
-                                <ul>
-                                    <li><Link href="#">Centro de ayuda</Link></li>
-                                    <li><Link href="#">Comunidad Blockchain</Link></li>
-                                </ul>
-                            </div>
-                            <div className="widget">
-                                <h5 className="title-widget">Síguenos</h5>
-                                <div className="widget-social">
-                                    <ul className="flex">
-                                        <li><Link href="#" className="icon-facebook" /></li>
-                                        <li><Link href="#" className="icon-twitter" /></li>
-                                        <li><Link href="#" className="icon-vt" /></li>
-                                    </ul>
-                                </div>
-                            </div>
+                    </div>
+                    <div className="widget widget-categories">
+                        <h5 className="title-widget">Categorías</h5>
+                        <ul>
+                            <li>
+                                <div className="cate-item"><Link href="#">NFT Rentas</Link></div>
+                                <div className="number">(1.483)</div>
+                            </li>
+                            <li>
+                                <div className="cate-item"><Link href="#">NFT Accionarios</Link></div>
+                                <div className="number">(97)</div>
+                            </li>
+                            <li>
+                                <div className="cate-item"><Link href="#">Tokens por Respaldo</Link></div>
+                                <div className="number">(45)</div>
+                            </li>
+                            <li>
+                                <div className="cate-item"><Link href="#">Inversiones NFTs</Link></div>
+                                <div className="number">(728)</div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div className="widget widget-menu style-4">
+                        <h5 className="title-widget">Empresa</h5>
+                        <ul>
+                            <li><Link href="#">Centro de ayuda</Link></li>
+                            <li><Link href="#">Comunidad Blockchain</Link></li>
+                        </ul>
+                    </div>
+                    <div className="widget">
+                        <h5 className="title-widget">Síguenos</h5>
+                        <div className="widget-social">
+                            <ul className="flex">
+                                <li><Link href="#" className="icon-facebook" /></li>
+                                <li><Link href="#" className="icon-twitter" /></li>
+                                <li><Link href="#" className="icon-vt" /></li>
+                            </ul>
                         </div>
                     </div>
-                
+                </div>
+            </div>
 
-           {/* <nav id="mobile-main-nav" className="mobile-main-nav">
+
+            {/* <nav id="mobile-main-nav" className="mobile-main-nav">
                 <ul id="menu-mobile-menu" className="menu">
                     <li className="menu-item menu-item-has-children-mobile current-menu-item" onClick={() => handleToggle(1)}>
                         <a className="item-menu-mobile">Home</a>
@@ -99,15 +99,15 @@ export default function MobileMenu() {
                     <li className="menu-item menu-item-has-children-mobile" onClick={() => handleToggle(3)}>
                         <a className="item-menu-mobile">Pages</a>
                         <ul className="sub-menu-mobile" style={{ display: `${isActive.key == 3 ? "block" : "none"}` }}>
-                            <li className="menu-item"><Link href="/market">Market</Link></li>
-                            <li className="menu-item"><Link href="/market-create">Create</Link></li>
-                            <li className="menu-item"><Link href="/market-active-bid">Active Bid</Link></li>
-                            <li className="menu-item"><Link href="/market-explore">Explore</Link></li>
-                            <li className="menu-item"><Link href="/market-collection">My collection</Link></li>
-                            <li className="menu-item"><Link href="/market-favorite">My favorite</Link></li>
-                            <li className="menu-item"><Link href="/market-wallet">Wallet</Link></li>
-                            <li className="menu-item"><Link href="/market-history">History</Link></li>
-                            <li className="menu-item"><Link href="/market">Settings</Link></li>
+                            <li className="menu-item"><Link href="/dashboard/market">Market</Link></li>
+                            <li className="menu-item"><Link href="/dashboard/market">Create</Link></li>
+                            <li className="menu-item"><Link href="/dashboard/market">Active Bid</Link></li>
+                            <li className="menu-item"><Link href="/dashboard/market">Explore</Link></li>
+                            <li className="menu-item"><Link href="/dashboard/market">My collection</Link></li>
+                            <li className="menu-item"><Link href="/dashboard/market">My favorite</Link></li>
+                            <li className="menu-item"><Link href="/dashboard/market">Wallet</Link></li>
+                            <li className="menu-item"><Link href="/dashboard/market">History</Link></li>
+                            <li className="menu-item"><Link href="/dashboard/market">Settings</Link></li>
                             <li className="menu-item"><Link href="/author-1">Authors Style 1</Link></li>
                             <li className="menu-item"><Link href="/author-2">Authors Style 2</Link></li>
                             <li className="menu-item"><Link href="/terms-condition">Terms &amp; Condition</Link></li>

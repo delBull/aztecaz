@@ -53,9 +53,9 @@ export default function MarketContent({ initialProperties }: MarketContentProps)
     });
 
     return (
-        <div className="text-white">
+        <div className="text-white bg-[#0E0E17] min-h-screen">
             <div className="flex flex-col md:flex-row items-center justify-between mb-8 gap-4">
-                <h1 className="text-3xl font-bold whitespace-nowrap">Disponibilidad</h1>
+                <h1 className="text-3xl font-bold whitespace-nowrap">Marketplace</h1>
 
                 {/* Filters Bar moved next to title */}
                 <div className="flex-1 flex flex-wrap items-center justify-end gap-4">

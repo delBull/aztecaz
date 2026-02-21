@@ -13,7 +13,7 @@ function cn(...inputs: ClassValue[]) {
 
 const sidebarItems = [
     {
-        name: "Disponibilidad",
+        name: "Marketplace",
         href: "/dashboard/market",
         icon: (
             <svg width={22} height={22} viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -280,6 +280,21 @@ export default function Sidebar({ isCollapsed, setIsCollapsed }: SidebarProps) {
                 </nav>
 
                 <div className="p-4 border-t border-[#2C2C39]">
+                    {/* Docs link */}
+                    <Link
+                        href="/dashboard/docs"
+                        className={cn(
+                            "flex items-center w-full py-2.5 mb-1 text-xs font-medium text-gray-500 rounded-xl hover:bg-[#1C1C29] hover:text-gray-300 transition-colors",
+                            isCollapsed ? "justify-center px-0" : "px-4 gap-2"
+                        )}
+                        title={isCollapsed ? "Documentación" : undefined}
+                    >
+                        <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="flex-shrink-0">
+                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                        </svg>
+                        {!isCollapsed && <span>Docs</span>}
+                    </Link>
                     {isAuthenticated && (
                         <button
                             onClick={() => {
