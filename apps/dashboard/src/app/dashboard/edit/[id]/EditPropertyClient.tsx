@@ -8,6 +8,7 @@ import { useRole } from "@/context/RoleContext";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Upload from "@/components/Upload";
+import MultiUpload from "@/components/MultiUpload";
 
 const initialState = {
     message: "",
@@ -23,6 +24,7 @@ export default function EditPropertyClient({ initialData }: { initialData: any }
 
     // Form State mapped from initialData
     const [imageUrl, setImageUrl] = useState(initialData.images?.[0] || "");
+    const [galleryUrls, setGalleryUrls] = useState<string[]>(initialData.images ? initialData.images.slice(1) : []);
     const [videoUrl, setVideoUrl] = useState(initialData.videoUrl || "");
     const [pdfUrl, setPdfUrl] = useState(initialData.documents?.[0]?.url || "");
     const [category, setCategory] = useState(initialData.category || "");
@@ -51,6 +53,7 @@ export default function EditPropertyClient({ initialData }: { initialData: any }
                 {/* Hidden Inputs for Non-Standard Fields */}
                 <input type="hidden" name="id" value={initialData.id} />
                 <input type="hidden" name="imageUrl" value={imageUrl} />
+                <input type="hidden" name="galleryUrls" value={JSON.stringify(galleryUrls)} />
                 <input type="hidden" name="videoUrl" value={videoUrl} />
                 <input type="hidden" name="documents" value={documentsJson} />
 
@@ -125,6 +128,16 @@ export default function EditPropertyClient({ initialData }: { initialData: any }
                             type="document"
                             onUploadComplete={setPdfUrl}
                             currentValue={pdfUrl}
+                        />
+                    </div>
+
+                    <div className="mt-6 border-t border-[#2C2C39]/50 pt-6">
+                        <MultiUpload
+                            label="Galería de Fotos (Opcional, máx. 10)"
+                            accept="image/*"
+                            onUploadComplete={setGalleryUrls}
+                            currentValues={galleryUrls}
+                            maxFiles={10}
                         />
                     </div>
                 </div>

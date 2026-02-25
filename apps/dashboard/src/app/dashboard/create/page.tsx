@@ -8,6 +8,7 @@ import { useRole } from "@/context/RoleContext";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Upload from "@/components/Upload";
+import MultiUpload from "@/components/MultiUpload";
 
 const initialState = {
     message: "",
@@ -23,6 +24,7 @@ export default function CreatePropertyPage() {
 
     // Form State
     const [imageUrl, setImageUrl] = useState("");
+    const [galleryUrls, setGalleryUrls] = useState<string[]>([]);
     const [videoUrl, setVideoUrl] = useState("");
     const [pdfUrl, setPdfUrl] = useState("");
     const [category, setCategory] = useState("");
@@ -52,6 +54,7 @@ export default function CreatePropertyPage() {
                 <input type="hidden" name="organizationId" value={organization.id} />
                 <input type="hidden" name="creatorWalletAddress" value={account?.address || ""} />
                 <input type="hidden" name="imageUrl" value={imageUrl} />
+                <input type="hidden" name="galleryUrls" value={JSON.stringify(galleryUrls)} />
                 <input type="hidden" name="videoUrl" value={videoUrl} />
                 <input type="hidden" name="documents" value={documentsJson} />
 
@@ -126,6 +129,16 @@ export default function CreatePropertyPage() {
                             type="document"
                             onUploadComplete={setPdfUrl}
                             currentValue={pdfUrl}
+                        />
+                    </div>
+
+                    <div className="mt-6 border-t border-[#2C2C39]/50 pt-6">
+                        <MultiUpload
+                            label="Galería de Fotos (Opcional, máx. 10)"
+                            accept="image/*"
+                            onUploadComplete={setGalleryUrls}
+                            currentValues={galleryUrls}
+                            maxFiles={10}
                         />
                     </div>
                 </div>

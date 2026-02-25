@@ -78,11 +78,21 @@ export async function updateProperty(prevState: any, formData: FormData) {
     } = validatedFields.data;
 
     const imageUrl = formData.get("imageUrl") as string;
+    const galleryUrlsRaw = formData.get("galleryUrls") as string;
     const videoUrl = formData.get("videoUrl") as string;
     const featuresRaw = formData.get("features") as string;
     const documentsRaw = formData.get("documents") as string;
 
-    const images = imageUrl ? [imageUrl] : undefined; // Use existing if not updated? For now let's just use what's passed
+    // Parse gallery URLs
+    let galleryUrls: string[] = [];
+    try {
+        galleryUrls = galleryUrlsRaw ? JSON.parse(galleryUrlsRaw) : [];
+    } catch {
+        galleryUrls = [];
+    }
+
+    // Combine main image and gallery images
+    const images = imageUrl ? [imageUrl, ...galleryUrls] : [...galleryUrls];
     const tags = tagsRaw ? tagsRaw.split(",").map(t => t.trim()).filter(Boolean) : [];
 
     // Check if property exists
@@ -127,7 +137,7 @@ export async function updateProperty(prevState: any, formData: FormData) {
         depth,
     };
 
-    if (images && images.length > 0) updateData.images = images;
+    if (images.length > 0) updateData.images = images;
     if (videoUrl) updateData.videoUrl = videoUrl;
     if (documents) updateData.documents = documents;
 
