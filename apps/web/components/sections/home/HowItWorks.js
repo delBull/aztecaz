@@ -70,7 +70,7 @@ export default function HowItWorks() {
                     </div>
                     <div className="row">
                         <div className="col-12">
-                            <Link href="/dashboard/market" className="tf-button style-1 h50 w190 m-auto">¡Empieza ya!<i className="icon-arrow-up-right2" /></Link>
+                            <a href={`${process.env.NEXT_PUBLIC_DASHBOARD_URL ? process.env.NEXT_PUBLIC_DASHBOARD_URL + '/market' : 'http://localhost:3001/dashboard/market'}`} className="tf-button style-1 h50 w190 m-auto">¡Empieza ya!<i className="icon-arrow-up-right2" /></a>
                         </div>
                     </div>
                     <div style={{ padding: '50px' }}></div>

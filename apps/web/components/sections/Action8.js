@@ -3,6 +3,11 @@
 import Link from "next/link"
 import AutoSlider1 from "../slider/AutoSlider1"
 import AutoSlider2 from "../slider/AutoSlider2"
+
+const marketUrl = process.env.NEXT_PUBLIC_DASHBOARD_URL
+    ? `${process.env.NEXT_PUBLIC_DASHBOARD_URL}/market`
+    : 'http://localhost:3001/dashboard/market';
+
 export default function Action8() {
     return (
         <>
@@ -16,7 +21,7 @@ export default function Action8() {
                                 </div>
                                 <h2>Compra y vende tickets inmobiliarios, usa crypto, comercia con NFTs y más!</h2>
                                 <div className="flat-button flex">
-                                    <Link href="/dashboard/market" className="tf-button style-2 h50 w190 mr-10">Explora más<i className="icon-arrow-up-right2" /></Link>
+                                    <a href={marketUrl} className="tf-button style-2 h50 w190 mr-10">Explora más<i className="icon-arrow-up-right2" /></a>
                                 </div>
                                 <div className="bg-home7">
                                     <AutoSlider1 />

@@ -1,6 +1,10 @@
 import React from 'react';
 import Link from 'next/link';
 
+const marketUrl = process.env.NEXT_PUBLIC_DASHBOARD_URL
+    ? `${process.env.NEXT_PUBLIC_DASHBOARD_URL}/market`
+    : 'http://localhost:3001/dashboard/market';
+
 export default function Hero() {
     return (
         <div className="flat-pages-title-home2 relative bgContainer">
@@ -21,9 +25,9 @@ export default function Hero() {
                                     Aplicamos herramientas blockchain para impulsar el crecimiento en el sector inmobiliario.
                                 </p>
                                 <div data-wow-delay="0.2s" className="wow fadeInUp flat-button flex">
-                                    <Link href="/dashboard/market" className="tf-button style-1 h50 w190 mr-30">
+                                    <a href={marketUrl} className="tf-button style-1 h50 w190 mr-30">
                                         Explorar
-                                    </Link>
+                                    </a>
                                 </div>
                             </div>
                         </div>

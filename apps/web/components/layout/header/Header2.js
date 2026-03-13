@@ -2,6 +2,12 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import MobileMenu from '../MobileMenu'
+
+const marketUrl = process.env.NEXT_PUBLIC_DASHBOARD_URL
+    ? `${process.env.NEXT_PUBLIC_DASHBOARD_URL}/market`
+    : 'http://localhost:3001/dashboard/market';
+const dashboardUrl = process.env.NEXT_PUBLIC_DASHBOARD_URL || 'http://localhost:3001/dashboard';
+
 export default function Header2({ scroll, isMobileMenu, handleMobileMenu }) {
     const [isSidebar, setSidebar] = useState(false)
     const handleSidebar = () => setSidebar(!isSidebar)
@@ -66,17 +72,17 @@ export default function Header2({ scroll, isMobileMenu, handleMobileMenu }) {
                                                 <a>Pages</a>
                                                 <ul className="sub-menu">
                                                     <li className="menu-item has-item">
-                                                        <Link href="/dashboard/market">Market</Link>
+                                                        <a href={marketUrl}>Market</a>
                                                         <ul className="nav-sub-menu">
-                                                            <li className="nav-menu-item"><Link href="/dashboard/market">Create</Link></li>
-                                                            <li className="nav-menu-item"><Link href="/dashboard/market">Market</Link></li>
-                                                            <li className="nav-menu-item"><Link href="/dashboard/market">Active Bid</Link></li>
-                                                            <li className="nav-menu-item"><Link href="/dashboard/market">Explore</Link></li>
-                                                            <li className="nav-menu-item"><Link href="/dashboard/market">My collection</Link></li>
-                                                            <li className="nav-menu-item"><Link href="/dashboard/market">My favorite</Link></li>
-                                                            <li className="nav-menu-item"><Link href="/dashboard/market">Wallet</Link></li>
-                                                            <li className="nav-menu-item"><Link href="/dashboard/market">History</Link></li>
-                                                            <li className="nav-menu-item"><Link href="/dashboard/market">Settings</Link></li>
+                                                            <li className="nav-menu-item"><a href={marketUrl}>Propiedades</a></li>
+                                                            <li className="nav-menu-item"><a href={marketUrl}>Market</a></li>
+                                                            <li className="nav-menu-item"><a href={marketUrl}>Active Bid</a></li>
+                                                            <li className="nav-menu-item"><a href={marketUrl}>Explore</a></li>
+                                                            <li className="nav-menu-item"><a href={marketUrl}>My collection</a></li>
+                                                            <li className="nav-menu-item"><a href={marketUrl}>My favorite</a></li>
+                                                            <li className="nav-menu-item"><a href={marketUrl}>Wallet</a></li>
+                                                            <li className="nav-menu-item"><a href={marketUrl}>History</a></li>
+                                                            <li className="nav-menu-item"><a href={marketUrl}>Settings</a></li>
                                                         </ul>
                                                     </li>
                                                     <li className="menu-item"><Link href="/author-1">Authors Style 1</Link></li>
@@ -107,10 +113,10 @@ export default function Header2({ scroll, isMobileMenu, handleMobileMenu }) {
                                     </nav>{/* /#main-nav */}
                                     <div className="flat-wallet flex">
                                         <div id="wallet-header">
-                                            <Link href={process.env.NEXT_PUBLIC_DASHBOARD_URL || "http://localhost:3001/dashboard"} id="connectbtn" className="tf-button style-1">
+                                            <a href={dashboardUrl} id="connectbtn" className="tf-button style-1">
                                                 <span>Dashboard</span>
                                                 <i className="icon-wa" />
-                                            </Link>
+                                            </a>
                                         </div>
                                         <div className="canvas style-1" onClick={handleSidebar}>
                                             <span />
