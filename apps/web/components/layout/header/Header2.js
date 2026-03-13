@@ -4,9 +4,11 @@ import { useState } from 'react'
 import MobileMenu from '../MobileMenu'
 
 const marketUrl = process.env.NEXT_PUBLIC_DASHBOARD_URL
-    ? `${process.env.NEXT_PUBLIC_DASHBOARD_URL}/market`
+    ? `${process.env.NEXT_PUBLIC_DASHBOARD_URL}/dashboard/market`
     : 'http://localhost:3001/dashboard/market';
-const dashboardUrl = process.env.NEXT_PUBLIC_DASHBOARD_URL || 'http://localhost:3001/dashboard';
+const dashboardUrl = process.env.NEXT_PUBLIC_DASHBOARD_URL
+    ? `${process.env.NEXT_PUBLIC_DASHBOARD_URL}/dashboard`
+    : 'http://localhost:3001/dashboard';
 
 export default function Header2({ scroll, isMobileMenu, handleMobileMenu }) {
     const [isSidebar, setSidebar] = useState(false)

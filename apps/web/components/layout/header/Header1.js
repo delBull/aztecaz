@@ -14,7 +14,9 @@ export default function Header1({ isMobileMenu, handleMobileMenu }) {
     const [shouldHide, setShouldHide] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
 
-    const dashboardUrl = process.env.NEXT_PUBLIC_DASHBOARD_URL || "http://localhost:3001/dashboard";
+    const baseUrl = process.env.NEXT_PUBLIC_DASHBOARD_URL || "http://localhost:3001";
+    const dashboardUrl = `${baseUrl}/dashboard`;
+    const marketUrl = `${baseUrl}/dashboard/market`;
 
     useEffect(() => {
         const handleResize = () => {
@@ -71,17 +73,17 @@ export default function Header1({ isMobileMenu, handleMobileMenu }) {
 
                                                 {/* Mobile Actions */}
                                                 <div className="flex items-center" style={{ gap: '12px' }}>
-                                                    <Link href={`${dashboardUrl}/market`} className="flex items-center justify-center" style={{
+                                                    <a href={marketUrl} className="flex items-center justify-center" style={{
                                                         backgroundColor: '#f3f4f6', color: 'black', height: '36px', padding: '0 12px', borderRadius: '18px', gap: '6px', textDecoration: 'none'
                                                     }}>
                                                         <span style={{ fontSize: '12px', fontWeight: 'bold' }}>Propiedades</span>
-                                                    </Link>
-                                                    <Link href={dashboardUrl} className="flex items-center justify-center" style={{
+                                                    </a>
+                                                    <a href={dashboardUrl} className="flex items-center justify-center" style={{
                                                         backgroundColor: '#14141F', color: 'white', height: '36px', padding: '0 12px', borderRadius: '18px', gap: '6px', textDecoration: 'none'
                                                     }}>
                                                         <span style={{ fontSize: '12px', fontWeight: 'bold' }}>Dash</span>
                                                         <i className="icon-wa" style={{ fontSize: '12px' }} />
-                                                    </Link>
+                                                    </a>
                                                     {/* Burger Menu Trigger */}
                                                     <div onClick={handleMobileMenu} style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
                                                         <MenuIcon size={24} color="black" />
@@ -124,13 +126,13 @@ export default function Header1({ isMobileMenu, handleMobileMenu }) {
                                     {!isMobile && (
                                         <div className="flat-wallet flex" style={{ position: 'absolute', right: 0, zIndex: 4, height: '100%', alignItems: 'center' }}>
                                             <div id="wallet-header" className="flex items-center gap-2">
-                                                <Link href={`${dashboardUrl}/market`} className="tf-button style-1" style={{ color: 'white', whiteSpace: 'nowrap', backdropFilter: 'blur(5px)', textShadow: '0 1px 2px rgba(0,0,0,0.5)' }}>
+                                                <a href={marketUrl} className="tf-button style-1" style={{ color: 'white', whiteSpace: 'nowrap', backdropFilter: 'blur(5px)', textShadow: '0 1px 2px rgba(0,0,0,0.5)' }}>
                                                     <span>Propiedades</span>
-                                                </Link>
-                                                <Link href={dashboardUrl} id="connectbtn" className="tf-button style-1" style={{ backgroundColor: 'transparent', border: '1px solid rgba(255,255,255,0.2)', color: 'white', marginLeft: '5px', whiteSpace: 'nowrap' }}>
+                                                </a>
+                                                <a href={dashboardUrl} id="connectbtn" className="tf-button style-1" style={{ backgroundColor: 'transparent', border: '1px solid rgba(255,255,255,0.2)', color: 'white', marginLeft: '5px', whiteSpace: 'nowrap' }}>
                                                     <span>Dashboard</span>
                                                     <i className="icon-wa" style={{ marginLeft: '5px' }} />
-                                                </Link>
+                                                </a>
                                             </div>
                                         </div>
                                     )}

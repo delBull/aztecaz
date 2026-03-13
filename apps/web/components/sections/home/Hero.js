@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 
 const marketUrl = process.env.NEXT_PUBLIC_DASHBOARD_URL
-    ? `${process.env.NEXT_PUBLIC_DASHBOARD_URL}/market`
+    ? `${process.env.NEXT_PUBLIC_DASHBOARD_URL}/dashboard/market`
     : 'http://localhost:3001/dashboard/market';
 
 export default function Hero() {

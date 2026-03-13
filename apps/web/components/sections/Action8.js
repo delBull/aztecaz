@@ -5,7 +5,7 @@ import AutoSlider1 from "../slider/AutoSlider1"
 import AutoSlider2 from "../slider/AutoSlider2"
 
 const marketUrl = process.env.NEXT_PUBLIC_DASHBOARD_URL
-    ? `${process.env.NEXT_PUBLIC_DASHBOARD_URL}/market`
+    ? `${process.env.NEXT_PUBLIC_DASHBOARD_URL}/dashboard/market`
     : 'http://localhost:3001/dashboard/market';
 
 export default function Action8() {

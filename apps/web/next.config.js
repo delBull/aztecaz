@@ -64,10 +64,11 @@ const nextConfig = {
     ];
   },
   async rewrites() {
+    const baseUrl = process.env.NEXT_PUBLIC_DASHBOARD_URL || "http://localhost:3001";
     return [
       {
         source: "/dashboard/:path*",
-        destination: `${process.env.NEXT_PUBLIC_DASHBOARD_URL || "http://localhost:3001/dashboard"}/:path*`,
+        destination: `${baseUrl}/dashboard/:path*`,
       },
     ];
   },
