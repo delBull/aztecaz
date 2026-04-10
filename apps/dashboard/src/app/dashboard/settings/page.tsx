@@ -4,6 +4,7 @@ import { useActiveAccount } from "thirdweb/react";
 import { useRole } from "@/context/RoleContext";
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import { upload } from "@vercel/blob/client";
 
 export default function SettingsPage() {
     const account = useActiveAccount();
@@ -82,15 +83,12 @@ export default function SettingsPage() {
         const file = e.target.files[0];
 
         try {
-            const response = await fetch(`/api/upload?filename=${encodeURIComponent(file.name)}`, {
-                method: 'POST',
-                body: file,
+            const newBlob = await upload(file.name, file, {
+                access: 'public',
+                handleUploadUrl: '/api/upload',
             });
 
-            if (!response.ok) throw new Error('Upload failed');
-
-            const blob = await response.json();
-            setOrgForm(prev => ({ ...prev, logo: blob.url }));
+            setOrgForm(prev => ({ ...prev, logo: newBlob.url }));
         } catch (error) {
             console.error("Error uploading logo:", error);
             alert("Error al subir el logo");
