@@ -13,6 +13,7 @@ const UpdatePropertySchema = z.object({
     currency: z.enum(["USD", "MXN"]).default("USD"),
     status: z.enum(["DRAFT", "PUBLISHED", "ARCHIVED", "SOLD", "RENTED", "COMING_SOON"]),
     visibility: z.enum(["PUBLIC", "PRIVATE", "UNLISTED"]),
+    listingType: z.enum(["SALE", "RENT"]).default("SALE"),
     category: z.string().optional().nullable(),
     tags: z.string().optional().nullable(),
     location: z.string().optional().nullable(),
@@ -42,6 +43,7 @@ export async function updateProperty(prevState: any, formData: FormData) {
         currency: formData.get("currency") || "USD",
         status: formData.get("status"),
         visibility: formData.get("visibility"),
+        listingType: formData.get("listingType") || "SALE",
         category: formData.get("category"),
         tags: formData.get("tags"),
         location: formData.get("location"),
@@ -70,7 +72,7 @@ export async function updateProperty(prevState: any, formData: FormData) {
     }
 
     const {
-        id, title, description, price, currency, status, visibility, category,
+        id, title, description, price, currency, status, visibility, listingType, category,
         tags: tagsRaw, location, locationUrl,
         bedrooms, bathrooms, areaSqFt, lotSize, yearBuilt, floors,
         parkingSpaces, orientation, zoning, ceilingHeight,
@@ -116,6 +118,7 @@ export async function updateProperty(prevState: any, formData: FormData) {
         currency,
         status,
         visibility,
+        listingType,
         category,
         tags,
         features,

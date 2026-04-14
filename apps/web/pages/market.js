@@ -139,12 +139,18 @@ function PropertyCard({ property, isLaunch = false }) {
                         {isComingSoon ? 'COMING SOON' : property.status}
                     </div>
 
-                    {/* Category Badge */}
-                    {property.category && (
-                        <div className="tw-absolute tw-bottom-2 tw-left-2 tw-px-2 tw-py-1 tw-bg-black/60 tw-backdrop-blur tw-rounded tw-text-xs tw-text-white tw-tracking-wide tw-uppercase">
-                            {property.category}
+                    {/* Category & Listing Type Badges */}
+                    <div className="tw-absolute tw-bottom-2 tw-left-2 tw-flex tw-gap-2">
+                        {property.category && (
+                            <div className="tw-px-2 tw-py-1 tw-bg-black/60 tw-backdrop-blur tw-rounded tw-text-xs tw-text-white tw-tracking-wide tw-uppercase">
+                                {property.category}
+                            </div>
+                        )}
+                        <div className={`tw-px-2 tw-py-1 tw-backdrop-blur tw-rounded tw-text-xs tw-text-white tw-tracking-wide tw-uppercase tw-font-bold ${property.listingType === 'RENT' ? 'tw-bg-blue-600/80' : 'tw-bg-[#DDF247]/80 tw-text-black'
+                            }`}>
+                            {property.listingType === 'RENT' ? 'EN RENTA' : 'EN VENTA'}
                         </div>
-                    )}
+                    </div>
                 </div>
 
                 {/* Content Section */}

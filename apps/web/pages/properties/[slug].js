@@ -47,7 +47,13 @@ export default function PropertyDetails({ property }) {
                 )}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B15] to-transparent"></div>
                 <div className="container absolute bottom-10 left-0 right-0">
-                    <span className="bg-[#DDF247] text-black px-3 py-1 rounded text-sm font-bold mb-4 inline-block">{property.status}</span>
+                    <div className="flex gap-2 mb-4">
+                        <span className="bg-[#DDF247] text-black px-3 py-1 rounded text-sm font-bold inline-block">{property.status}</span>
+                        <span className={`px-3 py-1 rounded text-sm font-bold inline-block ${property.listingType === 'RENT' ? 'bg-blue-600 text-white' : 'bg-white/20 text-white backdrop-blur-md border border-white/30'
+                            }`}>
+                            {property.listingType === 'RENT' ? 'EN RENTA' : 'EN VENTA'}
+                        </span>
+                    </div>
                     <h1 className="text-4xl md:text-5xl font-bold text-white mb-2">{property.title}</h1>
                     <p className="text-xl text-gray-300 flex items-center gap-2">
                         {property.location}

@@ -62,10 +62,24 @@ export default function CreatePropertyPage() {
                 <div className="space-y-6">
                     <h2 className="text-xl font-semibold text-[#DDF247] border-b border-[#2C2C39] pb-2">Información Básica</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="col-span-full">
-                            <label htmlFor="title" className="block text-sm font-medium text-gray-400 mb-2">Título de la Propiedad</label>
-                            <input type="text" id="title" name="title" required className="w-full px-4 py-3 bg-[#1C1C29] border border-[#2C2C39] rounded-xl focus:border-[#DDF247] focus:outline-none transition-colors" placeholder="Ej. Villa Paraíso - Preventa Exclusiva" />
-                            {state.errors?.title && <p className="mt-2 text-sm text-red-500">{state.errors.title}</p>}
+                        <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div className="md:col-span-2">
+                                <label htmlFor="title" className="block text-sm font-medium text-gray-400 mb-2">Título de la Propiedad</label>
+                                <input type="text" id="title" name="title" required className="w-full px-4 py-3 bg-[#1C1C29] border border-[#2C2C39] rounded-xl focus:border-[#DDF247] focus:outline-none transition-colors" placeholder="Ej. Villa Paraíso - Preventa Exclusiva" />
+                                {state.errors?.title && <p className="mt-2 text-sm text-red-500">{state.errors.title}</p>}
+                            </div>
+                            <div>
+                                <label htmlFor="listingType" className="block text-sm font-medium text-gray-400 mb-2">Clasificación</label>
+                                <select
+                                    id="listingType"
+                                    name="listingType"
+                                    required
+                                    className="w-full px-4 py-3 bg-[#1C1C29] border border-[#2C2C39] rounded-xl focus:border-[#DDF247] focus:outline-none transition-colors text-white"
+                                >
+                                    <option value="SALE">Venta</option>
+                                    <option value="RENT">Renta</option>
+                                </select>
+                            </div>
                         </div>
 
                         <div>

@@ -113,8 +113,11 @@ export default function MarketContent({ initialProperties }: MarketContentProps)
                                             <span>No Image</span>
                                         )}
                                     </div>
-                                    <div className="absolute top-2 right-2 px-2 py-1 bg-black/50 rounded text-xs backdrop-blur-sm border border-white/10">
-                                        {property.status}
+                                    <div className="absolute top-2 right-2 px-2 py-1 bg-black/50 rounded text-xs backdrop-blur-sm border border-white/10 flex gap-2">
+                                        <span>{property.status}</span>
+                                        <span className={`font-bold ${property.listingType === 'RENT' ? 'text-blue-400' : 'text-[#DDF247]'}`}>
+                                            [{property.listingType === 'RENT' ? 'RENTA' : 'VENTA'}]
+                                        </span>
                                     </div>
                                     {property.category && (
                                         <div className="absolute bottom-2 left-2 px-2 py-1 bg-black/60 backdrop-blur rounded text-xs text-white border border-white/10">
