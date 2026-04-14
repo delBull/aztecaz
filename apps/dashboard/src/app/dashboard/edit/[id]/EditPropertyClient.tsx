@@ -70,7 +70,7 @@ export default function EditPropertyClient({ initialData }: { initialData: any }
                                 {state.errors?.title && <p className="mt-2 text-sm text-red-500">{state.errors.title}</p>}
                             </div>
                             <div>
-                                <label htmlFor="listingTypeSelect" className="block text-sm font-medium text-gray-400 mb-2">Clasificación</label>
+                                <label htmlFor="listingTypeSelect" className="block text-sm font-medium text-gray-400 mb-2">Tipo de Operación</label>
                                 <select
                                     id="listingTypeSelect"
                                     value={listingType}
