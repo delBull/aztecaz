@@ -2,6 +2,7 @@ import { prisma } from "@repo/database";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Metadata } from "next";
+import PropertyHeaderActions from "@/components/property/PropertyHeaderActions";
 
 interface Props {
     params: {
@@ -105,8 +106,11 @@ export default async function PropertyDetailPage({ params }: Props) {
                     </div>
                 </div>
 
+                {/* Property Actions (Gallery & Video) */}
+                <PropertyHeaderActions images={property.images} videoUrl={property.videoUrl} />
+
                 {/* Price Tag (Floating) */}
-                <div className="absolute top-8 right-8 bg-black/80 backdrop-blur-xl border border-white/10 p-4 rounded-xl shadow-2xl">
+                <div className="absolute top-8 right-8 bg-black/80 backdrop-blur-xl border border-white/10 p-4 rounded-xl shadow-2xl z-20">
                     <p className="text-gray-400 text-xs uppercase tracking-wider mb-1">Precio de Venta</p>
                     <p className="text-2xl font-bold text-[#DDF247]">
                         {property.currency} {Number(property.price).toLocaleString()}

@@ -236,3 +236,10 @@ model FeatureFlag {
   isEnabled   Boolean  @default(false)
   description String?
 }
+
+model PlatformConfig {
+  id          String   @id @default(cuid())
+  key         String   @unique // e.g., "about_aztecaz"
+  value       Json     // Content for Nosotros, Servicios, Equipo
+  updatedAt   DateTime @updatedAt
+}

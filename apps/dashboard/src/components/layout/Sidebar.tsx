@@ -64,6 +64,16 @@ const sidebarItems = [
         ),
     },
     {
+        name: "Sobre Aztecaz",
+        href: "/dashboard",
+        icon: (
+            <svg width={22} height={22} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                <polyline points="9 22 9 12 15 12 15 22" />
+            </svg>
+        ),
+    },
+    {
         name: "Historial",
         href: "/dashboard/history",
         icon: (
@@ -273,7 +283,32 @@ export default function Sidebar({ isCollapsed, setIsCollapsed }: SidebarProps) {
                         {/* Only show "Cuenta" header if there are visible items */}
                         {isAuthenticated && (
                             <div className="mt-8">
-                                {/* Only for uncollapsed state */}
+                                {isSuperAdmin && !isCollapsed && (
+                                    <p className="px-4 text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">
+                                        Administración
+                                    </p>
+                                )}
+                                {isSuperAdmin && (
+                                    <Link
+                                        href="/dashboard/admin/platform"
+                                        className={cn(
+                                            "flex items-center py-3 text-sm font-medium rounded-xl transition-colors mb-1 relative group",
+                                            pathname === "/dashboard/admin/platform"
+                                                ? "bg-[#DDF247] text-black"
+                                                : "text-gray-400 hover:bg-[#1C1C29] hover:text-white",
+                                            isCollapsed ? "justify-center px-0" : "px-4"
+                                        )}
+                                        title={isCollapsed ? "Gestión Plataforma" : undefined}
+                                    >
+                                        <span className={cn("flex-shrink-0", !isCollapsed && "mr-3")}>
+                                            <svg width={22} height={22} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                            </svg>
+                                        </span>
+                                        {!isCollapsed && <span>Gestión Plataforma</span>}
+                                    </Link>
+                                )}
                             </div>
                         )}
                     </div>

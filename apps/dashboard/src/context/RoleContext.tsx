@@ -89,8 +89,15 @@ export function RoleProvider({ children }: { children: React.ReactNode }) {
 
     // Simplify for now: if they have any ADMIN-like role in any org, treat as Admin for UI visibility
     // ALSO CHECK ENV VAR for hardcoded super admin
-    const isSuperAdminWallet = account?.address && process.env.NEXT_PUBLIC_SUPER_ADMIN_ADDRESS &&
-        (account.address.toLowerCase() === process.env.NEXT_PUBLIC_SUPER_ADMIN_ADDRESS.toLowerCase());
+    const ADMIN_WALLETS = [
+        "0x3AD71f8D69f19BDd866c31861B54eCd26b8db156",
+        "0x00c9f7EE6d1808C09B61E561Af6c787060BFE7C9"
+    ];
+    
+    const isSuperAdminWallet = account?.address && (
+        (process.env.NEXT_PUBLIC_SUPER_ADMIN_ADDRESS && account.address.toLowerCase() === process.env.NEXT_PUBLIC_SUPER_ADMIN_ADDRESS.toLowerCase()) ||
+        ADMIN_WALLETS.some(addr => addr.toLowerCase() === account.address.toLowerCase())
+    );
 
     // @ts-ignore
     const isSuperAdmin = isSuperAdminWallet || hasRole(["ADMIN", "ORG_ADMIN", "BROKER"]);
