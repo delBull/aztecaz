@@ -6,34 +6,20 @@ export const metadata: Metadata = {
     description: "Gestión y creación de contratos inmobiliarios.",
 };
 
-export default function ContractsPage() {
-    // Mock data for the historical contracts
-    const recentContracts = [
+export default async function ContractsPage() {
+    // Aquí es donde se conectará la base de datos real (ej. Prisma)
+    // const recentContracts = await prisma.contract.findMany({ where: { organizationId: currentOrg } })
+    const recentContracts: any[] = [
         {
-            id: "C-2026-001",
-            type: "Intermediación Exclusiva",
-            client: "Juan Pérez García",
-            property: "Casa Lomas 45",
-            date: "18 Feb 2026",
-            status: "FIRMADO",
-        },
-        {
-            id: "C-2026-002",
+            id: "C-2026-004",
             type: "Promesa de Compraventa",
-            client: "María González",
-            property: "Depto 302 Polanco",
-            date: "15 Feb 2026",
+            client: "Luis Gómez",
+            property: "Torre Luz 5B",
+            date: "20 Jun 2026",
             status: "PENDIENTE",
-        },
-        {
-            id: "C-2026-003",
-            type: "Arrendamiento Residencial",
-            client: "Carlos Ruiz",
-            property: "Loft Condesa",
-            date: "10 Feb 2026",
-            status: "BORRADOR",
-        },
-    ];
+            flow: "PHYSICAL"
+        }
+    ]; // Agregado un mock para que veas el flujo físico
 
     return (
         <div className="text-white min-h-screen bg-[#0E0E17] max-w-6xl mx-auto">
@@ -108,29 +94,42 @@ export default function ContractsPage() {
                                 </tr>
                             </thead>
                             <tbody className="divide-y divide-[#2C2C39]">
-                                {recentContracts.map((contract) => (
-                                    <tr key={contract.id} className="hover:bg-[#1C1C29] transition-colors">
-                                        <td className="px-6 py-4 font-mono text-gray-300">{contract.id}</td>
-                                        <td className="px-6 py-4 text-white font-medium">{contract.type}</td>
-                                        <td className="px-6 py-4 text-gray-300">{contract.client}</td>
-                                        <td className="px-6 py-4 text-gray-400">{contract.property}</td>
-                                        <td className="px-6 py-4 text-gray-400">{contract.date}</td>
-                                        <td className="px-6 py-4">
-                                            <span className={`inline-flex px-2 py-1 text-[10px] font-bold rounded-full uppercase tracking-wider ${
-                                                contract.status === "FIRMADO" ? "bg-green-500/10 text-green-400 border border-green-500/20" :
-                                                contract.status === "PENDIENTE" ? "bg-yellow-500/10 text-yellow-400 border border-yellow-500/20" :
-                                                "bg-gray-500/10 text-gray-400 border border-gray-500/20"
-                                            }`}>
-                                                {contract.status}
-                                            </span>
-                                        </td>
-                                        <td className="px-6 py-4 text-right">
-                                            <button className="text-[#DDF247] hover:text-white font-medium text-sm transition-colors">
-                                                Ver Detalles
-                                            </button>
+                                {recentContracts.length === 0 ? (
+                                    <tr>
+                                        <td colSpan={7} className="px-6 py-8 text-center text-gray-500">
+                                            Aún no hay contratos generados en esta organización.
                                         </td>
                                     </tr>
-                                ))}
+                                ) : (
+                                    recentContracts.map((contract) => (
+                                        <tr key={contract.id} className="hover:bg-[#1C1C29] transition-colors">
+                                            <td className="px-6 py-4 font-mono text-gray-300">{contract.id}</td>
+                                            <td className="px-6 py-4 text-white font-medium">{contract.type}</td>
+                                            <td className="px-6 py-4 text-gray-300">{contract.client}</td>
+                                            <td className="px-6 py-4 text-gray-400">{contract.property}</td>
+                                            <td className="px-6 py-4 text-gray-400">{contract.date}</td>
+                                            <td className="px-6 py-4">
+                                                <span className={`inline-flex px-2 py-1 text-[10px] font-bold rounded-full uppercase tracking-wider ${
+                                                    contract.status === "FIRMADO" ? "bg-green-500/10 text-green-400 border border-green-500/20" :
+                                                    contract.status === "PENDIENTE" ? "bg-yellow-500/10 text-yellow-400 border border-yellow-500/20" :
+                                                    "bg-gray-500/10 text-gray-400 border border-gray-500/20"
+                                                }`}>
+                                                    {contract.status}
+                                                </span>
+                                            </td>
+                                            <td className="px-6 py-4 text-right flex justify-end gap-3 items-center h-full">
+                                                {contract.status === "PENDIENTE" && contract.flow === "PHYSICAL" && (
+                                                    <button className="text-blue-400 hover:text-white font-medium text-sm transition-colors border border-blue-500/30 px-3 py-1 rounded-lg bg-blue-500/10 hover:bg-blue-500/20 flex items-center gap-2">
+                                                        <span>📤</span> Subir PDF Firmado
+                                                    </button>
+                                                )}
+                                                <button className="text-[#DDF247] hover:text-white font-medium text-sm transition-colors">
+                                                    Ver Detalles
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    ))
+                                )}
                             </tbody>
                         </table>
                     </div>

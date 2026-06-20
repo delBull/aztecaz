@@ -167,7 +167,7 @@ export default function ContractPDFViewer({ blocks, client }: ContractPDFViewerP
 
                     {/* Footer */}
                     <Text style={styles.footer} fixed>
-                        Documento generado a través de Aztecaz Platform - www.aztecaz.com
+                        Documento generado a través de AZTECAZ HUB S.A.P.I. - aztecaz.xyz
                     </Text>
                 </Page>
             </Document>

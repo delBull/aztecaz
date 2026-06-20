@@ -5,11 +5,11 @@ import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 
-import type { Block, ContractPDFViewerProps } from "./ContractPDFViewer";
+import type { Block, ContractPDFViewerProps } from "@/app/dashboard/contracts/editor/[id]/ContractPDFViewer";
 
 // Dynamically import the PDF viewer and generator to avoid SSR issues
 const ContractPDFViewer = dynamic<ContractPDFViewerProps>(
-    () => import("./ContractPDFViewer").then((mod) => mod.default), 
+    () => import("@/app/dashboard/contracts/editor/[id]/ContractPDFViewer").then((mod) => mod.default), 
     { ssr: false }
 );
 
@@ -25,6 +25,8 @@ export default function ContractEditorPage({ params }: { params: { id: string } 
 
     const [blocks, setBlocks] = useState<Block[]>([]);
     const [showPDF, setShowPDF] = useState(false);
+    const [isSignatureModalOpen, setIsSignatureModalOpen] = useState(false);
+    const [signatureFlow, setSignatureFlow] = useState<"none" | "digital" | "physical">("none");
 
     useEffect(() => {
         // Mock data loading based on contract type
@@ -41,7 +43,7 @@ export default function ContractEditorPage({ params }: { params: { id: string } 
                 id: "b2",
                 type: "clause",
                 title: "DECLARACIONES",
-                content: `QUE CELEBRAN POR UNA PARTE AZTECAZ PLATFORM (EN ADELANTE "EL PROFESIONAL") Y POR LA OTRA PARTE EL C. ${client.toUpperCase()} (EN ADELANTE "EL PROPIETARIO"), AL TENOR DE LAS SIGUIENTES DECLARACIONES Y CLÁUSULAS.`,
+                content: `QUE CELEBRAN POR UNA PARTE AZTECAZ HUB S.A.P.I. (EN ADELANTE "EL PROFESIONAL") Y POR LA OTRA PARTE EL C. ${client.toUpperCase()} (EN ADELANTE "EL PROPIETARIO"), AL TENOR DE LAS SIGUIENTES DECLARACIONES Y CLÁUSULAS.`,
                 editable: true,
             },
             {
@@ -98,10 +100,10 @@ export default function ContractEditorPage({ params }: { params: { id: string } 
                     </button>
                     {!showPDF && (
                         <button 
-                            onClick={() => setShowPDF(true)}
+                            onClick={() => setIsSignatureModalOpen(true)}
                             className="px-6 py-3 bg-[#DDF247] text-black font-bold rounded-xl transition-colors"
                         >
-                            Finalizar y Generar
+                            Finalizar y Solicitar Firma
                         </button>
                     )}
                 </div>
@@ -170,6 +172,73 @@ export default function ContractEditorPage({ params }: { params: { id: string } 
             ) : (
                 <div className="bg-white rounded-2xl h-[800px] overflow-hidden">
                     <ContractPDFViewer blocks={blocks} client={client} />
+                </div>
+            )}
+
+            {/* Signature Flow Selection Modal */}
+            {isSignatureModalOpen && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+                    <div className="bg-[#14141F] border border-[#2C2C39] rounded-3xl p-8 max-w-2xl w-full">
+                        <div className="flex justify-between items-center mb-6">
+                            <h2 className="text-2xl font-bold text-white">¿Cómo deseas proceder con las firmas?</h2>
+                            <button onClick={() => setIsSignatureModalOpen(false)} className="text-gray-400 hover:text-white">✕</button>
+                        </div>
+                        
+                        {signatureFlow === "none" && (
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <button 
+                                    onClick={() => setSignatureFlow("digital")}
+                                    className="p-6 border border-[#2C2C39] rounded-2xl hover:border-[#DDF247] hover:bg-[#1C1C29] transition-all text-left group"
+                                >
+                                    <div className="text-4xl mb-4">📲</div>
+                                    <h3 className="font-bold text-white text-lg mb-2 group-hover:text-[#DDF247] transition-colors">Firma Digital (Web3)</h3>
+                                    <p className="text-sm text-gray-400 leading-relaxed">
+                                        Genera un link seguro y envíalo al correo del cliente. Firmará con su Wallet o un Smart Account. Más rápido, inmutable y ecológico.
+                                    </p>
+                                </button>
+                                <button 
+                                    onClick={() => setSignatureFlow("physical")}
+                                    className="p-6 border border-[#2C2C39] rounded-2xl hover:border-blue-400 hover:bg-[#1C1C29] transition-all text-left group"
+                                >
+                                    <div className="text-4xl mb-4">✍️</div>
+                                    <h3 className="font-bold text-white text-lg mb-2 group-hover:text-blue-400 transition-colors">Firma Física (Papel)</h3>
+                                    <p className="text-sm text-gray-400 leading-relaxed">
+                                        Descarga el PDF, imprímelo para que lo firmen a mano y luego sube el documento escaneado al historial. Ideal para notarías.
+                                    </p>
+                                </button>
+                            </div>
+                        )}
+
+                        {signatureFlow === "digital" && (
+                            <div className="text-center py-8">
+                                <div className="text-6xl mb-4">🔗</div>
+                                <h3 className="text-xl font-bold text-white mb-2">¡Link de Firma Generado!</h3>
+                                <p className="text-gray-400 mb-6">El contrato ha sido bloqueado y marcado como PENDIENTE. Envíale este link a tu cliente:</p>
+                                <div className="bg-[#1C1C29] border border-[#2C2C39] rounded-xl p-4 flex items-center justify-between mb-8">
+                                    <code className="text-[#DDF247] text-sm">https://aztecaz.xyz/sign/ct_9f8a8s7d6f5g</code>
+                                    <button className="text-gray-400 hover:text-white px-3 py-1">Copiar</button>
+                                </div>
+                                <div className="flex gap-4 justify-center">
+                                    <button onClick={() => setSignatureFlow("none")} className="px-6 py-2 border border-[#2C2C39] text-white rounded-xl hover:bg-[#1C1C29]">Volver</button>
+                                    <button onClick={() => router.push("/dashboard/contracts")} className="px-6 py-2 bg-[#DDF247] text-black font-bold rounded-xl">Ir al Historial</button>
+                                </div>
+                            </div>
+                        )}
+
+                        {signatureFlow === "physical" && (
+                            <div className="text-center py-8">
+                                <div className="text-6xl mb-4">🖨️</div>
+                                <h3 className="text-xl font-bold text-white mb-2">Documento Listo para Imprimir</h3>
+                                <p className="text-gray-400 mb-6">El contrato ha sido marcado como PENDIENTE. Descarga el PDF, recaba las firmas en tinta y sube el escaneo desde el Historial.</p>
+                                <div className="flex gap-4 justify-center">
+                                    <button onClick={() => setSignatureFlow("none")} className="px-6 py-2 border border-[#2C2C39] text-white rounded-xl hover:bg-[#1C1C29]">Volver</button>
+                                    <button onClick={() => { setShowPDF(true); setIsSignatureModalOpen(false); }} className="px-6 py-2 bg-blue-500 text-white font-bold rounded-xl flex items-center gap-2">
+                                        Ver PDF para Descargar
+                                    </button>
+                                </div>
+                            </div>
+                        )}
+                    </div>
                 </div>
             )}
         </div>
