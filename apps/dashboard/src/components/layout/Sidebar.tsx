@@ -113,38 +113,47 @@ import { useRole } from "@/context/RoleContext";
 interface SidebarProps {
     isCollapsed: boolean;
     setIsCollapsed: (value: boolean) => void;
+    isMobileMenuOpen?: boolean;
+    setIsMobileMenuOpen?: (value: boolean) => void;
 }
 
-export default function Sidebar({ isCollapsed, setIsCollapsed }: SidebarProps) {
+export default function Sidebar({ isCollapsed, setIsCollapsed, isMobileMenuOpen, setIsMobileMenuOpen }: SidebarProps) {
     const pathname = usePathname();
     const router = useRouter();
     const { disconnect } = useDisconnect();
     const wallet = useActiveWallet();
 
-    // Safely use Role Context - might fail if unauthenticated, so we wrap or use optional chaining if RoleProvider supports it.
-    // Assuming RoleProvider might not provide values if unauthenticated.
-    // Better strategy: Use useActiveAccount to check auth status here too.
     const { isSuperAdmin, hasRole, isLoading } = useRole();
     const isAuthenticated = !!wallet;
 
-    // Define restrictions for specific routes
     const restrictedItems = {
         "/dashboard/market": ["ADMIN", "ORG_ADMIN", "BROKER", "AGENT"],
         "/dashboard/launches": ["ADMIN", "ORG_ADMIN", "BROKER", "AGENT"],
         "/dashboard/finance": ["ADMIN", "ORG_ADMIN", "BROKER"],
     };
 
-    // If not authenticated, we might want to hide the sidebar completely or show a minimal version
-    // For now, let's keep it but hide all protected items
     const publicItems = ["/dashboard/market", "/dashboard/launches"];
 
+    const handleLinkClick = () => {
+        if (setIsMobileMenuOpen) setIsMobileMenuOpen(false);
+    };
+
     return (
-        <div
-            className={cn(
-                "flex flex-col h-screen bg-[#14141F] border-r border-[#2C2C39] fixed left-0 top-0 transition-all duration-300 z-50",
-                isCollapsed ? "w-20" : "w-64"
+        <>
+            {/* Mobile Backdrop Overlay */}
+            {isMobileMenuOpen && (
+                <div 
+                    className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden"
+                    onClick={() => setIsMobileMenuOpen && setIsMobileMenuOpen(false)}
+                />
             )}
-        >
+            <div
+                className={cn(
+                    "flex flex-col h-screen bg-[#14141F] border-r border-[#2C2C39] fixed left-0 top-0 transition-all duration-300 z-50",
+                    isCollapsed ? "md:w-20 w-64" : "w-64",
+                    isMobileMenuOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
+                )}
+            >
             <div className="flex items-center justify-between h-20 px-4 border-b border-[#2C2C39]">
                 <Link href="/dashboard" className="flex items-center justify-center w-full">
                     {isCollapsed ? (
@@ -177,6 +186,7 @@ export default function Sidebar({ isCollapsed, setIsCollapsed }: SidebarProps) {
                     <div className="px-4 mb-6">
                         <Link
                             href="/dashboard/create"
+                            onClick={handleLinkClick}
                             className={cn(
                                 "flex items-center justify-center w-full py-3 bg-[#DDF247] text-black font-bold rounded-xl hover:bg-[#cce336] transition-colors",
                                 isCollapsed ? "px-0" : "px-4"
@@ -220,6 +230,7 @@ export default function Sidebar({ isCollapsed, setIsCollapsed }: SidebarProps) {
                                         <Link
                                             key={item.href}
                                             href={item.href}
+                                            onClick={handleLinkClick}
                                             className={cn(
                                                 "flex items-center py-3 text-sm font-medium rounded-xl transition-colors relative group",
                                                 isActive
@@ -250,6 +261,7 @@ export default function Sidebar({ isCollapsed, setIsCollapsed }: SidebarProps) {
                         {isAuthenticated && (isSuperAdmin || hasRole("AGENT")) && (
                             <Link
                                 href="/dashboard/organization"
+                                onClick={handleLinkClick}
                                 className={cn(
                                     "flex items-center py-3 text-sm font-medium rounded-xl transition-colors mb-1 relative group",
                                     pathname === "/dashboard/organization"
@@ -304,6 +316,7 @@ export default function Sidebar({ isCollapsed, setIsCollapsed }: SidebarProps) {
                                 {isSuperAdmin && (
                                     <Link
                                         href="/dashboard/admin/platform"
+                                        onClick={handleLinkClick}
                                         className={cn(
                                             "flex items-center py-3 text-sm font-medium rounded-xl transition-colors mb-1 relative group",
                                             pathname === "/dashboard/admin/platform"
@@ -331,6 +344,7 @@ export default function Sidebar({ isCollapsed, setIsCollapsed }: SidebarProps) {
                     {/* Docs link */}
                     <Link
                         href="/dashboard/docs"
+                        onClick={handleLinkClick}
                         className={cn(
                             "flex items-center w-full py-2.5 mb-1 text-xs font-medium text-gray-500 rounded-xl hover:bg-[#1C1C29] hover:text-gray-300 transition-colors",
                             isCollapsed ? "justify-center px-0" : "px-4 gap-2"
@@ -366,5 +380,6 @@ export default function Sidebar({ isCollapsed, setIsCollapsed }: SidebarProps) {
                 </div>
             </div>
         </div>
+        </>
     );
 }

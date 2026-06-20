@@ -103,7 +103,12 @@ function NotificationsPanel() {
     );
 }
 
-export default function Header() {
+interface HeaderProps {
+    isMobileMenuOpen?: boolean;
+    setIsMobileMenuOpen?: (value: boolean) => void;
+}
+
+export default function Header({ isMobileMenuOpen, setIsMobileMenuOpen }: HeaderProps) {
 
     const router = useRouter();
     const [searchTerm, setSearchTerm] = useState("");
@@ -152,9 +157,22 @@ export default function Header() {
     };
 
     return (
-        <header className="flex items-center justify-between h-20 px-8 bg-[#14141F] border-b border-[#2C2C39]">
-            <div className="flex-1 max-w-xl">
-                <div className="relative" ref={dropdownRef}>
+        <header className="flex items-center justify-between h-20 px-4 md:px-8 bg-[#14141F] border-b border-[#2C2C39]">
+            <div className="flex items-center flex-1 max-w-xl gap-2 md:gap-0">
+                {/* Mobile Burger Button */}
+                <button
+                    className="md:hidden p-2 text-gray-400 hover:text-white transition-colors"
+                    onClick={() => setIsMobileMenuOpen && setIsMobileMenuOpen(!isMobileMenuOpen)}
+                    aria-label="Toggle Menu"
+                >
+                    <div className="w-6 h-5 relative flex flex-col justify-between">
+                        <span className={`w-full h-0.5 bg-current rounded-full transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`} />
+                        <span className={`w-full h-0.5 bg-current rounded-full transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`} />
+                        <span className={`w-full h-0.5 bg-current rounded-full transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-2.5' : ''}`} />
+                    </div>
+                </button>
+
+                <div className="relative w-full" ref={dropdownRef}>
                     <form onSubmit={handleSearch} className="relative">
                         <input
                             type="text"
@@ -224,7 +242,7 @@ export default function Header() {
                     )}
                 </div>
             </div>
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-2 md:space-x-4 ml-2">
                 <NotificationsPanel />
                 {/* Thirdweb Connect Button */}
                 <ConnectButton
