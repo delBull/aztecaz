@@ -42,7 +42,7 @@ export default function CreateContractPage() {
         <div className="text-white min-h-screen bg-[#0E0E17] max-w-4xl mx-auto pb-24">
             {/* Header / Breadcrumb */}
             <div className="mb-8">
-                <Link href="/dashboard/contracts" className="text-[#DDF247] hover:underline text-sm mb-4 inline-block flex items-center gap-2">
+                <Link href="/dashboard/contracts" className="text-[#DDF247] hover:underline text-sm mb-4 inline-flex items-center gap-2">
                     <span>←</span> Volver a Contratos
                 </Link>
                 <h1 className="text-3xl font-extrabold">Crear Nuevo Contrato</h1>

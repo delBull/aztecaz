@@ -85,7 +85,7 @@ export default function ContractEditorPage({ params }: { params: { id: string } 
         <div className="text-white min-h-screen bg-[#0E0E17] max-w-6xl mx-auto pb-24">
             <div className="flex items-center justify-between mb-8">
                 <div>
-                    <Link href="/dashboard/contracts/create" className="text-[#DDF247] hover:underline text-sm mb-4 inline-block flex items-center gap-2">
+                    <Link href="/dashboard/contracts/create" className="text-[#DDF247] hover:underline text-sm mb-4 inline-flex items-center gap-2">
                         <span>←</span> Atrás
                     </Link>
                     <h1 className="text-3xl font-extrabold">Edición de Contrato</h1>
